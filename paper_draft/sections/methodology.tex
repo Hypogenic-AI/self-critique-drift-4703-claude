@@ -1,0 +1,62 @@
+\section{Methodology}
+\label{sec:method}
+
+\subsection{Overview}
+
+We extract residual stream activations from \pythia at all 33 layers (embedding plus 32 transformer blocks) for three matched conditions per question, then compare the geometric structure of activations across conditions using multiple complementary metrics. The key design choice is the inclusion of a length-matched paraphrase control: this allows us to distinguish representational changes caused by critique-specific content from those caused by simply appending additional text.
+
+\subsection{Stimulus Construction}
+\label{sec:stimuli}
+
+\para{Dataset.}
+We sample 150 questions from the \gsm test set~\citep{cobbe2021training}, a benchmark of grade-school math word problems requiring multi-step arithmetic reasoning.
+
+\para{Condition generation.}
+For each question, we use the GPT-4.1 API to generate three matched stimuli:
+\begin{enumerate}[leftmargin=*,itemsep=0pt,topsep=2pt]
+    \item \textbf{Base}: ``\texttt{Question: \{q\} Answer: \{initial\_answer\}}'' --- a direct answer with no evaluation. Initial answers are designed to be approximately 50\% correct and 50\% incorrect (final split: 80 correct, 70 incorrect).
+    \item \textbf{Critique}: Base text followed by a self-critique that evaluates the answer, identifies errors or confirms correctness, and optionally revises the reasoning.
+    \item \textbf{Paraphrase}: Base text followed by a length-matched paraphrase that restates the answer without evaluating it.
+\end{enumerate}
+The paraphrase condition controls for the effect of additional text length and surface-level variation, isolating the contribution of evaluative content in the critique condition.
+
+\para{Preprocessing.}
+All stimuli are tokenized using the Pythia tokenizer with a BOS token prepended and truncated to a maximum of 512 tokens. We extract activations at the \emph{last token position}, capturing the model's integrated representation of the full input.
+
+\subsection{Activation Extraction}
+
+We use \tlens~\citep{nanda2022transformerlens} to extract residual stream activations via hook-based interception of the forward pass. For each of the $N = 150$ samples and $L = 33$ layers, we obtain an activation vector $\vh^{(l)}_i \in \sR^{d}$ where $d = 2560$ is the model dimension of \pythia. This yields three activation tensors of shape $150 \times 33 \times 2560$, one per condition. The model is loaded in fp16 on a single NVIDIA RTX 3090 (24GB).
+
+\subsection{Evaluation Metrics}
+\label{sec:metrics}
+
+We employ five complementary metrics to characterize representation drift from different geometric perspectives.
+
+\para{Cosine similarity.}
+For each sample $i$ and layer $l$, we compute the cosine similarity between the base activation and each condition:
+\begin{equation}
+    \text{cos}(\vh^{(l)}_{\text{base},i},\; \vh^{(l)}_{\text{crit},i}) = \frac{\vh^{(l)}_{\text{base},i} \cdot \vh^{(l)}_{\text{crit},i}}{\|\vh^{(l)}_{\text{base},i}\| \; \|\vh^{(l)}_{\text{crit},i}\|}
+\label{eq:cosine}
+\end{equation}
+Lower cosine similarity indicates greater angular displacement.
+
+\para{$L_2$ displacement.}
+We measure the Euclidean distance between base and condition activations: $\|\vh^{(l)}_{\text{base},i} - \vh^{(l)}_{\text{cond},i}\|_2$. This captures the magnitude of activation change independent of direction.
+
+\para{Centered Kernel Alignment (\cka).}
+CKA~\citep{kornblith2019similarity} measures population-level representational similarity. Given activation matrices $\mX, \mY \in \sR^{N \times d}$ for two conditions at a given layer, CKA computes:
+\begin{equation}
+    \text{CKA}(\mX, \mY) = \frac{\|\mY^\top \mX\|_F^2}{\|\mX^\top \mX\|_F \; \|\mY^\top \mY\|_F}
+\label{eq:cka}
+\end{equation}
+using linear kernels. Lower CKA indicates more divergent representational structure at the population level.
+
+\para{Linear probe accuracy.}
+We train logistic regression classifiers (regularization $C = 1.0$) on activations to classify whether the initial answer is correct or incorrect. Probes are evaluated via 5-fold stratified cross-validation. This metric tests whether post-critique representations encode correctness information with improved linear separability.
+
+\para{Drift direction consistency.}
+For each condition, we compute drift vectors $\vd^{(l)}_i = \vh^{(l)}_{\text{cond},i} - \vh^{(l)}_{\text{base},i}$ and measure their cosine similarity with the mean drift direction $\bar{\vd}^{(l)}$. Higher consistency indicates a systematic directional shift rather than random perturbation.
+
+\subsection{Statistical Testing}
+
+We use paired Wilcoxon signed-rank tests to compare drift magnitudes (cosine similarity, $L_2$ displacement) between critique and paraphrase conditions at each layer. We apply Bonferroni correction for 33 comparisons ($\alpha = 0.05/33 \approx 0.0015$). All experiments use a fixed random seed of 42 for reproducibility.

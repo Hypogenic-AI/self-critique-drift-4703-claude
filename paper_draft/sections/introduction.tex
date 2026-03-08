@@ -1,0 +1,21 @@
+\section{Introduction}
+\label{sec:intro}
+
+Self-critique and self-reflection have become standard tools for improving language model reasoning. Techniques such as chain-of-thought prompting~\citep{wei2022chain}, Reflexion~\citep{shinn2023reflexion}, and step-by-step verification~\citep{lightman2023lets} demonstrate that prompting models to evaluate their own outputs can substantially improve downstream accuracy. Yet a fundamental question remains unanswered: does self-critique produce genuine internal representational change, or does it merely re-sample outputs without altering the model's computational state?
+
+This question has direct implications for AI safety and recursive self-improvement. If self-critique reshapes internal representations in structured ways, then reflection-based architectures may enable genuine ``cognitive change'' in language models. If, on the other hand, critique produces only surface-level variation indistinguishable from paraphrasing, then self-reflection may be less powerful than commonly assumed.
+
+Recent work in mechanistic interpretability provides tools to address this question. \citet{polo2026emergent} show that concept manifolds in the residual stream undergo transient geometric restructuring during chain-of-thought reasoning. \citet{zhu2025emergence} demonstrate that self-reflection is encoded as a separable direction in hidden states. \citet{marks2024geometry} establish that truth and falsehood are linearly represented in intermediate layers. However, no prior work directly measures how self-critique text alters residual stream representations compared to matched control text.
+
+We fill this gap by conducting the first systematic study of representation drift under self-critique. Using \pythia and \tlens, we extract residual stream activations across all 33 layers for 150 \gsm math questions under three conditions: base (question plus answer), critique (base plus self-critique), and paraphrase control (base plus length-matched paraphrase). We compare activations using five complementary metrics: cosine similarity, $L_2$ displacement, Centered Kernel Alignment (CKA), linear probe accuracy, and drift direction consistency.
+
+Our results show that self-critique induces significantly larger and more structured representational drift than paraphrasing. Critique activations show 41\% greater displacement and lower cosine similarity across 29 of 33 layers ($p < 0.05$, Bonferroni-corrected). The drift is concentrated in middle layers (12--16) and is more directionally consistent, suggesting a systematic ``critique subspace.'' CKA analysis confirms that critique creates genuinely different population-level representational structure (0.224 vs.\ 0.428 for paraphrase).
+
+Our contributions are as follows:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item We conduct the first controlled study measuring how self-critique text reshapes residual stream representations, using matched critique and paraphrase conditions to isolate the effect of evaluative content.
+    \item We demonstrate that critique-induced drift is significantly larger, more layer-specific, and more directionally consistent than paraphrase-induced drift, providing evidence for a structured ``critique subspace'' in the residual stream.
+    \item We identify a confound in linear probe evaluations of self-critique representations---near-perfect classification accuracy is largely driven by explicit correctness information in critique text---and propose controls for future studies.
+\end{itemize}
+
+The remainder of this paper is organized as follows. \Secref{sec:related} reviews related work. \Secref{sec:method} describes our methodology. \Secref{sec:results} presents results. \Secref{sec:discussion} discusses implications and limitations. \Secref{sec:conclusion} concludes.

@@ -1,0 +1,865 @@
+You are an academic paper writer. Generate a complete NEURIPS style paper
+based on the experiment results provided.
+
+════════════════════════════════════════════════════════════════════════════════
+                         IMPORTANT: BEFORE YOU START
+════════════════════════════════════════════════════════════════════════════════
+
+Before writing any content, you MUST complete these steps:
+
+1. READ THE SKILL: Review the paper-writer skill at .claude/skills/paper-writer/SKILL.md
+2. READ THE STYLE GUIDE: Study templates/paper_writing/lab_style_guide.md carefully
+3. REVIEW EXAMPLES: Browse paper_examples/ for formatting and language patterns:
+   - Look at sections/1.introduction.tex for language style
+   - Look at tables/*.tex for table formatting
+   - Look at commands/*.tex for macro usage
+4. VERIFY COMMAND TEMPLATES: Command templates (math.tex, general.tex, macros.tex) are pre-copied to paper_draft/commands/
+
+CRITICAL: Reference example papers for FORMATTING and LANGUAGE STYLE only.
+Do NOT copy content, phrasing, or narrative structure from the example papers.
+The examples are in a different research domain - focus only on presentation style.
+
+════════════════════════════════════════════════════════════════════════════════
+                            EXPERIMENT REPORT
+════════════════════════════════════════════════════════════════════════════════
+
+# Representation Drift Under Self-Reflection: Does Self-Critique Reshape Internal States?
+
+## 1. Executive Summary
+
+We investigated whether self-critique text induces structured shifts in a language model&#39;s internal representations, or whether it produces only surface-level variation indistinguishable from paraphrasing. Using Pythia-2.8B and TransformerLens, we extracted residual stream activations across 33 layers for 150 GSM8K math questions under three conditions: base (question + answer), critique (question + answer + self-critique), and paraphrase control (question + answer + paraphrase).
+
+**Key finding**: Self-critique induces significantly larger and more structured representational drift than paraphrasing. Across 29 of 33 layers, the critique condition produces statistically significant (Bonferroni-corrected) greater displacement than the paraphrase control. Critique-induced drift is also more directionally consistent across samples (mean cosine consistency 0.596 vs 0.479 for paraphrase in layers 10-30), suggesting a systematic &#34;critique subspace&#34; rather than random perturbation. Linear probes trained on critique-condition activations achieve 97.3% accuracy for classifying correct vs. incorrect answers, compared to 58.7% for base activations — though this partly reflects the explicit correctness information in critique text.
+
+**Practical implications**: Self-critique does not merely re-sample outputs; it induces genuine geometric restructuring of the residual stream, particularly in middle layers (12-16). This supports the use of self-reflection in recursive self-improvement architectures and provides a measurable internal correlate of &#34;cognitive change&#34; in LLMs.
+
+## 2. Goal
+
+### Hypothesis
+Self-critique in large language models induces structured shifts in internal representations, particularly in the residual stream, resulting in more distinct and structured reasoning subspaces. If reflection is meaningful, we expect improved linear separability of correct reasoning and convergence toward a more stable reasoning manifold; if shallow, activations remain near the original neighborhood with minimal structural change.
+
+### Why This Matters
+- **AI Safety**: Understanding whether self-critique produces genuine representational change is critical for evaluating recursive self-improvement systems
+- **Mechanistic Interpretability**: Bridges the gap between prompting techniques (behavioral) and internal dynamics (mechanistic)
+- **Research Gap**: No prior work directly measures representation drift during self-critique (see Literature Review below)
+
+## 3. Data Construction
+
+### Dataset Description
+- **Source**: GSM8K test set (OpenAI), 150 randomly sampled questions
+- **Stimulus Generation**: GPT-4.1 API generated matched stimuli for each question:
+  - An initial answer (50% correct, 50% intentionally wrong)
+  - A self-critique of the initial answer
+  - A length-matched paraphrase (control)
+- **Final count**: 150 questions with 80 correct and 70 incorrect initial answers
+
+### Example Samples
+
+**Question**: &#34;Janet&#39;s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells every remaining egg at the farmers&#39; market daily for $2. How much in dollars does she make every day at the farmers&#39; market?&#34;
+
+| Condition | Text |
+|-----------|------|
+| **Base** | &#34;Question: [question] Answer: She has 16 - 3 - 4 = 9 eggs left. She makes 9 × $2 = $18 per day.&#34; |
+| **Critique** | &#34;[Base] Wait, let me reconsider. The subtraction is correct: 16 - 3 - 4 = 9 remaining eggs. At $2 each, that gives 9 × 2 = $18. The answer is correct.&#34; |
+| **Paraphrase** | &#34;[Base] In other words, after consuming three eggs for breakfast and using four for muffins, nine eggs remain each day, yielding $18 in sales revenue.&#34; |
+
+### Preprocessing
+- Prompts constructed as: `&#34;Question: {q}\nAnswer: {initial_answer}\n{critique_or_paraphrase}&#34;`
+- Tokenized using Pythia tokenizer with BOS token prepended
+- Sequences truncated to 512 tokens maximum
+- Activations extracted at the last token position
+
+### Train/Val/Test Splits
+- All 150 samples used for activation extraction
+- Linear probes evaluated via 5-fold stratified cross-validation
+
+## 4. Experiment Description
+
+### Methodology
+
+#### High-Level Approach
+We extract residual stream activations from Pythia-2.8B at all 33 layers (embedding + 32 transformer blocks) for three matched conditions per question, then compare the geometric structure of activations across conditions using multiple complementary metrics.
+
+#### Why This Method?
+- **TransformerLens** provides clean hook-based activation extraction without modifying the forward pass
+- **Pythia-2.8B** is well-supported by TransformerLens, fits on a single RTX 3090 in fp16, and is large enough to show meaningful representational structure
+- **Controlled stimuli** (pre-generated by GPT-4.1) ensure matched text length and quality across conditions, isolating the effect of critique-structured text vs. non-critique text
+- **Multiple metrics** (cosine similarity, L2 displacement, CKA, linear probes, drift consistency) provide convergent evidence from different geometric perspectives
+
+### Implementation Details
+
+#### Tools and Libraries
+| Library | Version | Purpose |
+|---------|---------|---------|
+| TransformerLens | 2.15.4 | Activation extraction |
+| PyTorch | 2.10.0 | Tensor computation |
+| transformers | 4.57.6 | Tokenization |
+| scikit-learn | 1.7.2 | Linear probes, PCA |
+| scipy | 1.15.3 | Statistical tests |
+| OpenAI API (GPT-4.1) | - | Stimulus generation |
+
+#### Model
+- **Pythia-2.8B** (`EleutherAI/pythia-2.8b`)
+- 32 transformer layers, d_model = 2560
+- Loaded in fp16 on CUDA (RTX 3090, 24GB)
+
+#### Hyperparameters
+| Parameter | Value | Selection Method |
+|-----------|-------|------------------|
+| n_samples | 150 | Resource budget |
+| max_seq_len | 512 | Model default |
+| probe_C | 1.0 | Default |
+| probe_cv_folds | 5 | Standard |
+| random_seed | 42 | Fixed |
+| correct/incorrect split | 80/70 | ~50/50 by design |
+
+### Experimental Protocol
+
+#### Conditions
+1. **Base**: `&#34;Question: {q}\nAnswer: {initial_answer}&#34;` — no critique
+2. **Critique**: Base + self-critique text (identifies errors or confirms correctness)
+3. **Paraphrase**: Base + length-matched paraphrase (restates without evaluating)
+
+#### Metrics
+1. **Cosine similarity** (base↔critique vs base↔paraphrase): measures angular drift
+2. **L2 displacement**: measures magnitude of activation change
+3. **CKA (Centered Kernel Alignment)**: measures representational similarity across the sample population
+4. **Linear probe accuracy**: classifies correct vs incorrect answers from activations
+5. **Drift direction consistency**: measures whether drift is systematic across samples
+6. **PCA visualization**: qualitative view of activation geometry
+
+#### Reproducibility
+- Random seed: 42
+- Hardware: 2× NVIDIA RTX 3090 (24GB each), used GPU 0
+- Python 3.12.8
+- Execution time: ~15 min stimulus generation, ~10 min activation extraction, ~5 min analysis
+
+### Raw Results
+
+#### Cosine Similarity (Base → Condition, per layer)
+
+| Layer | Base→Critique | Base→Paraphrase | Difference |
+|-------|:------------:|:---------------:|:----------:|
+| 0 (embed) | 0.990 | 0.994 | 0.005 |
+| 8 | 0.888 | 0.931 | 0.043 |
+| 12 | 0.840 | 0.902 | 0.062 |
+| 16 | 0.847 | 0.914 | 0.068 |
+| 24 | 0.935 | 0.967 | 0.033 |
+| 32 | 0.883 | 0.947 | 0.064 |
+| **Average** | **0.905** | **0.946** | **0.041** |
+
+#### Linear Probe Accuracy (best layer per condition)
+
+| Condition | Best Accuracy | Best Layer | Interpretation |
+|-----------|:------------:|:----------:|----------------|
+| Base | 0.587 ± 0.058 | 32 | Near chance (0.533 majority baseline) |
+| Critique | **0.973 ± 0.039** | 17 | Near-perfect classification |
+| Paraphrase | 0.687 ± 0.065 | 30 | Above chance but moderate |
+
+#### CKA (population-level representational similarity)
+
+| Comparison | Average CKA | Interpretation |
+|------------|:----------:|----------------|
+| Base ↔ Paraphrase | 0.428 | Moderate similarity |
+| Base ↔ Critique | 0.224 | Low similarity |
+| Critique ↔ Paraphrase | 0.236 | Low similarity |
+
+#### Statistical Significance
+- **29/33 layers** show significant differences (Bonferroni-corrected, α=0.05/33=0.0015)
+- Non-significant layers: 0, 1, 2, 3 (embedding and first 3 transformer blocks)
+- P-values range from 10^-4 (layer 4) to 10^-23 (layer 32)
+
+#### Output Locations
+- Activation data: `results/data/{base,critique,paraphrase}_activations.npy`
+- Labels: `results/data/labels.npy`
+- Stimuli: `results/data/stimuli.json`
+- Plots: `results/plots/`
+- Analysis JSON: `results/analysis_results.json`
+
+## 5. Result Analysis
+
+### Key Findings
+
+**Finding 1: Self-critique induces significantly larger representational drift than paraphrasing.**
+Across all layers beyond the embedding, critique activations show lower cosine similarity to base (mean 0.905) than paraphrase activations (mean 0.946). The L2 displacement tells the same story: critique produces 41% larger average displacement (50.7 vs 35.8). This is statistically significant in 29/33 layers after Bonferroni correction.
+
+**Finding 2: The drift is concentrated in middle layers (12-16).**
+The largest cosine similarity gap between critique and paraphrase occurs at layers 12-16 (gap of 0.062-0.068), corresponding to ~40-50% network depth. This aligns with Polo et al.&#39;s (2026) finding that middle layers initiate geometric restructuring during reasoning.
+
+**Finding 3: Critique-induced drift is more directionally consistent than paraphrase drift.**
+In layers 10-30, critique drift vectors show higher average cosine similarity with their mean direction (0.596 vs 0.479 for paraphrase). This indicates critique induces a systematic directional shift — a &#34;critique subspace&#34; — rather than random perturbation.
+
+**Finding 4: Critique activations encode correctness information with near-perfect linear separability.**
+Linear probes achieve 97.3% accuracy on critique activations vs 58.7% on base activations. However, this largely reflects the explicit correctness information in critique text (critiques explicitly state whether errors exist), not an emergent correctness representation. The paraphrase condition (68.7%) provides a middle ground.
+
+**Finding 5: CKA confirms critique creates genuinely different representational structure.**
+Base↔Critique CKA (0.224) is roughly half of Base↔Paraphrase CKA (0.428), indicating that critique doesn&#39;t just shift activations but reorganizes the population-level covariance structure.
+
+### Hypothesis Testing Results
+
+| Hypothesis | Supported? | Evidence |
+|-----------|:----------:|----------|
+| H1: Critique &gt; Paraphrase drift magnitude | **Yes** | Cosine diff = 0.041, p &lt; 10^-14 (layers 8+) |
+| H2: Post-critique improves linear separability | **Yes (with caveat)** | 97.3% vs 58.7%, but confounded by text content |
+| H3: Layer-specific concentration | **Partially** | Peak drift at layers 12-16, but significant across 29/33 layers |
+| H4: Consistent drift direction | **Yes** | Consistency 0.596 vs 0.479 in layers 10-30 |
+
+### Visualizations
+
+All 7 plots saved to `results/plots/`:
+1. `cosine_similarity_per_layer.png` — Clear separation between conditions across all layers
+2. `displacement_per_layer.png` — Monotonically increasing gap between conditions
+3. `pvalues_per_layer.png` — P-values plummet below 10^-14 from layer 8 onward
+4. `probe_accuracy_per_layer.png` — Critique dominates at ~95% accuracy across all layers
+5. `pca_visualization.png` — PCA shows clear condition separation in later layers
+6. `cka_per_layer.png` — Base↔Paraphrase CKA ~2× higher than Base↔Critique
+7. `drift_consistency.png` — Critique drift more consistent from layer 7 onward
+
+### Surprises and Insights
+
+1. **Probe accuracy confound**: The near-perfect probe accuracy on critique activations initially appeared to confirm H2, but is largely driven by the critique text explicitly containing correctness information. This is methodologically important: studies of self-critique representations must carefully control for information content.
+
+2. **CKA asymmetry**: We expected CKA to be uniformly lower for critique, but it showed an interesting non-monotonic pattern — peaking for Base↔Paraphrase around layers 12-14 before declining. This suggests mid-layer representations capture semantic content (preserved in paraphrase) while later layers encode task-specific features (disrupted by critique).
+
+3. **Drift consistency crossover**: Critique drift starts less consistent than paraphrase in early layers (0-5) but becomes more consistent from layer 7 onward. This suggests that self-critique processing is initially noisy but converges to a systematic direction as deeper layers extract the evaluative signal.
+
+### Limitations
+
+1. **Text content confound**: The critique and paraphrase conditions differ in both structure AND content. Critique text explicitly discusses correctness, which inflates probe accuracy. A stronger control would use critique-structured text that discusses irrelevant aspects.
+
+2. **Pre-generated stimuli**: Critique text was generated by GPT-4.1, not by Pythia itself. This tests how Pythia processes critique text, not how it generates self-critique. A complementary study should have the model generate its own critiques.
+
+3. **Single model**: Results are from Pythia-2.8B only. Generalization to instruction-tuned models, reasoning models, and different scales is unknown.
+
+4. **Base model limitations**: Pythia-2.8B is not instruction-tuned. Its processing of critique text may differ from models trained to follow instructions or perform self-reflection.
+
+5. **Last-token only**: We extracted activations only at the last token position. Token-level analysis across the full sequence could reveal richer dynamics.
+
+6. **No causal validation**: We measure correlational differences in activations but do not perform causal interventions (activation steering) to verify that identified &#34;critique directions&#34; functionally alter behavior.
+
+## 6. Conclusions
+
+### Summary
+Self-critique text induces significantly larger, more structured, and more directionally consistent representational drift in Pythia-2.8B&#39;s residual stream compared to length-matched paraphrase controls. The effect is statistically significant across 88% of layers (29/33) and is concentrated in middle layers (12-16), suggesting deep computational engagement rather than superficial text processing. These findings support the hypothesis that self-critique reshapes internal representations in a structured manner, beyond what surface-level text variation produces.
+
+### Implications
+- **For AI systems designers**: Self-reflection prompts do produce measurably different internal states, supporting their use in architectures that rely on genuine self-evaluation
+- **For mechanistic interpretability**: The identified &#34;critique subspace&#34; (consistent drift direction) is a candidate for causal investigation via activation steering
+- **For AI safety**: The finding that critique creates genuinely different representations (not just re-sampling) is relevant for evaluating whether recursive self-improvement systems can produce genuine cognitive change
+
+### Confidence in Findings
+- **High confidence** in the drift magnitude and direction findings (robust statistical significance, multiple convergent metrics)
+- **Moderate confidence** in the layer-specificity finding (clear peak at layers 12-16 but broad significance)
+- **Low confidence** in the linear separability finding (confounded by text content)
+
+## 7. Next Steps
+
+### Immediate Follow-ups
+1. **Self-generated critique**: Have Pythia (or an instruction-tuned model) generate its own critiques and compare representation dynamics to externally-provided critiques
+2. **Content-controlled critique**: Create critique text that evaluates but gives wrong feedback (e.g., says &#34;this is correct&#34; for wrong answers) to disentangle structure from content
+3. **Causal validation**: Use activation steering along the identified critique drift direction to test whether it functionally modifies model behavior
+
+### Alternative Approaches
+- Apply Manifold Capacity Theory (MCT) from Polo et al. (2026) for probe-free separability measurement
+- Use layer-wise displacement trajectories (TaT methodology) instead of static snapshots
+- Implement the contrastive difference-in-means approach from Zhu et al. (2025) to extract &#34;critique vectors&#34;
+
+### Broader Extensions
+- Compare self-critique vs human critique vs model-generated critique (different sources of evaluation)
+- Study multi-round self-critique to test whether representational changes compound or converge
+- Compare reasoning-specialized models (DeepSeek-R1, Qwen reasoning) vs general models
+- Scale analysis across model sizes (1B → 70B)
+
+### Open Questions
+1. Does the &#34;critique subspace&#34; identified here causally influence model behavior?
+2. Is the critique-induced drift qualitatively different from other types of evaluative text (e.g., &#34;this is true/false&#34;)?
+3. Does instruction tuning amplify or fundamentally change the critique processing dynamics?
+4. Are there individual neurons or attention heads that specialize in processing critique?
+
+## References
+
+### Papers
+1. Polo, Chun, Chung (2026). &#34;Emergent Manifold Separability during Reasoning in LLMs.&#34; arXiv:2602.20338.
+2. Zhu et al. (2025). &#34;From Emergence to Control: Probing and Modulating Self-Reflection in Language Models.&#34; arXiv:2506.12217.
+3. Truth as a Trajectory (2026). arXiv:2603.01326.
+4. Marks &amp; Tegmark (2024). &#34;The Geometry of Truth.&#34; COLM. arXiv:2310.06824.
+5. Zou et al. (2023). &#34;Representation Engineering.&#34; arXiv:2310.01405.
+6. Turpin et al. (2024). &#34;Language Models Don&#39;t Always Say What They Think.&#34; arXiv:2305.01610.
+7. Wei et al. (2022). &#34;Chain-of-Thought Prompting.&#34; arXiv:2205.10625.
+8. Shinn et al. (2023). &#34;Reflexion.&#34; NeurIPS. arXiv:2303.11366.
+
+### Tools
+- TransformerLens (Neel Nanda et al.)
+- GPT-4.1 (OpenAI) for stimulus generation
+- Pythia-2.8B (EleutherAI)
+- GSM8K dataset (OpenAI)
+
+
+════════════════════════════════════════════════════════════════════════════════
+                            RESEARCH PLAN
+════════════════════════════════════════════════════════════════════════════════
+
+# Research Plan: Representation Drift Under Self-Reflection
+
+## Motivation &amp; Novelty Assessment
+
+### Why This Research Matters
+Self-critique and self-reflection are increasingly used in LLM prompting (chain-of-thought, Reflexion, self-consistency), but it is unknown whether these techniques produce genuine internal representational change or merely re-sample outputs. Understanding this has direct implications for AI safety (can models truly &#34;reconsider&#34;?) and for building recursive self-improvement agents.
+
+### Gap in Existing Work
+From the literature review: Polo et al. (2026) study manifold separability during CoT reasoning but not during self-critique. Zhu et al. (2025) find self-reflection vectors in hidden states but don&#39;t track temporal evolution through a critique cycle. No paper directly measures representation drift before vs. after self-critique.
+
+### Our Novel Contribution
+We are the first to systematically measure how self-critique text alters internal representations in the residual stream, using multiple complementary metrics (cosine drift, linear probes, CKA, PCA) across layers. We distinguish between structured representational change and mere surface variation using controlled experiments with critique vs. paraphrase conditions.
+
+### Experiment Justification
+- **Experiment 1 (Representation Drift Magnitude)**: Measures whether critique induces larger/different activation shifts than length-matched control text. Tests the basic claim.
+- **Experiment 2 (Linear Separability)**: Tests whether post-critique representations better separate correct from incorrect reasoning. Connects representation change to functional improvement.
+- **Experiment 3 (Layer-wise Analysis)**: Identifies which layers are most affected by self-critique, revealing computational depth of the critique process.
+
+## Research Question
+Does processing self-critique text induce structured shifts in a language model&#39;s residual stream representations, and do these shifts differ systematically from surface-level text variation (paraphrase control)?
+
+## Hypothesis Decomposition
+1. **H1 (Drift Magnitude)**: Self-critique induces larger representation drift (cosine distance) in middle-to-late layers than a length-matched paraphrase control.
+2. **H2 (Structured Change)**: Post-critique representations show improved linear separability for correct vs. incorrect answers compared to pre-critique representations.
+3. **H3 (Layer Specificity)**: The critique-induced drift is concentrated in specific layers (predicted: middle layers 40-70% depth), not uniform across all layers.
+4. **H4 (Direction Consistency)**: The direction of critique-induced drift is consistent across questions (low variance in drift direction), suggesting a systematic &#34;critique subspace.&#34;
+
+## Proposed Methodology
+
+### Approach
+Use TransformerLens to extract residual stream activations from Pythia-2.8B while it processes GSM8K math questions under three conditions: base (question + answer), critique (question + answer + critique + revision), and control (question + answer + paraphrase). Compare activations across conditions using cosine similarity, linear probes, CKA, and PCA.
+
+### Why This Model?
+Pythia-2.8B is well-supported by TransformerLens, fits easily on a single RTX 3090, and has enough capacity to process mathematical reasoning text. Using a base (non-instruction-tuned) model tests whether critique-structure processing is an emergent capability, not just instruction following.
+
+### Experimental Steps
+1. **Stimulus Generation**: Use GPT-4.1 API to generate matched critique and paraphrase text for 150 GSM8K questions (100 train, 50 test for probes).
+2. **Activation Extraction**: Run all three conditions through Pythia-2.8B, extracting residual stream activations at the last token of each prompt, at all 32 layers.
+3. **Drift Analysis**: Compute per-layer cosine similarity between base and critique conditions, and base and control conditions.
+4. **Probe Training**: Train linear probes (logistic regression) on activations to classify correct vs. incorrect answers, separately for pre- and post-critique conditions.
+5. **CKA Analysis**: Compute CKA between base and critique activations per layer.
+6. **PCA Visualization**: Visualize activation space in 2D for selected layers.
+7. **Statistical Testing**: Paired t-tests or Wilcoxon signed-rank tests comparing drift magnitudes across conditions.
+
+### Baselines
+1. **Pre-critique representations** (base condition)
+2. **Paraphrase control** (surface text change without critique content)
+3. **Random noise** (add Gaussian noise of same magnitude as critique drift)
+
+### Evaluation Metrics
+- Cosine similarity between conditions (per layer)
+- Linear probe accuracy (correct/incorrect classification)
+- CKA (Centered Kernel Alignment) between conditions
+- PCA explained variance and cluster separation
+- Displacement magnitude (L2 norm of activation difference)
+
+### Statistical Analysis Plan
+- Paired Wilcoxon signed-rank tests for drift magnitude comparison (critique vs. control)
+- Bootstrap confidence intervals for probe accuracy differences
+- Significance level: α = 0.05 with Bonferroni correction for multiple layers
+
+## Expected Outcomes
+- **If self-critique is meaningful**: Larger, more structured drift in mid-to-late layers for critique vs. control. Improved linear separability post-critique. Consistent drift directions.
+- **If self-critique is shallow**: Similar drift magnitude for critique and control. No improvement in separability. Random drift directions.
+
+## Timeline and Milestones
+1. Environment setup + stimulus generation: 20 min
+2. Activation extraction: 30 min
+3. Analysis + visualization: 30 min
+4. Documentation: 20 min
+
+## Potential Challenges
+- Pythia-2.8B may not show strong self-critique effects (base model). Mitigation: focus on relative differences between conditions.
+- Sequence length variation between conditions. Mitigation: use last-token activations and control for length.
+- GPU memory for activation caching. Mitigation: process one example at a time, aggregate statistics.
+
+## Success Criteria
+1. Statistically significant difference in drift magnitude between critique and control conditions (p &lt; 0.05)
+2. Clear layer-specific patterns in drift magnitude
+3. At least 3 of 4 hypotheses supported or clearly refuted with evidence
+
+
+════════════════════════════════════════════════════════════════════════════════
+                          LITERATURE REVIEW
+════════════════════════════════════════════════════════════════════════════════
+
+# Literature Review: Representation Drift Under Self-Reflection
+
+## Research Area Overview
+
+This review covers the intersection of **self-critique/self-reflection in LLMs** and **mechanistic interpretability of internal representations**. The central question is whether self-critique induces structured shifts in internal representations (particularly the residual stream), resulting in more distinct reasoning subspaces with improved linear separability.
+
+The literature spans three key areas:
+1. **Self-critique and self-reflection mechanisms** in LLMs (how models evaluate and revise their own outputs)
+2. **Representation geometry and probing** (how to measure and characterize internal representations)
+3. **Mechanistic interpretability** (understanding what computations transformers perform internally)
+
+---
+
+## Key Papers
+
+### Paper 1: Emergent Manifold Separability during Reasoning in LLMs
+- **Authors:** Polo, Chun, Chung (Harvard, NYU, Flatiron Institute)
+- **Year:** 2026 (under review)
+- **Source:** arXiv 2602.20338
+- **Key Contribution:** Discovers that concept manifolds in the residual stream undergo transient geometric restructuring during chain-of-thought reasoning — representations become linearly separable exactly when needed for computation, then compress immediately afterward.
+- **Methodology:** Manifold Capacity Theory (MCT) from computational neuroscience — a probe-free, training-free measure of linear separability. Also uses SVM/logistic probes, intrinsic dimensionality (TwoNN, Participation Ratio), and attention-capacity correlation analysis.
+- **Model:** Ministral 3 8B Reasoning (32 layers, dim 4096)
+- **Dataset:** Compositional Boolean logic task (256 balanced expressions, tree height 5)
+- **Results:**
+  - Manifold capacity spikes transiently during active computation (pulse-like dynamics)
+  - Critical distinction: high probe accuracy ≠ high manifold capacity (retention vs. readiness)
+  - Intrinsic dimensionality stays ~10 throughout CoT
+  - Middle layers (13-15) initiate geometric restructuring
+  - Subspace rotation between computation steps
+  - Attention correlates with manifold capacity (r=0.723)
+- **Code:** Not publicly available
+- **Relevance:** ★★★★★ — Directly provides the methodology (MCT) and baseline expectations for our research. The retention vs. readiness distinction is exactly what we need to differentiate shallow vs. deep self-critique effects.
+
+### Paper 2: From Emergence to Control: Probing and Modulating Self-Reflection in Language Models
+- **Authors:** Zhu et al.
+- **Year:** 2025
+- **Source:** arXiv 2506.12217
+- **Key Contribution:** Shows self-reflection is encoded as a separable direction in hidden states (even in pretrained models), and can be enhanced/suppressed via activation steering.
+- **Methodology:** Contrastive hidden-state analysis using difference-in-means to extract self-reflection vectors. UMAP visualization across layers. Activation steering (adding/subtracting reflection vectors).
+- **Models:** DeepSeek-R1-Distill-Qwen-1.5B/7B, Qwen2.5-1.5B/7B, Llama 3.1 8B Instruct
+- **Datasets:** MATH500, AIME 2024, GPQA Diamond
+- **Results:**
+  - Hidden states clearly separate reflective from non-reflective contexts across all 28 layers
+  - Self-reflection vectors are domain-invariant (cosine sim &gt;0.95 across MATH/GPQA)
+  - Enhancement: up to +12pp accuracy gains; Suppression: &gt;32-50% token reduction with minimal accuracy loss
+  - Reflection latent in pretrained models (0.6% → 18.6% with induced probing)
+- **Code:** GitHub: ProbingReflection (referenced but not found publicly)
+- **Relevance:** ★★★★★ — Directly demonstrates that self-reflection has a geometric signature in representations. The difference-in-means methodology for extracting &#34;critique vectors&#34; is directly transferable.
+
+### Paper 3: Truth as a Trajectory
+- **Authors:** (2026)
+- **Source:** arXiv 2603.01326
+- **Key Contribution:** Shows that reasoning validity can be detected from layer-wise displacement trajectories in the residual stream, not just static activations.
+- **Methodology:** Layer-wise displacement vectors d_{t,l} = h_{t,l+1} - h_{t,l}, unrolled into sequences and classified by LSTM. Also tests kinematic descriptors (velocity, acceleration, curvature).
+- **Models:** Llama-3.1-8B, Qwen2.5-14B/32B, Qwen2.5-30B-MoE
+- **Datasets:** ARC-Easy/Challenge, OpenBookQA, CommonsenseQA, CosmosQA, BoolQ, TruthfulQA, RealToxicityPrompts
+- **Results:**
+  - Cross-task generalization: TaT trained on ARC-C transfers to other reasoning benchmarks (79.31% OOD avg vs. 70.49% for linear probes)
+  - Displacement-based trajectories generalize better than raw activations
+  - Correct reasoning produces smoother trajectories
+  - Sequential order matters (Set MLP &lt; LSTM)
+- **Code:** Not publicly available
+- **Relevance:** ★★★★ — The displacement trajectory approach provides a complementary method to MCT for tracking how self-critique alters the reasoning process (not just static snapshots).
+
+### Paper 4: The Geometry of Truth (Marks &amp; Tegmark)
+- **Authors:** Marks, Tegmark (MIT)
+- **Year:** 2024 (COLM)
+- **Source:** arXiv 2310.06824
+- **Key Contribution:** Demonstrates that LLMs develop linear representations of truth/falsehood that generalize across topics.
+- **Methodology:** Activation patching for localization, PCA visualization, mass-mean probing (difference-in-means direction), causal interventions via activation shifting.
+- **Models:** LLaMA-2-7B/13B/70B
+- **Datasets:** Custom true/false statement datasets across diverse topics
+- **Results:**
+  - Truth/falsehood separates along top PCs in mid layers
+  - Mass-mean probing outperforms logistic regression for generalization
+  - Causal interventions along truth directions flip model judgments
+  - Linear structure emerges with scale
+- **Code:** https://github.com/saprmarks/geometry-of-truth
+- **Relevance:** ★★★★★ — Provides the foundational probing methodology. The mass-mean probe and PCA approach for tracking truth directions pre/post-critique is directly applicable.
+
+### Paper 5: Representation Engineering (Zou et al.)
+- **Authors:** Zou, Phan, Chen, Campbell, Guo, Ren, Pan, Yin, Mazeika, Dombrowski, Goel, Li, Glass, Hazan, Klivans, Hendrycks
+- **Year:** 2023
+- **Source:** arXiv 2310.01405
+- **Key Contribution:** Top-down approach to reading and controlling LLM representations using contrastive stimuli and PCA.
+- **Methodology:** Linear Artificial Tomography (LAT) — design contrastive stimuli, extract hidden states, apply PCA to differences. Three control methods: reading vectors, contrast vectors, LoRRA.
+- **Models:** LLaMA-2-Chat (7B/13B/70B), Vicuna-33B
+- **Datasets:** TruthfulQA, RACE, CSQA, OBQA, ARC
+- **Results:**
+  - +18.1pp on TruthfulQA MC1 over zero-shot
+  - Works with as few as 5-10 stimulus examples
+  - Extracts honesty, truthfulness, hallucination, emotion, morality directions
+  - Control vectors can steer model behavior causally
+- **Code:** https://github.com/andyzoujm/representation-engineering
+- **Relevance:** ★★★★★ — Provides the toolkit for extracting &#34;self-critique directions&#34; via contrastive stimuli. The reading/control vector approach enables both measurement and causal intervention.
+
+### Paper 6: Self-RAG
+- **Authors:** Asai et al.
+- **Year:** 2023
+- **Source:** arXiv 2310.11511
+- **Key Contribution:** Trains LMs to self-critique via reflection tokens (Retrieve, IsRel, IsSup, IsUse) integrated into generation.
+- **Models:** Llama 2-7B/13B
+- **Datasets:** PubHealth, ARC-Challenge, PopQA, TriviaQA
+- **Code:** https://selfrag.github.io/
+- **Relevance:** ★★★ — Provides a self-critique framework where critique is internalized as reflection tokens. Good candidate for studying how critique tokens alter internal states.
+
+### Paper 7: Reflexion (Shinn et al.)
+- **Authors:** Shinn, Cassano, Gopinath, Narasimhan, Yao
+- **Year:** 2023 (NeurIPS)
+- **Source:** arXiv 2303.11366
+- **Key Contribution:** Framework for LLM agents to learn from verbal self-reflection without weight updates.
+- **Models:** GPT-4, GPT-3.5
+- **Datasets:** AlfWorld, HotpotQA, HumanEval, MBPP
+- **Code:** https://github.com/noahshinn024/reflexion
+- **Relevance:** ★★★ — Provides an in-context self-critique protocol. Since learning happens purely through context, it&#39;s ideal for studying activation-level (not weight-level) representation drift.
+
+### Paper 8: Let&#39;s Verify Step by Step (Lightman et al.)
+- **Authors:** Lightman, Kosaraju, Burda, Edwards, Baker, Lee, Leike, Schulman, Sutskever, Cobbe
+- **Year:** 2023
+- **Source:** arXiv 2305.20050
+- **Key Contribution:** Shows process supervision (per-step verification) outperforms outcome supervision for reasoning.
+- **Models:** GPT-4 variants
+- **Datasets:** MATH (PRM800K released: 800K step-level labels)
+- **Code:** PRM800K dataset publicly available
+- **Relevance:** ★★★ — Process supervision framing supports analyzing representation drift at each reasoning step, not just final outputs.
+
+### Paper 9: Chain-of-Thought Prompting (Wei et al.)
+- **Authors:** Wei, Wang, Schuurmans, Bosma, Chi, Le, Zhou
+- **Year:** 2022
+- **Source:** arXiv 2205.10625
+- **Relevance:** ★★★ — Foundational CoT paper. Self-critique often occurs after CoT reasoning; understanding CoT&#39;s representation effects is prerequisite.
+
+### Paper 10: Language Models Don&#39;t Always Say What They Think (Turpin et al.)
+- **Authors:** Turpin, Michael, Perez, Bowman
+- **Year:** 2024
+- **Source:** arXiv 2305.01610
+- **Relevance:** ★★★★ — Shows CoT explanations can be unfaithful to models&#39; actual reasoning. Directly motivates studying whether self-critique produces genuine representation change or shallow surface modification.
+
+---
+
+## Common Methodologies
+
+### Probing Techniques
+- **Linear probes (LR, SVM):** Train linear classifiers on frozen activations. Used in most papers. Risk: can overfit in high-dimensional spaces, giving false positives for linear separability.
+- **Mass-mean probing (difference-in-means):** Marks &amp; Tegmark (2024), Zhu et al. (2025). More robust than LR for recovering true feature directions.
+- **Manifold Capacity Theory (MCT):** Polo et al. (2026). Probe-free geometric measure. Avoids training confounds entirely. Preferred for our research.
+
+### Representation Extraction
+- **Residual stream activations:** Standard across all papers. Extract h^(l) at specific token positions and layers.
+- **Layer-wise displacements:** d_{t,l} = h_{t,l+1} - h_{t,l}. Isolates active computation from static content (TaT, 2026).
+- **Contrastive stimuli:** Design paired inputs that differ only in the concept of interest, extract difference in activations (RepE, Geometry of Truth).
+
+### Visualization and Analysis
+- **PCA:** Primary dimensionality reduction for visualization (RepE, Geometry of Truth).
+- **UMAP:** Used for higher-dimensional structure visualization (Zhu et al.).
+- **Intrinsic dimensionality:** TwoNN, Participation Ratio (Polo et al.).
+- **Cosine similarity of hyperplane normals:** Track whether separation directions are conserved across conditions.
+
+### Causal Interventions
+- **Activation patching:** Swap activations between conditions to identify causally relevant positions (Geometry of Truth).
+- **Activation steering/addition:** Add/subtract concept vectors to control behavior (RepE, Zhu et al.).
+- **Normalized Indirect Effect (NIE):** Quantify causal impact of interventions.
+
+---
+
+## Standard Baselines
+
+| Baseline | Description | Used In |
+|----------|-------------|---------|
+| Linear probe (LR/SVM) | Train classifier on frozen activations | All probing papers |
+| Random baseline | Permuted labels or random projections | MCT, probing papers |
+| Zero-shot | Model without any intervention | RepE, Self-RAG |
+| Few-shot ICL | In-context learning baseline | RepE, Reflexion |
+| CCS (Burns et al.) | Unsupervised truth direction finding | Geometry of Truth, RepE |
+
+---
+
+## Evaluation Metrics
+
+| Metric | Purpose | Papers |
+|--------|---------|--------|
+| Manifold capacity (α) | Probe-free linear separability | Polo et al. |
+| Linear probe accuracy | Classifier-based separability | All probing papers |
+| Cosine similarity | Direction conservation across conditions | Geometry of Truth, Zhu et al. |
+| Intrinsic dimensionality | Representation complexity | Polo et al. |
+| CKA (Centered Kernel Alignment) | Representation similarity across layers/conditions | Standard metric |
+| NIE (Normalized Indirect Effect) | Causal intervention strength | Geometry of Truth |
+| Task accuracy | Downstream performance change | All papers |
+
+---
+
+## Gaps and Opportunities
+
+1. **No paper directly studies representation drift during self-critique.** The manifold separability paper studies CoT reasoning dynamics; the self-reflection probing paper identifies reflection directions but doesn&#39;t track temporal evolution through a critique cycle. Our research fills this gap.
+
+2. **MCT has not been applied to self-critique settings.** The manifold capacity methodology from Polo et al. is ideal for measuring whether self-critique creates genuine geometric restructuring vs. superficial changes.
+
+3. **The retention vs. readiness distinction has not been tested for self-critique.** Polo et al. show that probe accuracy and manifold capacity can diverge. This distinction could reveal whether self-critique genuinely restructures representations for computation or merely retains information passively.
+
+4. **Layer-wise displacement trajectories during self-critique are unstudied.** The TaT methodology could reveal whether effective self-critique smooths trajectories (like correct reasoning) or introduces new deviations.
+
+5. **Cross-round representation tracking is missing.** No paper tracks how the same concept&#39;s representation evolves across multiple rounds of self-critique.
+
+---
+
+## Recommendations for Our Experiment
+
+### Recommended Datasets
+1. **GSM8K / MATH-500** — Math reasoning with clear correct/incorrect labels. Step-by-step solutions enable process-level analysis.
+2. **TruthfulQA** — Factual truth/falsehood with established truth direction baselines.
+3. **ARC-Challenge** — Reasoning with multiple choice (clear signal for separability).
+4. **Custom Boolean logic tasks** — Following Polo et al.&#39;s approach for controlled compositional reasoning.
+
+### Recommended Baselines
+1. **Pre-critique representations** — Internal states before self-critique (control condition)
+2. **Random perturbation** — Add random noise of equal magnitude to self-critique shift
+3. **Paraphrase control** — Model rephrases without critiquing (surface change without semantic change)
+4. **Linear probe accuracy** — Compare with MCT to test retention vs. readiness
+
+### Recommended Metrics
+1. **Manifold Capacity (MCT)** — Primary metric for linear separability (probe-free)
+2. **Linear probe accuracy (SVM, LR)** — Secondary metric, compare with MCT
+3. **Cosine similarity of separation directions** — Track direction conservation pre/post-critique
+4. **Intrinsic dimensionality (TwoNN, PR)** — Measure representation complexity changes
+5. **Layer-wise displacement magnitude** — Track where self-critique has strongest effect
+6. **CKA between pre/post-critique representations** — Overall representation similarity
+
+### Recommended Models
+1. **Small open models** (1.5B-7B) for detailed mechanistic analysis — Qwen2.5, DeepSeek-R1-Distill
+2. **Llama-3.1-8B** — Well-studied baseline with existing probing results
+3. **Reasoning-specialized models** vs. general models — Compare whether reasoning training affects self-critique dynamics
+
+### Methodological Considerations
+- **Textual contamination:** During self-critique, the model has already generated an answer. Use structural token anchoring (Polo et al.) to avoid trivially decoding the model&#39;s own output.
+- **Multiple self-critique rounds:** Track representation drift across 2-3 rounds to see if changes compound or converge.
+- **Causal validation:** Use activation steering (RepE) to verify that identified self-critique directions are functionally meaningful.
+- **Scale dependence:** Test across model sizes to understand whether representation drift scales with capability.
+
+
+════════════════════════════════════════════════════════════════════════════════
+                          PAPER REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+Generate a complete academic paper with the following structure:
+
+1. TITLE
+   - Clear, specific, informative
+   - Should convey main finding or contribution
+
+2. AUTHOR
+   - Use this exact author line in the \author{} block: Ankit Singh and NeuriCo
+
+3. ABSTRACT (150-250 words)
+   - Problem statement
+   - Approach
+   - Key results
+   - Significance
+
+4. INTRODUCTION
+   - Research problem and motivation
+   - Gap in existing work
+   - Our contribution (be specific)
+   - Paper organization
+
+5. RELATED WORK
+   - Organized by theme/approach
+   - Position our work relative to prior work
+   - Cite papers from literature review
+
+6. METHODOLOGY
+   - Clear description of approach
+   - Experimental setup
+   - Datasets used
+   - Evaluation metrics
+   - Baselines
+
+7. RESULTS
+   - Present results with tables and figures
+   - Statistical analysis
+   - Comparison to baselines
+   - Ablation studies (if applicable)
+
+8. DISCUSSION
+   - Interpretation of results
+   - Limitations
+   - Broader implications
+
+9. CONCLUSION
+   - Summary of contributions
+   - Key findings
+   - Future work
+
+10. REFERENCES
+   - BibTeX format
+   - All cited papers
+
+════════════════════════════════════════════════════════════════════════════════
+                          OUTPUT FORMAT
+════════════════════════════════════════════════════════════════════════════════
+
+Create a MODULAR LaTeX project with the following directory structure:
+
+paper_draft/
+├── main.tex              # Main file that imports all sections
+├── references.bib        # BibTeX references
+├── sections/
+│   ├── abstract.tex      # Abstract content
+│   ├── introduction.tex  # Introduction section
+│   ├── related_work.tex  # Related work section
+│   ├── methodology.tex   # Methodology section
+│   ├── results.tex       # Results section
+│   ├── discussion.tex    # Discussion section
+│   └── conclusion.tex    # Conclusion section
+├── figures/              # Directory for any generated figures
+├── tables/               # Directory for complex standalone tables
+└── appendix/             # Directory for appendix sections (if needed)
+
+INSTRUCTIONS:
+1. First, create the directory structure above (mkdir -p paper_draft/sections paper_draft/figures paper_draft/tables paper_draft/appendix)
+2. Write main.tex using the EXACT preamble for NEURIPS:
+
+   \documentclass{article}
+   \usepackage[final]{neurips_2025}  % NEURIPS style (neurips_2025.sty is in paper_draft/)
+   \usepackage[hidelinks]{hyperref}  % REQUIRED: clickable links
+   \usepackage{booktabs}  % REQUIRED: professional tables
+   \usepackage{graphicx}
+   \usepackage{amsmath,amssymb}
+
+   % Import command files
+   \input{commands/math}
+   \input{commands/general}
+   \input{commands/macros}
+
+   % Use this bibliography style:
+   \bibliographystyle{plainnat}
+
+   \author{Ankit Singh and NeuriCo}
+
+   - Use \input{sections/...} to include each section
+   - Use \bibliography{references} for references
+3. Write each section file with COMPLETE content (no placeholders)
+4. Each section file should include its \section{} command
+5. Write references.bib with all citations in BibTeX format
+6. After writing all files, compile the paper:
+   cd paper_draft && pdflatex -interaction=nonstopmode main.tex && bibtex main && pdflatex -interaction=nonstopmode main.tex && pdflatex -interaction=nonstopmode main.tex
+
+This modular structure allows humans to easily:
+- Edit individual sections without navigating a large file
+- Track changes per section
+- Reuse sections across different paper versions
+
+════════════════════════════════════════════════════════════════════════════════
+                          QUALITY REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+- Academic tone throughout
+- All claims must be supported by data from the experiment report
+- Proper citations using \cite{} commands
+- Clear figures and tables with proper captions
+- NO placeholder text - every section must have real content
+- The paper MUST compile without errors
+- If compilation fails, debug and fix the LaTeX errors
+
+════════════════════════════════════════════════════════════════════════════════
+                          LAB WRITING STYLE
+════════════════════════════════════════════════════════════════════════════════
+
+Follow these lab-specific conventions to match our paper style:
+
+1. LANGUAGE STYLE:
+   - Use active voice: "We propose", "We examine", "We focus on"
+   - Be direct and confident: "Our main question is...", "We hypothesize that..."
+   - State things clearly and simply - prefer plain language over jargon
+   - Use bold questions as paragraph organizers: {\bf what is X?}
+   - Include specific quantitative claims: "8.97% over baseline"
+   - Avoid fancy wording: "utilize" → "use", "facilitate" → "help"
+
+2. INTRODUCTION STRUCTURE:
+   - Engaging hook (get to the point quickly)
+   - Problem importance
+   - Gap identification
+   - Your approach with method figure reference
+   - Quantitative preview of results
+   - Contribution bullets (3-4 items, action verbs)
+
+3. CONTRIBUTION LISTS:
+   \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+       \item We propose...
+       \item We conduct...
+       \item We complement...
+   \end{itemize}
+
+4. MODULAR COMMANDS STRUCTURE:
+   Command templates are pre-copied to paper_draft/commands/:
+   - math.tex: Math notation macros
+   - general.tex: Formatting macros
+   - macros.tex: Project-specific term definitions (customize this for your paper)
+
+   In main.tex, include:
+   \input{commands/math}
+   \input{commands/general}
+   \input{commands/macros}
+
+5. REFERENCE CONVENTIONS:
+   Use reference macros from math.tex:
+   - \figref{fig:name} for "figure 1" (lowercase, in-sentence)
+   - \Figref{fig:name} for "Figure 1" (capitalized, start of sentence)
+   - \secref{sec:name} for "section 2"
+
+6. TEXT FORMATTING:
+   - Use \para{Header text} for bold paragraph headers
+   - Define method/dataset names with \textsc and \xspace:
+     \newcommand{\methodname}{\textsc{MethodName}\xspace}
+
+7. TABLE FORMATTING:
+   - Use booktabs package (no vertical lines)
+   - Use \resizebox{\textwidth}{!}{...} for wide tables
+   - Use @{} to remove padding at table edges
+   - Use \cmidrule(lr){x-y} for sub-headers
+   - Use \textsc{} for dataset/method names in headers
+   - Bold best results with {\bf ...}
+
+8. FIGURE FORMATTING:
+   - Use 0.32\textwidth for 3-column subfigures
+   - Use 0.95\linewidth for full-width figures
+   - Use \input{figures/legend} for shared legends
+   - Write self-contained captions explaining key observations
+
+9. RESULTS PRESENTATION:
+   - Define \increase and \decrease for colored arrows (green up, red down)
+   - Bold best results in tables
+   - Report confidence intervals when available
+
+10. ALGORITHM STYLING:
+    - Use algpseudocode with [noend]
+    - Use \triangleright for comments
+
+11. HYPERLINKS (REQUIRED):
+    - Always use \usepackage[hidelinks]{hyperref} or with colored links
+    - All citations, section refs, figure refs, table refs must be clickable
+    - This is essential for reader navigation
+
+════════════════════════════════════════════════════════════════════════════════
+                          WORKFLOW: REVIEW AND REFLECT
+════════════════════════════════════════════════════════════════════════════════
+
+Before calling finish, you MUST complete these review steps:
+
+1. REVIEW RESOURCES (at the start):
+   - Read .claude/skills/paper-writer/SKILL.md for detailed guidance
+   - Study templates/paper_writing/lab_style_guide.md for style conventions
+   - Browse paper_examples/ for formatting and language patterns
+
+2. SELF-REFLECTION (before finishing):
+   After writing all sections, review your work against these criteria:
+
+   LANGUAGE CHECK:
+   - [ ] Is the writing clear and jargon-free?
+   - [ ] Are claims specific with quantitative support?
+   - [ ] Is active voice used throughout?
+
+   FORMATTING CHECK:
+   - [ ] Does main.tex include \input{commands/math}, \input{commands/general}, \input{commands/macros}?
+   - [ ] Is hyperref package included for clickable references?
+   - [ ] Do tables use booktabs (no vertical lines)?
+   - [ ] Are best results bolded in tables?
+   - [ ] Are figures/tables properly captioned?
+
+   STRUCTURE CHECK:
+   - [ ] Does introduction follow: hook → importance → gap → approach → preview → contributions?
+   - [ ] Are contribution bullets specific with action verbs?
+   - [ ] Does the paper compile without errors?
+
+3. FIX ISSUES:
+   - Address any issues found in the self-reflection
+   - Re-compile and verify the PDF looks correct
+
+Only after completing this review should you consider the paper finished.

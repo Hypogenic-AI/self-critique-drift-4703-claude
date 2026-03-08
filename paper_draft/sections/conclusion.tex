@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented the first controlled study of representation drift under self-critique in language models. By comparing residual stream activations across base, critique, and paraphrase conditions in \pythia on 150 \gsm problems, we demonstrated that self-critique induces significantly larger (41\% greater $L_2$ displacement), more layer-specific (peak at layers 12--16), and more directionally consistent (0.596 vs.\ 0.479 cosine consistency) representational drift than length-matched paraphrasing. CKA analysis confirmed that critique creates genuinely different population-level structure. These findings establish that self-critique produces measurable geometric restructuring of the residual stream, not merely surface-level variation.
+
+Our work also identifies an important methodological caveat: linear probe accuracy on critique activations is inflated by explicit correctness information in critique text. Future studies of self-critique representations should carefully control for information content to avoid confounding evaluative structure with evaluative content.
+
+Several directions for future work emerge. First, causal validation via activation steering along the identified critique direction would test whether this subspace functionally mediates self-evaluative behavior. Second, studying self-generated (rather than externally provided) critique would better capture natural self-reflection dynamics. Third, extending the analysis to instruction-tuned and reasoning-specialized models would establish whether critique processing is amplified by training. Finally, multi-round self-critique experiments could reveal whether representational changes compound or converge across iterations.

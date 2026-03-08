@@ -1,0 +1,1463 @@
+[
+  {
+    "title": "MINAR: Mechanistic Interpretability for Neural Algorithmic Reasoning",
+    "authors": [
+      "Jesse He",
+      "Helen Jenne",
+      "Max Vargas",
+      "Davis Brown",
+      "Gal Mishne",
+      "Yusu Wang",
+      "Henry Kvinge"
+    ],
+    "arxiv_id": "2602.21442",
+    "abstract": "The recent field of neural algorithmic reasoning (NAR) studies the ability of graph neural networks (GNNs) to emulate classical algorithms like Bellman-Ford, a phenomenon known as algorithmic alignment. At the same time, recent advances in large language models (LLMs) have spawned the study of mechanistic interpretability, which aims to identify granular model components like circuits that perform specific computations. In this work, we introduce Mechanistic Interpretability for Neural Algorithmic Reasoning (MINAR), an efficient circuit discovery toolbox that adapts attribution patching methods from mechanistic interpretability to the GNN setting. We show through two case studies that MINAR recovers faithful neuron-level circuits from GNNs trained on algorithmic tasks. Our study sheds new light on the process of circuit formation and pruning during training, as well as giving new insight into how GNNs trained to perform multiple tasks in parallel reuse circuit components for related tasks. Our code is available at https://github.com/pnnl/MINAR.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2602.21442v1"
+  },
+  {
+    "title": "Reasoning Models Generate Societies of Thought",
+    "authors": [
+      "Junsol Kim",
+      "Shiyang Lai",
+      "Nino Scherrer",
+      "Blaise Ag\u00fcera y Arcas",
+      "James Evans"
+    ],
+    "arxiv_id": "2601.10825",
+    "abstract": "Large language models have achieved remarkable capabilities across domains, yet mechanisms underlying sophisticated reasoning remain elusive. Recent reasoning models outperform comparable instruction-tuned models on complex cognitive tasks, attributed to extended computation through longer chains of thought. Here we show that enhanced reasoning emerges not from extended computation alone, but from simulating multi-agent-like interactions -- a society of thought -- which enables diversification and debate among internal cognitive perspectives characterized by distinct personality traits and domain expertise. Through quantitative analysis and mechanistic interpretability methods applied to reasoning traces, we find that reasoning models like DeepSeek-R1 and QwQ-32B exhibit much greater perspective diversity than instruction-tuned models, activating broader conflict between heterogeneous personality- and expertise-related features during reasoning. This multi-agent structure manifests in conversational behaviors, including question-answering, perspective shifts, and the reconciliation of conflicting views, and in socio-emotional roles that characterize sharp back-and-forth conversations, together accounting for the accuracy advantage in reasoning tasks. Controlled reinforcement learning experiments reveal that base models increase conversational behaviors when rewarded solely for reasoning accuracy, and fine-tuning models with conversational scaffolding accelerates reasoning improvement over base models. These findings indicate that the social organization of thought enables effective exploration of solution spaces. We suggest that reasoning models establish a computational parallel to collective intelligence in human groups, where diversity enables superior problem-solving when systematically structured, which suggests new opportunities for agent organization to harness the wisdom of crowds.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2601.10825v1"
+  },
+  {
+    "title": "Training-Driven Representational Geometry Modularization Predicts Brain Alignment in Language Models",
+    "authors": [
+      "Yixuan Liu",
+      "Zhiyuan Ma",
+      "Likai Tang",
+      "Runmin Gan",
+      "Xinche Zhang",
+      "Jinhao Li",
+      "Chao Xie",
+      "Sen Song"
+    ],
+    "arxiv_id": "2602.07539",
+    "abstract": "How large language models (LLMs) align with the neural representation and computation of human language is a central question in cognitive science. Using representational geometry as a mechanistic lens, we addressed this by tracking entropy, curvature, and fMRI encoding scores throughout Pythia (70M-1B) training. We identified a geometric modularization where layers self-organize into stable low- and high-complexity clusters. The low-complexity module, characterized by reduced entropy and curvature, consistently better predicted human language network activity. This alignment followed heterogeneous spatial-temporal trajectories: rapid and stable in temporal regions (AntTemp, PostTemp), but delayed and dynamic in frontal areas (IFG, IFGorb). Crucially, reduced curvature remained a robust predictor of model-brain alignment even after controlling for training progress, an effect that strengthened with model scale. These results links training-driven geometric reorganization to temporal-frontal functional specialization, suggesting that representational smoothing facilitates neural-like linguistic processing.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2602.07539v1"
+  },
+  {
+    "title": "Context Structure Reshapes the Representational Geometry of Language Models",
+    "authors": [
+      "Eghbal A. Hosseini",
+      "Yuxuan Li",
+      "Yasaman Bahri",
+      "Declan Campbell",
+      "Andrew Kyle Lampinen"
+    ],
+    "arxiv_id": "2601.22364",
+    "abstract": "Large Language Models (LLMs) have been shown to organize the representations of input sequences into straighter neural trajectories in their deep layers, which has been hypothesized to facilitate next-token prediction via linear extrapolation. Language models can also adapt to diverse tasks and learn new structure in context, and recent work has shown that this in-context learning (ICL) can be reflected in representational changes. Here we bring these two lines of research together to explore whether representation straightening occurs \\emph{within} a context during ICL. We measure representational straightening in Gemma 2 models across a diverse set of in-context tasks, and uncover a dichotomy in how LLMs' representations change in context. In continual prediction settings (e.g., natural language, grid world traversal tasks) we observe that increasing context increases the straightness of neural sequence trajectories, which is correlated with improvement in model prediction. Conversely, in structured prediction settings (e.g., few-shot tasks), straightening is inconsistent -- it is only present in phases of the task with explicit structure (e.g., repeating a template), but vanishes elsewhere. These results suggest that ICL is not a monolithic process. Instead, we propose that LLMs function like a Swiss Army knife: depending on task structure, the LLM dynamically selects between strategies, only some of which yield representational straightening.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2601.22364v1"
+  },
+  {
+    "title": "Recursive Concept Evolution for Compositional Reasoning in Large Language Models",
+    "authors": [
+      "Sarim Chaudhry"
+    ],
+    "arxiv_id": "2602.15725",
+    "abstract": "Large language models achieve strong performance on many complex reasoning tasks, yet their accuracy degrades sharply on benchmarks that require compositional reasoning, including ARC-AGI-2, GPQA, MATH, BBH, and HLE. Existing methods improve reasoning by expanding token-level search through chain-of-thought prompting, self-consistency, or reinforcement learning, but they leave the model's latent representation space fixed. When the required abstraction is not already encoded in this space, performance collapses. We propose Recursive Concept Evolution (RCE), a framework that enables pretrained language models to modify their internal representation geometry during inference. RCE introduces dynamically generated low-rank concept subspaces that are spawned when representational inadequacy is detected, selected through a minimum description length criterion, merged when synergistic, and consolidated via constrained optimization to preserve stability. This process allows the model to construct new abstractions rather than recombining existing ones. We integrate RCE with Mistral-7B and evaluate it across compositional reasoning benchmarks. RCE yields 12-18 point gains on ARC-AGI-2, 8-14 point improvements on GPQA and BBH, and consistent reductions in depth-induced error on MATH and HLE.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2602.15725v1"
+  },
+  {
+    "title": "Depth-Wise Emergence of Prediction-Centric Geometry in Large Language Models",
+    "authors": [
+      "Shahar Haim",
+      "Daniel C McNamee"
+    ],
+    "arxiv_id": "2602.04931",
+    "abstract": "We show that decoder-only large language models exhibit a depth-wise transition from context-processing to prediction-forming phases of computation accompanied by a reorganization of representational geometry. Using a unified framework combining geometric analysis with mechanistic intervention, we demonstrate that late-layer representations implement a structured geometric code that enables selective causal control over token prediction. Specifically, angular organization of the representation geometry parametrizes prediction distributional similarity, while representation norms encode context-specific information that does not determine prediction. Together, these results provide a mechanistic-geometric account of the dynamics of transforming context into predictions in LLMs.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2602.04931v1"
+  },
+  {
+    "title": "Emergent Manifold Separability during Reasoning in Large Language Models",
+    "authors": [
+      "Alexandre Polo",
+      "Chanwoo Chun",
+      "SueYeon Chung"
+    ],
+    "arxiv_id": "2602.20338",
+    "abstract": "Chain-of-Thought (CoT) prompting significantly improves reasoning in Large Language Models, yet the temporal dynamics of the underlying representation geometry remain poorly understood. We investigate these dynamics by applying Manifold Capacity Theory (MCT) to a compositional Boolean logic task, allowing us to quantify the linear separability of latent representations without the confounding factors of probe training. Our analysis reveals that reasoning manifests as a transient geometric pulse, where concept manifolds are untangled into linearly separable subspaces immediately prior to computation and rapidly compressed thereafter. This behavior diverges from standard linear probe accuracy, which remains high long after computation, suggesting a fundamental distinction between information that is merely retrievable and information that is geometrically prepared for processing. We interpret this phenomenon as \\emph{Dynamic Manifold Management}, a mechanism where the model dynamically modulates representational capacity to optimize the bandwidth of the residual stream throughout the reasoning chain.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2602.20338v1"
+  },
+  {
+    "title": "The Geometry of Representational Failures in Vision Language Models",
+    "authors": [
+      "Daniele Savietto",
+      "Declan Campbell",
+      "Andr\u00e9 Panisson",
+      "Marco Nurisso",
+      "Giovanni Petri",
+      "Jonathan D. Cohen",
+      "Alan Perotti"
+    ],
+    "arxiv_id": "2602.07025",
+    "abstract": "Vision-Language Models (VLMs) exhibit puzzling failures in multi-object visual tasks, such as hallucinating non-existent elements or failing to identify the most similar objects among distractions. While these errors mirror human cognitive constraints, such as the \"Binding Problem\", the internal mechanisms driving them in artificial systems remain poorly understood. Here, we propose a mechanistic insight by analyzing the representational geometry of open-weight VLMs (Qwen, InternVL, Gemma), comparing methodologies to distill \"concept vectors\" - latent directions encoding visual concepts. We validate our concept vectors via steering interventions that reliably manipulate model behavior in both simplified and naturalistic vision tasks (e.g., forcing the model to perceive a red flower as blue). We observe that the geometric overlap between these vectors strongly correlates with specific error patterns, offering a grounded quantitative framework to understand how internal representations shape model behavior and drive visual failures.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2602.07025v1"
+  },
+  {
+    "title": "The Representational Geometry of Number",
+    "authors": [
+      "Zhimin Hu",
+      "Lanhao Niu",
+      "Sashank Varma"
+    ],
+    "arxiv_id": "2602.06843",
+    "abstract": "A central question in cognitive science is whether conceptual representations converge onto a shared manifold to support generalization, or diverge into orthogonal subspaces to minimize task interference. While prior work has discovered evidence for both, a mechanistic account of how these properties coexist and transform across tasks remains elusive. We propose that representational sharing lies not in the concepts themselves, but in the geometric relations between them. Using number concepts as a testbed and language models as high-dimensional computational substrates, we show that number representations preserve a stable relational structure across tasks. Task-specific representations are embedded in distinct subspaces, with low-level features like magnitude and parity encoded along separable linear directions. Crucially, we find that these subspaces are largely transformable into one another via linear mappings, indicating that representations share relational structure despite being located in distinct subspaces. Together, these results provide a mechanistic lens of how language models balance the shared structure of number representation with functional flexibility. It suggests that understanding arises when task-specific transformations are applied to a shared underlying relational structure of conceptual representations.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2602.06843v1"
+  },
+  {
+    "title": "Do Reasoning Models Enhance Embedding Models?",
+    "authors": [
+      "Wun Yu Chan",
+      "Shaojin Chen",
+      "Huihao Jing",
+      "Kwun Hang Lau",
+      "Elton Chun-Chai Li",
+      "Zihao Wang",
+      "Haoran Li",
+      "Yangqiu Song"
+    ],
+    "arxiv_id": "2601.21192",
+    "abstract": "State-of-the-art embedding models are increasingly derived from decoder-only Large Language Model (LLM) backbones adapted via contrastive learning. Given the emergence of reasoning models trained via Reinforcement Learning with Verifiable Rewards (RLVR), a natural question arises: do enhanced reasoning translate to superior semantic representations when these models serve as embedding initializations? Contrary to expectation, our evaluation on MTEB and BRIGHT reveals a **null effect**: embedding models initialized from RLVR-tuned backbones yield no consistent performance advantage over their base counterparts when subjected to identical training recipes. To unpack this paradox, we introduce **H**ierarchical **R**epresentation **S**imilarity **A**nalysis (HRSA), a framework that decomposes similarity across representation, geometry, and function levels. HRSA reveals that while RLVR induces irreversible latent manifold's local geometry reorganization and reversible coordinate basis drift, it preserves the global manifold geometry and linear readout. Consequently, subsequent contrastive learning drives strong alignment between base- and reasoning-initialized models, a phenomenon we term **Manifold Realignment**. Empirically, our findings suggest that unlike Supervised Fine-Tuning (SFT), RLVR optimizes trajectories within an existing semantic landscape rather than fundamentally restructuring the landscape itself.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2601.21192v1"
+  },
+  {
+    "title": "Truth as a Trajectory: What Internal Representations Reveal About Large Language Model Reasoning",
+    "authors": [
+      "Hamed Damirchi",
+      "Ignacio Meza De la Jara",
+      "Ehsan Abbasnejad",
+      "Afshar Shamsi",
+      "Zhen Zhang",
+      "Javen Shi"
+    ],
+    "arxiv_id": "2603.01326",
+    "abstract": "Existing explainability methods for Large Language Models (LLMs) typically treat hidden states as static points in activation space, assuming that correct and incorrect inferences can be separated using representations from an individual layer. However, these activations are saturated with polysemantic features, leading to linear probes learning surface-level lexical patterns rather than underlying reasoning structures. We introduce Truth as a Trajectory (TaT), which models the transformer inference as an unfolded trajectory of iterative refinements, shifting analysis from static activations to layer-wise geometric displacement. By analyzing displacement of representations across layers, TaT uncovers geometric invariants that distinguish valid reasoning from spurious behavior. We evaluate TaT across dense and Mixture-of-Experts (MoE) architectures on benchmarks spanning commonsense reasoning, question answering, and toxicity detection. Without access to the activations themselves and using only changes in activations across layers, we show that TaT effectively mitigates reliance on static lexical confounds, outperforming conventional probing, and establishes trajectory analysis as a complementary perspective on LLM explainability.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2603.01326v1"
+  },
+  {
+    "title": "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning",
+    "authors": [
+      "Donald Ye",
+      "Max Loffgren",
+      "Om Kotadia",
+      "Linus Wong"
+    ],
+    "arxiv_id": "2602.11201",
+    "abstract": "Chain-of-Thought (CoT) explanations are widely used to interpret how language models solve complex problems, yet it remains unclear whether these step-by-step explanations reflect how the model actually reaches its answer, or merely post-hoc justifications. We propose Normalized Logit Difference Decay (NLDD), a metric that measures whether individual reasoning steps are faithful to the model's decision-making process. Our approach corrupts individual reasoning steps from the explanation and measures how much the model's confidence in its answer drops, to determine if a step is truly important. By standardizing these measurements, NLDD enables rigorous cross-model comparison across different architectures. Testing three model families across syntactic, logical, and arithmetic tasks, we discover a consistent Reasoning Horizon (k*) at 70--85% of chain length, beyond which reasoning tokens have little or negative effect on the final answer. We also find that models can encode correct internal representations while completely failing the task. These results show that accuracy alone does not reveal whether a model actually reasons through its chain. NLDD offers a way to measure when CoT matters.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2602.11201v1"
+  },
+  {
+    "title": "Reasoning Beyond Chain-of-Thought: A Latent Computational Mode in Large Language Models",
+    "authors": [
+      "Zhenghao He",
+      "Guangzhi Xiong",
+      "Bohan Liu",
+      "Sanchit Sinha",
+      "Aidong Zhang"
+    ],
+    "arxiv_id": "2601.08058",
+    "abstract": "Chain-of-Thought (CoT) prompting has improved the reasoning performance of large language models (LLMs), but it remains unclear why it works and whether it is the unique mechanism for triggering reasoning in large language models. In this work, we study this question by directly analyzing and intervening on the internal representations of LLMs with Sparse Autoencoders (SAEs), identifying a small set of latent features that are causally associated with LLM reasoning behavior. Across multiple model families and reasoning benchmarks, we find that steering a single reasoning-related latent feature can substantially improve accuracy without explicit CoT prompting. For large models, latent steering achieves performance comparable to standard CoT prompting while producing more efficient outputs. We further observe that this reasoning-oriented internal state is triggered early in generation and can override prompt-level instructions that discourage explicit reasoning. Overall, our results suggest that multi-step reasoning in LLMs is supported by latent internal activations that can be externally activated, while CoT prompting is one effective, but not unique, way of activating this mechanism rather than its necessary cause.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2601.08058v1"
+  },
+  {
+    "title": "ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models",
+    "authors": [
+      "Linqing Zhong",
+      "Yi Liu",
+      "Yifei Wei",
+      "Ziyu Xiong",
+      "Maoqing Yao",
+      "Si Liu",
+      "Guanghui Ren"
+    ],
+    "arxiv_id": "2601.11404",
+    "abstract": "Vision-Language-Action (VLA) models have emerged as essential generalist robot policies for diverse manipulation tasks, conventionally relying on directly translating multimodal inputs into actions via Vision-Language Model (VLM) embeddings. Recent advancements have introduced explicit intermediary reasoning, such as sub-task prediction (language) or goal image synthesis (vision), to guide action generation. However, these intermediate reasoning are often indirect and inherently limited in their capacity to convey the full, granular information required for precise action execution. Instead, we posit that the most effective form of reasoning is one that deliberates directly in the action space. We introduce Action Chain-of-Thought (ACoT), a paradigm where the reasoning process itself is formulated as a structured sequence of coarse action intents that guide the final policy. In this paper, we propose ACoT-VLA, a novel architecture that materializes the ACoT paradigm. Specifically, we introduce two complementary components: an Explicit Action Reasoner (EAR) and Implicit Action Reasoner (IAR). The former proposes coarse reference trajectories as explicit action-level reasoning steps, while the latter extracts latent action priors from internal representations of multimodal input, co-forming an ACoT that conditions the downstream action head to enable grounded policy learning. Extensive experiments in real-world and simulation environments demonstrate the superiority of our proposed method, which achieves 98.5%, 84.1%, and 47.4% on LIBERO, LIBERO-Plus and VLABench, respectively.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2601.11404v1"
+  },
+  {
+    "title": "Monitoring Emergent Reward Hacking During Generation via Internal Activations",
+    "authors": [
+      "Patrick Wilhelm",
+      "Thorsten Wittkopp",
+      "Odej Kao"
+    ],
+    "arxiv_id": "2603.04069",
+    "abstract": "Fine-tuned large language models can exhibit reward-hacking behavior arising from emergent misalignment, which is difficult to detect from final outputs alone. While prior work has studied reward hacking at the level of completed responses, it remains unclear whether such behavior can be identified during generation. We propose an activation-based monitoring approach that detects reward-hacking signals from internal representations as a model generates its response. Our method trains sparse autoencoders on residual stream activations and applies lightweight linear classifiers to produce token-level estimates of reward-hacking activity. Across multiple model families and fine-tuning mixtures, we find that internal activation patterns reliably distinguish reward-hacking from benign behavior, generalize to unseen mixed-policy adapters, and exhibit model-dependent temporal structure during chain-of-thought reasoning. Notably, reward-hacking signals often emerge early, persist throughout reasoning, and can be amplified by increased test-time compute in the form of chain-of-thought prompting under weakly specified reward objectives. These results suggest that internal activation monitoring provides a complementary and earlier signal of emergent misalignment than output-based evaluation, supporting more robust post-deployment safety monitoring for fine-tuned language models.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2603.04069v1"
+  },
+  {
+    "title": "Diagnosing Knowledge Conflict in Multimodal Long-Chain Reasoning",
+    "authors": [
+      "Jing Tang",
+      "Kun Wang",
+      "Haolang Lu",
+      "Hongjin Chen",
+      "KaiTao Chen",
+      "Zhongxiang Sun",
+      "Qiankun Li",
+      "Lingjuan Lyu",
+      "Guoshun Nan",
+      "Zhigang Zeng"
+    ],
+    "arxiv_id": "2602.14518",
+    "abstract": "Multimodal large language models (MLLMs) in long chain-of-thought reasoning often fail when different knowledge sources provide conflicting signals. We formalize these failures under a unified notion of knowledge conflict, distinguishing input-level objective conflict from process-level effective conflict. Through probing internal representations, we reveal that: (I) Linear Separability: different conflict types are explicitly encoded as linearly separable features rather than entangled; (II) Depth Localization: conflict signals concentrate in mid-to-late layers, indicating a distinct processing stage for conflict encoding; (III) Hierarchical Consistency: aggregating noisy token-level signals along trajectories robustly recovers input-level conflict types; and (IV) Directional Asymmetry: reinforcing the model's implicit source preference under conflict is far easier than enforcing the opposite source. Our findings provide a mechanism-level view of multimodal reasoning under knowledge conflict and enable principled diagnosis and control of long-CoT failures.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2602.14518v1"
+  },
+  {
+    "title": "Fluid Representations in Reasoning Models",
+    "authors": [
+      "Dmitrii Kharlapenko",
+      "Alessandro Stolfo",
+      "Arthur Conmy",
+      "Mrinmaya Sachan",
+      "Zhijing Jin"
+    ],
+    "arxiv_id": "2602.04843",
+    "abstract": "Reasoning language models, which generate long chains of thought, dramatically outperform non-reasoning language models on abstract problems. However, the internal model mechanisms that allow this superior performance remain poorly understood. We present a mechanistic analysis of how QwQ-32B - a model specifically trained to produce extensive reasoning traces - process abstract structural information. On Mystery Blocksworld - a semantically obfuscated planning domain - we find that QwQ-32B gradually improves its internal representation of actions and concepts during reasoning. The model develops abstract encodings that focus on structure rather than specific action names. Through steering experiments, we establish causal evidence that these adaptations improve problem solving: injecting refined representations from successful traces boosts accuracy, while symbolic representations can replace many obfuscated encodings with minimal performance loss. We find that one of the factors driving reasoning model performance is in-context refinement of token representations, which we dub Fluid Reasoning Representations.",
+    "year": 2026,
+    "url": "http://arxiv.org/abs/2602.04843v1"
+  },
+  {
+    "title": "PlotEdit: Natural Language-Driven Accessible Chart Editing in PDFs via Multimodal LLM Agents",
+    "authors": [
+      "Kanika Goswami",
+      "Puneet Mathur",
+      "Ryan Rossi",
+      "Franck Dernoncourt"
+    ],
+    "arxiv_id": "2501.11233",
+    "abstract": "Chart visualizations, while essential for data interpretation and communication, are predominantly accessible only as images in PDFs, lacking source data tables and stylistic information. To enable effective editing of charts in PDFs or digital scans, we present PlotEdit, a novel multi-agent framework for natural language-driven end-to-end chart image editing via self-reflective LLM agents. PlotEdit orchestrates five LLM agents: (1) Chart2Table for data table extraction, (2) Chart2Vision for style attribute identification, (3) Chart2Code for retrieving rendering code, (4) Instruction Decomposition Agent for parsing user requests into executable steps, and (5) Multimodal Editing Agent for implementing nuanced chart component modifications - all coordinated through multimodal feedback to maintain visual fidelity. PlotEdit outperforms existing baselines on the ChartCraft dataset across style, layout, format, and data-centric edits, enhancing accessibility for visually challenged users and improving novice productivity.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2501.11233v1"
+  },
+  {
+    "title": "Residual Matrix Transformers: Scaling the Size of the Residual Stream",
+    "authors": [
+      "Brian Mak",
+      "Jeffrey Flanigan"
+    ],
+    "arxiv_id": "2506.22696",
+    "abstract": "The residual stream acts as a memory bus where transformer layers both store and access features (Elhage et al., 2021). We consider changing the mechanism for retrieving and storing information in the residual stream, and replace the residual stream of the transformer with an outer product memory matrix (Kohonen, 1972, Anderson, 1972). We call this model the Residual Matrix Transformer (RMT). We find that the RMT enjoys a number of attractive properties: 1) the size of the residual stream can be scaled independently of compute and model size, improving performance, 2) the RMT can achieve the same loss as the transformer with 58% fewer FLOPS, 25% fewer parameters, and 41% fewer training tokens tokens, and 3) the RMT outperforms the transformer on downstream evaluations. We theoretically analyze the transformer and the RMT, and show that the RMT allows for more efficient scaling of the residual stream, as well as improved variance propagation properties. Code for this project can be found at https://github.com/bmac3/residual-matrix-transformer.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2506.22696v1"
+  },
+  {
+    "title": "Bigram Subnetworks: Mapping to Next Tokens in Transformer Language Models",
+    "authors": [
+      "Tyler A. Chang",
+      "Benjamin K. Bergen"
+    ],
+    "arxiv_id": "2504.15471",
+    "abstract": "In Transformer language models, activation vectors transform from current token embeddings to next token predictions as they pass through the model. To isolate a minimal form of this transformation, we identify language model subnetworks that make bigram predictions, naive next token predictions based only on the current token. We find that bigram subnetworks can be found in fully trained language models up to 1B parameters, and these subnetworks are critical for model performance even when they consist of less than 0.2% of model parameters. Bigram subnetworks are concentrated in the first Transformer MLP layer, and they overlap significantly with subnetworks trained to optimally prune a given model. Mechanistically, the bigram subnetworks often recreate a pattern from the full models where the first layer induces a sharp change that aligns activations with next token predictions rather than current token representations. Our results demonstrate that bigram subnetworks comprise a minimal subset of parameters that are both necessary and sufficient for basic next token predictions in language models, and they help drive the transformation from current to next token activations in the residual stream. These subnetworks can lay a foundation for studying more complex language model circuits by building up from a minimal circuit.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2504.15471v3"
+  },
+  {
+    "title": "Transformer Dynamics: A neuroscientific approach to interpretability of large language models",
+    "authors": [
+      "Jesseba Fernando",
+      "Grigori Guitchounts"
+    ],
+    "arxiv_id": "2502.12131",
+    "abstract": "As artificial intelligence models have exploded in scale and capability, understanding of their internal mechanisms remains a critical challenge. Inspired by the success of dynamical systems approaches in neuroscience, here we propose a novel framework for studying computations in deep learning systems. We focus on the residual stream (RS) in transformer models, conceptualizing it as a dynamical system evolving across layers. We find that activations of individual RS units exhibit strong continuity across layers, despite the RS being a non-privileged basis. Activations in the RS accelerate and grow denser over layers, while individual units trace unstable periodic orbits. In reduced-dimensional spaces, the RS follows a curved trajectory with attractor-like dynamics in the lower layers. These insights bridge dynamical systems theory and mechanistic interpretability, establishing a foundation for a \"neuroscience of AI\" that combines theoretical rigor with large-scale data analysis to advance our understanding of modern neural networks.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2502.12131v1"
+  },
+  {
+    "title": "Diversity of Transformer Layers: One Aspect of Parameter Scaling Laws",
+    "authors": [
+      "Hidetaka Kamigaito",
+      "Ying Zhang",
+      "Jingun Kwon",
+      "Katsuhiko Hayashi",
+      "Manabu Okumura",
+      "Taro Watanabe"
+    ],
+    "arxiv_id": "2505.24009",
+    "abstract": "Transformers deliver outstanding performance across a wide range of tasks and are now a dominant backbone architecture for large language models (LLMs). Their task-solving performance is improved by increasing parameter size, as shown in the recent studies on parameter scaling laws. Although recent mechanistic-interpretability studies have deepened our understanding of the internal behavior of Transformers by analyzing their residual stream, the relationship between these internal mechanisms and the parameter scaling laws remains unclear. To bridge this gap, we focus on layers and their size, which mainly decide the parameter size of Transformers. For this purpose, we first theoretically investigate the layers within the residual stream through a bias-diversity decomposition. The decomposition separates (i) bias, the error of each layer's output from the ground truth, and (ii) diversity, which indicates how much the outputs of each layer differ from each other. Analyzing Transformers under this theory reveals that performance improves when individual layers make predictions close to the correct answer and remain mutually diverse. We show that diversity becomes especially critical when individual layers' outputs are far from the ground truth. Finally, we introduce an information-theoretic diversity and show our main findings that adding layers enhances performance only when those layers behave differently, i.e., are diverse. We also reveal the performance gains from increasing the number of layers exhibit submodularity: marginal improvements diminish as additional layers increase, mirroring the logarithmic convergence predicted by the parameter scaling laws. Experiments on multiple semantic-understanding tasks with various LLMs empirically confirm the theoretical properties derived in this study.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2505.24009v2"
+  },
+  {
+    "title": "Learning in Compact Spaces with Approximately Normalized Transformer",
+    "authors": [
+      "J\u00f6rg K. H. Franke",
+      "Urs Spiegelhalter",
+      "Marianna Nezhurina",
+      "Jenia Jitsev",
+      "Frank Hutter",
+      "Michael Hefenbrock"
+    ],
+    "arxiv_id": "2505.22014",
+    "abstract": "The successful training of deep neural networks requires addressing challenges such as overfitting, numerical instabilities leading to divergence, and increasing variance in the residual stream. A common solution is to apply regularization and normalization techniques that usually require tuning additional hyperparameters. An alternative is to force all parameters and representations to lie on a hypersphere. This removes the need for regularization and increases convergence speed, but comes with additional costs. In this work, we propose a more holistic, approximate normalization via simple scalar multiplications motivated by the tight concentration of the norms of high-dimensional random vectors. Additionally, instead of applying strict normalization for the parameters, we constrain their norms. These modifications remove the need for weight decay and learning rate warm-up as well, but do not increase the total number of normalization layers. Our experiments with transformer architectures show up to 40% faster convergence compared to GPT models with QK normalization, with only 3% additional runtime cost. When deriving scaling laws, we found that our method enables training with larger batch sizes while preserving the favorable scaling characteristics of classic GPT architectures.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2505.22014v2"
+  },
+  {
+    "title": "How Do Transformers Learn Variable Binding in Symbolic Programs?",
+    "authors": [
+      "Yiwei Wu",
+      "Atticus Geiger",
+      "Rapha\u00ebl Milli\u00e8re"
+    ],
+    "arxiv_id": "2505.20896",
+    "abstract": "Variable binding -- the ability to associate variables with values -- is fundamental to symbolic computation and cognition. Although classical architectures typically implement variable binding via addressable memory, it is not well understood how modern neural networks lacking built-in binding operations may acquire this capacity. We investigate this by training a Transformer to dereference queried variables in symbolic programs where variables are assigned either numerical constants or other variables. Each program requires following chains of variable assignments up to four steps deep to find the queried value, and also contains irrelevant chains of assignments acting as distractors. Our analysis reveals a developmental trajectory with three distinct phases during training: (1) random prediction of numerical constants, (2) a shallow heuristic prioritizing early variable assignments, and (3) the emergence of a systematic mechanism for dereferencing assignment chains. Using causal interventions, we find that the model learns to exploit the residual stream as an addressable memory space, with specialized attention heads routing information across token positions. This mechanism allows the model to dynamically track variable bindings across layers, resulting in accurate dereferencing. Our results show how Transformer models can learn to implement systematic variable binding without explicit architectural support, bridging connectionist and symbolic approaches. To facilitate reproducible research, we developed Variable Scope, an interactive web platform for exploring our findings at https://variablescope.org",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2505.20896v2"
+  },
+  {
+    "title": "Attention as Binding: A Vector-Symbolic Perspective on Transformer Reasoning",
+    "authors": [
+      "Sahil Rajesh Dhayalkar"
+    ],
+    "arxiv_id": "2512.14709",
+    "abstract": "Transformer-based language models display impressive reasoning-like behavior, yet remain brittle on tasks that require stable symbolic manipulation. This paper develops a unified perspective on these phenomena by interpreting self-attention and residual streams as implementing an approximate Vector Symbolic Architecture (VSA). In this view, queries and keys define role spaces, values encode fillers, attention weights perform soft unbinding, and residual connections realize superposition of many bound structures. We use this algebraic lens to relate transformer internals to chain-of-thought traces, program-based reasoning, and memory-augmented tool use, and to explain characteristic failure modes such as variable confusion and inconsistency across logically related prompts. Building on this perspective, we propose VSA-inspired architectural biases, including explicit binding/unbinding heads and hyperdimensional memory layers, and training objectives that promote role-filler separation and robust superposition. Finally, we outline metrics for measuring \"VSA-likeness\" and logical compositionality, and pose theoretical and architectural open problems. Overall, the paper argues that viewing attention as soft vector-symbolic computation offers a principled route toward more interpretable and logically reliable reasoning systems.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2512.14709v1"
+  },
+  {
+    "title": "Dimensional Collapse in Transformer Attention Outputs: A Challenge for Sparse Dictionary Learning",
+    "authors": [
+      "Junxuan Wang",
+      "Xuyang Ge",
+      "Wentao Shu",
+      "Zhengfu He",
+      "Xipeng Qiu"
+    ],
+    "arxiv_id": "2508.16929",
+    "abstract": "Transformer architectures, and their attention mechanisms in particular, form the foundation of modern large language models. While transformer models are widely believed to operate in high-dimensional hidden spaces, we show that attention outputs are in fact confined to a surprisingly low-dimensional subspace, with an effective dimensionality of only about $60\\%$ of the full space. In contrast, MLP outputs and residual streams remain much closer to full-rank, exhibiting effective ranks around $90\\%$. This striking dimensional discrepancy is consistently observed across diverse model families and datasets, and is strongly shaped by the attention output projection matrix. Critically, we find this low-rank structure as a key factor of the prevalent dead feature problem in sparse dictionary learning, where it creates a mismatch between randomly initialized features and the intrinsic geometry of the activation space. Building on this insight, we propose a subspace-constrained training method for sparse autoencoders (SAEs), initializing feature directions into the active subspace of activations. Our approach reduces dead features from 87\\% to below 1\\% in Attention Output SAEs with 1M features, and can further extend to other sparse dictionary learning methods. Our findings provide both new insights into the geometry of attention and practical tools for improving sparse dictionary learning in large language models.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2508.16929v4"
+  },
+  {
+    "title": "Emergence of Minimal Circuits for Indirect Object Identification in Attention-Only Transformers",
+    "authors": [
+      "Rabin Adhikari"
+    ],
+    "arxiv_id": "2510.25013",
+    "abstract": "Mechanistic interpretability aims to reverse-engineer large language models (LLMs) into human-understandable computational circuits. However, the complexity of pretrained models often obscures the minimal mechanisms required for specific reasoning tasks. In this work, we train small, attention-only transformers from scratch on a symbolic version of the Indirect Object Identification (IOI) task -- a benchmark for studying coreference -- like reasoning in transformers. Surprisingly, a single-layer model with only two attention heads achieves perfect IOI accuracy, despite lacking MLPs and normalization layers. Through residual stream decomposition, spectral analysis, and embedding interventions, we find that the two heads specialize into additive and contrastive subcircuits that jointly implement IOI resolution. Furthermore, we show that a two-layer, one-head model achieves similar performance by composing information across layers through query-value interactions. These results demonstrate that task-specific training induces highly interpretable, minimal circuits, offering a controlled testbed for probing the computational foundations of transformer reasoning.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.25013v1"
+  },
+  {
+    "title": "Geospatial Mechanistic Interpretability of Large Language Models",
+    "authors": [
+      "Stef De Sabbata",
+      "Stefano Mizzaro",
+      "Kevin Roitero"
+    ],
+    "arxiv_id": "2505.03368",
+    "abstract": "Large Language Models (LLMs) have demonstrated unprecedented capabilities across various natural language processing tasks. Their ability to process and generate viable text and code has made them ubiquitous in many fields, while their deployment as knowledge bases and \"reasoning\" tools remains an area of ongoing research. In geography, a growing body of literature has been focusing on evaluating LLMs' geographical knowledge and their ability to perform spatial reasoning. However, very little is still known about the internal functioning of these models, especially about how they process geographical information.\n  In this chapter, we establish a novel framework for the study of geospatial mechanistic interpretability - using spatial analysis to reverse engineer how LLMs handle geographical information. Our aim is to advance our understanding of the internal representations that these complex models generate while processing geographical information - what one might call \"how LLMs think about geographic information\" if such phrasing was not an undue anthropomorphism.\n  We first outline the use of probing in revealing internal structures within LLMs. We then introduce the field of mechanistic interpretability, discussing the superposition hypothesis and the role of sparse autoencoders in disentangling polysemantic internal representations of LLMs into more interpretable, monosemantic features. In our experiments, we use spatial autocorrelation to show how features obtained for placenames display spatial patterns related to their geographic location and can thus be interpreted geospatially, providing insights into how these models process geographical information. We conclude by discussing how our framework can help shape the study and use of foundation models in geography.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2505.03368v2"
+  },
+  {
+    "title": "Do VLMs Have Bad Eyes? Diagnosing Compositional Failures via Mechanistic Interpretability",
+    "authors": [
+      "Ashwath Vaithinathan Aravindan",
+      "Abha Jha",
+      "Mihir Kulkarni"
+    ],
+    "arxiv_id": "2508.16652",
+    "abstract": "Vision-Language Models (VLMs) have shown remarkable performance in integrating visual and textual information for tasks such as image captioning and visual question answering. However, these models struggle with compositional generalization and object binding, which limit their ability to handle novel combinations of objects and their attributes. Our work explores the root causes of these failures using mechanistic interpretability techniques. We show evidence that individual neurons in the MLP layers of CLIP's vision encoder represent multiple features, and this \"superposition\" directly hinders its compositional feature representation which consequently affects compositional reasoning and object binding capabilities. We hope this study will serve as an initial step toward uncovering the mechanistic roots of compositional failures in VLMs. The code and supporting results can be found https://github.com/Mystic-Slice/Do-VLMs-Have-Bad-Eyes.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2508.16652v2"
+  },
+  {
+    "title": "Stream: Scaling up Mechanistic Interpretability to Long Context in LLMs via Sparse Attention",
+    "authors": [
+      "J Rosser",
+      "Jos\u00e9 Luis Redondo Garc\u00eda",
+      "Gustavo Penha",
+      "Konstantina Palla",
+      "Hugues Bouchard"
+    ],
+    "arxiv_id": "2510.19875",
+    "abstract": "As Large Language Models (LLMs) scale to million-token contexts, traditional Mechanistic Interpretability techniques for analyzing attention scale quadratically with context length, demanding terabytes of memory beyond 100,000 tokens. We introduce Sparse Tracing, a novel technique that leverages dynamic sparse attention to efficiently analyze long context attention patterns. We present Stream, a compilable hierarchical pruning algorithm that estimates per-head sparse attention masks in near-linear time $O(T \\log T)$ and linear space $O(T)$, enabling one-pass interpretability at scale. Stream performs a binary-search-style refinement to retain only the top-$k$ key blocks per query while preserving the model's next-token behavior. We apply Stream to long chain-of-thought reasoning traces and identify thought anchors while pruning 97-99\\% of token interactions. On the RULER benchmark, Stream preserves critical retrieval paths while discarding 90-96\\% of interactions and exposes layer-wise routes from the needle to output. Our method offers a practical drop-in tool for analyzing attention patterns and tracing information flow without terabytes of caches. By making long context interpretability feasible on consumer GPUs, Sparse Tracing helps democratize chain-of-thought monitoring. Code is available at https://anonymous.4open.science/r/stream-03B8/.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.19875v2"
+  },
+  {
+    "title": "The Non-Linear Representation Dilemma: Is Causal Abstraction Enough for Mechanistic Interpretability?",
+    "authors": [
+      "Denis Sutter",
+      "Julian Minder",
+      "Thomas Hofmann",
+      "Tiago Pimentel"
+    ],
+    "arxiv_id": "2507.08802",
+    "abstract": "The concept of causal abstraction got recently popularised to demystify the opaque decision-making processes of machine learning models; in short, a neural network can be abstracted as a higher-level algorithm if there exists a function which allows us to map between them. Notably, most interpretability papers implement these maps as linear functions, motivated by the linear representation hypothesis: the idea that features are encoded linearly in a model's representations. However, this linearity constraint is not required by the definition of causal abstraction. In this work, we critically examine the concept of causal abstraction by considering arbitrarily powerful alignment maps. In particular, we prove that under reasonable assumptions, any neural network can be mapped to any algorithm, rendering this unrestricted notion of causal abstraction trivial and uninformative. We complement these theoretical findings with empirical evidence, demonstrating that it is possible to perfectly map models to algorithms even when these models are incapable of solving the actual task; e.g., on an experiment using randomly initialised language models, our alignment maps reach 100\\% interchange-intervention accuracy on the indirect object identification task. This raises the non-linear representation dilemma: if we lift the linearity constraint imposed to alignment maps in causal abstraction analyses, we are left with no principled way to balance the inherent trade-off between these maps' complexity and accuracy. Together, these results suggest an answer to our title's question: causal abstraction is not enough for mechanistic interpretability, as it becomes vacuous without assumptions about how models encode information. Studying the connection between this information-encoding assumption and causal abstraction should lead to exciting future work.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2507.08802v2"
+  },
+  {
+    "title": "Unsupervised decoding of encoded reasoning using language model interpretability",
+    "authors": [
+      "Ching Fang",
+      "Samuel Marks"
+    ],
+    "arxiv_id": "2512.01222",
+    "abstract": "As large language models become increasingly capable, there is growing concern that they may develop reasoning processes that are encoded or hidden from human oversight. To investigate whether current interpretability techniques can penetrate such encoded reasoning, we construct a controlled testbed by fine-tuning a reasoning model (DeepSeek-R1-Distill-Llama-70B) to perform chain-of-thought reasoning in ROT-13 encryption while maintaining intelligible English outputs. We evaluate mechanistic interpretability methods--in particular, logit lens analysis--on their ability to decode the model's hidden reasoning process using only internal activations. We show that logit lens can effectively translate encoded reasoning, with accuracy peaking in intermediate-to-late layers. Finally, we develop a fully unsupervised decoding pipeline that combines logit lens with automated paraphrasing, achieving substantial accuracy in reconstructing complete reasoning transcripts from internal model representations. These findings suggest that current mechanistic interpretability techniques may be more robust to simple forms of encoded reasoning than previously understood. Our work provides an initial framework for evaluating interpretability methods against models that reason in non-human-readable formats, contributing to the broader challenge of maintaining oversight over increasingly capable AI systems.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2512.01222v2"
+  },
+  {
+    "title": "Mapping Faithful Reasoning in Language Models",
+    "authors": [
+      "Jiazheng Li",
+      "Andreas Damianou",
+      "J Rosser",
+      "Jos\u00e9 Luis Redondo Garc\u00eda",
+      "Konstantina Palla"
+    ],
+    "arxiv_id": "2510.22362",
+    "abstract": "Chain-of-thought (CoT) traces promise transparency for reasoning language models, but prior work shows they are not always faithful reflections of internal computation. This raises challenges for oversight: practitioners may misinterpret decorative reasoning as genuine. We introduce Concept Walk, a general framework for tracing how a model's internal stance evolves with respect to a concept direction during reasoning. Unlike surface text, Concept Walk operates in activation space, projecting each reasoning step onto the concept direction learned from contrastive data. This allows us to observe whether reasoning traces shape outcomes or are discarded. As a case study, we apply Concept Walk to the domain of Safety using Qwen 3-4B. We find that in 'easy' cases, perturbed CoTs are quickly ignored, indicating decorative reasoning, whereas in 'hard' cases, perturbations induce sustained shifts in internal activations, consistent with faithful reasoning. The contribution is methodological: Concept Walk provides a lens to re-examine faithfulness through concept-specific internal dynamics, helping identify when reasoning traces can be trusted and when they risk misleading practitioners.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.22362v1"
+  },
+  {
+    "title": "Base Models Know How to Reason, Thinking Models Learn When",
+    "authors": [
+      "Constantin Venhoff",
+      "Iv\u00e1n Arcuschin",
+      "Philip Torr",
+      "Arthur Conmy",
+      "Neel Nanda"
+    ],
+    "arxiv_id": "2510.07364",
+    "abstract": "Why do thinking language models like DeepSeek R1 outperform their base counterparts? Despite consistent performance gains, it remains unclear to what extent thinking models learn entirely new reasoning capabilities or repurpose pre-existing base model ones. In this work, we propose a hybrid model where we activate reasoning mechanisms in base models at the right time to elicit thinking-model-level reasoning chains, implying that thinking models exploit already existing capabilities. To ground our analysis, we introduce an unsupervised, bottom-up approach for uncovering human-interpretable reasoning behaviors in thinking models. This approach provides an unbiased method to discover reasoning behaviors without imposing manual or LLM-derived assumptions. Across three base and four thinking models, using GSM8K and MATH500, our hybrid model recovers up to 91% of the performance gap to thinking models without any weight updates while steering only 12% of tokens. Concretely, our empirical setup provides a simple, causal way to test the effectiveness of existing reasoning mechanisms in base models by invoking them directly and measuring the resulting task performance. More broadly, these results reframe our understanding of how thinking models are trained: pre-training is when models acquire most of their reasoning mechanisms, and post-training teaches efficient deployment of these mechanisms at the right time, enabling efficient use of their inference-time compute.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.07364v3"
+  },
+  {
+    "title": "Mechanistic Unveiling of Transformer Circuits: Self-Influence as a Key to Model Reasoning",
+    "authors": [
+      "Lin Zhang",
+      "Lijie Hu",
+      "Di Wang"
+    ],
+    "arxiv_id": "2502.09022",
+    "abstract": "Transformer-based language models have achieved significant success; however, their internal mechanisms remain largely opaque due to the complexity of non-linear interactions and high-dimensional operations. While previous studies have demonstrated that these models implicitly embed reasoning trees, humans typically employ various distinct logical reasoning mechanisms to complete the same task. It is still unclear which multi-step reasoning mechanisms are used by language models to solve such tasks. In this paper, we aim to address this question by investigating the mechanistic interpretability of language models, particularly in the context of multi-step reasoning tasks. Specifically, we employ circuit analysis and self-influence functions to evaluate the changing importance of each token throughout the reasoning process, allowing us to map the reasoning paths adopted by the model. We apply this methodology to the GPT-2 model on a prediction task (IOI) and demonstrate that the underlying circuits reveal a human-interpretable reasoning process used by the model.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2502.09022v2"
+  },
+  {
+    "title": "Rank-1 LoRAs Encode Interpretable Reasoning Signals",
+    "authors": [
+      "Jake Ward",
+      "Paul Riechers",
+      "Adam Shai"
+    ],
+    "arxiv_id": "2511.06739",
+    "abstract": "Reasoning models leverage inference-time compute to significantly enhance the performance of language models on difficult logical tasks, and have become a dominating paradigm in frontier LLMs. Despite their wide adoption, the mechanisms underpinning the enhanced performance of these reasoning models are not well understood. In this work, we show that the majority of new capabilities in reasoning models can be elicited by small, single-rank changes to base model parameters, with many of these changes being interpretable. Specifically, we use a rank-1 LoRA to create a minimal parameter adapter for Qwen-2.5-32B-Instruct which recovers 73-90% of reasoning-benchmark performance compared to a full parameter finetune. We find that the activations of this LoRA are as interpretable as MLP neurons, and fire for reasoning-specific behaviors. Finally, we train a sparse autoencoder on the entire activation state of this LoRA and identify fine-grained and monosemantic features. Our findings highlight that reasoning performance can arise largely from minimal changes to base model parameters, and explore what these changes affect. More broadly, our work shows that parameter-efficient training methods can be used as a targeted lens for uncovering fundamental insights about language model behavior and dynamics.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2511.06739v1"
+  },
+  {
+    "title": "Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis",
+    "authors": [
+      "Harshwardhan Fartale",
+      "Ashish Kattamuri",
+      "Rahul Raja",
+      "Arpita Vats",
+      "Ishita Prasad",
+      "Akshata Kishore Moharir"
+    ],
+    "arxiv_id": "2510.03366",
+    "abstract": "Transformer-based language models excel at both recall (retrieving memorized facts) and reasoning (performing multi-step inference), but whether these abilities rely on distinct internal mechanisms remains unclear. Distinguishing recall from reasoning is crucial for predicting model generalization, designing targeted evaluations, and building safer interventions that affect one ability without disrupting the other.We approach this question through mechanistic interpretability, using controlled datasets of synthetic linguistic puzzles to probe transformer models at the layer, head, and neuron level. Our pipeline combines activation patching and structured ablations to causally measure component contributions to each task type. Across two model families (Qwen and LLaMA), we find that interventions on distinct layers and attention heads lead to selective impairments: disabling identified \"recall circuits\" reduces fact-retrieval accuracy by up to 15\\% while leaving reasoning intact, whereas disabling \"reasoning circuits\" reduces multi-step inference by a comparable margin. At the neuron level, we observe task-specific firing patterns, though these effects are less robust, consistent with neuronal polysemanticity.Our results provide the first causal evidence that recall and reasoning rely on separable but interacting circuits in transformer models. These findings advance mechanistic interpretability by linking circuit-level structure to functional specialization and demonstrate how controlled datasets and causal interventions can yield mechanistic insights into model cognition, informing safer deployment of large language models.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.03366v1"
+  },
+  {
+    "title": "Refusal Falls off a Cliff: How Safety Alignment Fails in Reasoning?",
+    "authors": [
+      "Qingyu Yin",
+      "Chak Tou Leong",
+      "Linyi Yang",
+      "Wenxuan Huang",
+      "Wenjie Li",
+      "Xiting Wang",
+      "Jaehong Yoon",
+      "YunXing",
+      "XingYu",
+      "Jinjin Gu"
+    ],
+    "arxiv_id": "2510.06036",
+    "abstract": "Large reasoning models (LRMs) with multi-step reasoning capabilities have shown remarkable problem-solving abilities, yet they exhibit concerning safety vulnerabilities that remain poorly understood. In this work, we investigate why safety alignment fails in reasoning models through a mechanistic interpretability lens. Using a linear probing approach to trace refusal intentions across token positions, we discover a striking phenomenon termed as \\textbf{refusal cliff}: many poorly-aligned reasoning models correctly identify harmful prompts and maintain strong refusal intentions during their thinking process, but experience a sharp drop in refusal scores at the final tokens before output generation. This suggests that these models are not inherently unsafe; rather, their refusal intentions are systematically suppressed. Through causal intervention analysis, we identify a sparse set of attention heads that negatively contribute to refusal behavior. Ablating just 3\\% of these heads can reduce attack success rates below 10\\%. Building on these mechanistic insights, we propose \\textbf{Cliff-as-a-Judge}, a novel data selection method that identifies training examples exhibiting the largest refusal cliff to efficiently repair reasoning models' safety alignment. This approach achieves comparable safety improvements using only 1.7\\% of the vanilla safety training data, demonstrating a less-is-more effect in safety alignment.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.06036v1"
+  },
+  {
+    "title": "Why Is Spatial Reasoning Hard for VLMs? An Attention Mechanism Perspective on Focus Areas",
+    "authors": [
+      "Shiqi Chen",
+      "Tongyao Zhu",
+      "Ruochen Zhou",
+      "Jinghan Zhang",
+      "Siyang Gao",
+      "Juan Carlos Niebles",
+      "Mor Geva",
+      "Junxian He",
+      "Jiajun Wu",
+      "Manling Li"
+    ],
+    "arxiv_id": "2503.01773",
+    "abstract": "Large Vision Language Models (VLMs) have long struggled with spatial reasoning tasks. Surprisingly, even simple spatial reasoning tasks, such as recognizing \"under\" or \"behind\" relationships between only two objects, pose significant challenges for current VLMs. In this work, we study the spatial reasoning challenge from the lens of mechanistic interpretability, diving into the model's internal states to examine the interactions between image and text tokens. By tracing attention distribution over the image through out intermediate layers, we observe that successful spatial reasoning correlates strongly with the model's ability to align its attention distribution with actual object locations, particularly differing between familiar and unfamiliar spatial relationships. Motivated by these findings, we propose ADAPTVIS based on inference-time confidence scores to sharpen the attention on highly relevant regions when confident, while smoothing and broadening the attention window to consider a wider context when confidence is lower. This training-free decoding method shows significant improvement (e.g., up to a 50 absolute point improvement) on spatial reasoning benchmarks such as WhatsUp and VSR with negligible cost. We make code and data publicly available for research purposes at https://github.com/shiqichen17/AdaptVis.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2503.01773v3"
+  },
+  {
+    "title": "Trustworthy Reasoning: Evaluating and Enhancing Factual Accuracy in LLM Intermediate Thought Processes",
+    "authors": [
+      "Rui Jiao",
+      "Yue Zhang",
+      "Jinku Li"
+    ],
+    "arxiv_id": "2507.22940",
+    "abstract": "We present a novel framework addressing a critical vulnerability in Large Language Models (LLMs): the prevalence of factual inaccuracies within intermediate reasoning steps despite correct final answers. This phenomenon poses substantial risks in high-stakes domains including healthcare, legal analysis, and scientific research, where erroneous yet confidently presented reasoning can mislead users into dangerous decisions. Our framework integrates three core components: (1) a specialized fact-checking classifier trained on counterfactually augmented data to detect subtle factual inconsistencies within reasoning chains; (2) an enhanced Group Relative Policy Optimization (GRPO) reinforcement learning approach that balances factuality, coherence, and structural correctness through multi-dimensional rewards; and (3) a mechanistic interpretability method examining how factuality improvements manifest in model activations during reasoning processes. Extensive evaluation across multi state-of-the-art models reveals concerning patterns: even leading models like Claude-3.7 and GPT-o1 demonstrate reasoning factual accuracy of only 81.93% and 82.57% respectively. Our approach significantly enhances factual robustness (up to 49.90% improvement) while maintaining or improving performance on challenging benchmarks including Math-500, AIME-2024, and GPQA. Furthermore, our neural activation-level analysis provides actionable insights into how factual enhancements reshape reasoning trajectories within model architectures, establishing foundations for future training methodologies that explicitly target factual robustness through activation-guided optimization.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2507.22940v2"
+  },
+  {
+    "title": "Unlocking Out-of-Distribution Generalization in Transformers via Recursive Latent Space Reasoning",
+    "authors": [
+      "Awni Altabaa",
+      "Siyu Chen",
+      "John Lafferty",
+      "Zhuoran Yang"
+    ],
+    "arxiv_id": "2510.14095",
+    "abstract": "Systematic, compositional generalization beyond the training distribution remains a core challenge in machine learning -- and a critical bottleneck for the emergent reasoning abilities of modern language models. This work investigates out-of-distribution (OOD) generalization in Transformer networks using a GSM8K-style modular arithmetic on computational graphs task as a testbed. We introduce and explore a set of four architectural mechanisms aimed at enhancing OOD generalization: (i) input-adaptive recurrence; (ii) algorithmic supervision; (iii) anchored latent representations via a discrete bottleneck; and (iv) an explicit error-correction mechanism. Collectively, these mechanisms yield an architectural approach for native and scalable latent space reasoning in Transformer networks with robust algorithmic generalization capabilities. We complement these empirical results with a detailed mechanistic interpretability analysis that reveals how these mechanisms give rise to robust OOD generalization abilities.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.14095v1"
+  },
+  {
+    "title": "Sparsification and Reconstruction from the Perspective of Representation Geometry",
+    "authors": [
+      "Wenjie Sun",
+      "Bingzhe Wu",
+      "Zhile Yang",
+      "Chengke Wu"
+    ],
+    "arxiv_id": "2505.22506",
+    "abstract": "Sparse Autoencoders (SAEs) have emerged as a predominant tool in mechanistic interpretability, aiming to identify interpretable monosemantic features. However, how does sparse encoding organize the representations of activation vector from language models? What is the relationship between this organizational paradigm and feature disentanglement as well as reconstruction performance? To address these questions, we propose the SAEMA, which validates the stratified structure of the representation by observing the variability of the rank of the symmetric semipositive definite (SSPD) matrix corresponding to the modal tensor unfolded along the latent tensor with the level of noise added to the residual stream. To systematically investigate how sparse encoding alters representational structures, we define local and global representations, demonstrating that they amplify inter-feature distinctions by merging similar semantic features and introducing additional dimensionality. Furthermore, we intervene the global representation from an optimization perspective, proving a significant causal relationship between their separability and the reconstruction performance. This study explains the principles of sparsity from the perspective of representational geometry and demonstrates the impact of changes in representational structure on reconstruction performance. Particularly emphasizes the necessity of understanding representations and incorporating representational constraints, providing empirical references for developing new interpretable tools and improving SAEs. The code is available at \\hyperlink{https://github.com/wenjie1835/SAERepGeo}{https://github.com/wenjie1835/SAERepGeo}.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2505.22506v1"
+  },
+  {
+    "title": "Tracing the Representation Geometry of Language Models from Pretraining to Post-training",
+    "authors": [
+      "Melody Zixuan Li",
+      "Kumar Krishna Agrawal",
+      "Arna Ghosh",
+      "Komal Kumar Teru",
+      "Adam Santoro",
+      "Guillaume Lajoie",
+      "Blake A. Richards"
+    ],
+    "arxiv_id": "2509.23024",
+    "abstract": "Standard training metrics like loss fail to explain the emergence of complex capabilities in large language models. We take a spectral approach to investigate the geometry of learned representations across pretraining and post-training, measuring effective rank (RankMe) and eigenspectrum decay ($\u03b1$-ReQ). With OLMo (1B-7B) and Pythia (160M-12B) models, we uncover a consistent non-monotonic sequence of three geometric phases during autoregressive pretraining. The initial \"warmup\" phase exhibits rapid representational collapse. This is followed by an \"entropy-seeking\" phase, where the manifold's dimensionality expands substantially, coinciding with peak n-gram memorization. Subsequently, a \"compression-seeking\" phase imposes anisotropic consolidation, selectively preserving variance along dominant eigendirections while contracting others, a transition marked with significant improvement in downstream task performance. We show these phases can emerge from a fundamental interplay of cross-entropy optimization under skewed token frequencies and representational bottlenecks ($d \\ll |V|$). Post-training further transforms geometry: SFT and DPO drive \"entropy-seeking\" dynamics to integrate specific instructional or preferential data, improving in-distribution performance while degrading out-of-distribution robustness. Conversely, RLVR induces \"compression-seeking\", enhancing reward alignment but reducing generation diversity.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2509.23024v1"
+  },
+  {
+    "title": "Towards Atoms of Large Language Models",
+    "authors": [
+      "Chenhui Hu",
+      "Pengfei Cao",
+      "Yubo Chen",
+      "Kang Liu",
+      "Jun Zhao"
+    ],
+    "arxiv_id": "2509.20784",
+    "abstract": "The fundamental representational units (FRUs) of large language models (LLMs) remain undefined, limiting further understanding of their underlying mechanisms. In this paper, we introduce Atom Theory to systematically define, evaluate, and identify such FRUs, which we term atoms. Building on the atomic inner product (AIP), a non-Euclidean metric that captures the underlying geometry of LLM representations, we formally define atoms and propose two key criteria for ideal atoms: faithfulness ($R^2$) and stability ($q^*$). We further prove that atoms are identifiable under threshold-activated sparse autoencoders (TSAEs). Empirically, we uncover a pervasive representation shift in LLMs and demonstrate that the AIP corrects this shift to capture the underlying representational geometry, thereby grounding Atom Theory. We find that two widely used units, neurons and features, fail to qualify as ideal atoms: neurons are faithful ($R^2=1$) but unstable ($q^*=0.5\\%$), while features are more stable ($q^*=68.2\\%$) but unfaithful ($R^2=48.8\\%$). To find atoms of LLMs, leveraging atom identifiability under TSAEs, we show via large-scale experiments that reliable atom identification occurs only when the TSAE capacity matches the data scale. Guided by this insight, we identify FRUs with near-perfect faithfulness ($R^2=99.9\\%$) and stability ($q^*=99.8\\%$) across layers of Gemma2-2B, Gemma2-9B, and Llama3.1-8B, satisfying the criteria of ideal atoms statistically. Further analysis confirms that these atoms align with theoretical expectations and exhibit substantially higher monosemanticity. Overall, we propose and validate Atom Theory as a foundation for understanding the internal representations of LLMs. Code available at https://github.com/ChenhuiHu/towards_atoms.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2509.20784v2"
+  },
+  {
+    "title": "How Language Models Conflate Logical Validity with Plausibility: A Representational Analysis of Content Effects",
+    "authors": [
+      "Leonardo Bertolazzi",
+      "Sandro Pezzelle",
+      "Raffaella Bernardi"
+    ],
+    "arxiv_id": "2510.06700",
+    "abstract": "Both humans and large language models (LLMs) exhibit content effects: biases in which the plausibility of the semantic content of a reasoning problem influences judgments regarding its logical validity. While this phenomenon in humans is best explained by the dual-process theory of reasoning, the mechanisms behind content effects in LLMs remain unclear. In this work, we address this issue by investigating how LLMs encode the concepts of validity and plausibility within their internal representations. We show that both concepts are linearly represented and strongly aligned in representational geometry, leading models to conflate plausibility with validity. Using steering vectors, we demonstrate that plausibility vectors can causally bias validity judgements, and vice versa, and that the degree of alignment between these two concepts predicts the magnitude of behavioral content effects across models. Finally, we construct debiasing vectors that disentangle these concepts, reducing content effects and improving reasoning accuracy. Our findings advance understanding of how abstract logical concepts are represented in LLMs and highlight representational interventions as a path toward more logical systems.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.06700v2"
+  },
+  {
+    "title": "Large Language Models Show Signs of Alignment with Human Neurocognition During Abstract Reasoning",
+    "authors": [
+      "Christopher Pinier",
+      "Sonia Acu\u00f1a Vargas",
+      "Mariia Steeghs-Turchina",
+      "Dora Matzke",
+      "Claire E. Stevenson",
+      "Michael D. Nunez"
+    ],
+    "arxiv_id": "2508.10057",
+    "abstract": "This study investigates whether large language models (LLMs) mirror human neurocognition during abstract reasoning. We compared the performance and neural representations of human participants with those of eight open-source LLMs on an abstract-pattern-completion task. We leveraged pattern type differences in task performance and in fixation-related potentials (FRPs) as recorded by electroencephalography (EEG) during the task. Our findings indicate that only the largest tested LLMs (~70 billion parameters) achieve human-comparable accuracy, with Qwen-2.5-72B and DeepSeek-R1-70B also showing similarities with the human pattern-specific difficulty profile. Critically, every LLM tested forms representations that distinctly cluster the abstract pattern categories within their intermediate layers, although the strength of this clustering scales with their performance on the task. Moderate positive correlations were observed between the representational geometries of task-optimal LLM layers and human frontal FRPs. These results consistently diverged from comparisons with other EEG measures (response-locked ERPs and resting EEG), suggesting a potential shared representational space for abstract patterns. This indicates that LLMs might mirror human brain mechanisms in abstract reasoning, offering preliminary evidence of shared principles between biological and artificial intelligence.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2508.10057v1"
+  },
+  {
+    "title": "Vision-language models learn the geometry of human perceptual space",
+    "authors": [
+      "Craig Sanders",
+      "Billy Dickson",
+      "Sahaj Singh Maini",
+      "Robert Nosofsky",
+      "Zoran Tiganj"
+    ],
+    "arxiv_id": "2510.20859",
+    "abstract": "In cognitive science and AI, a longstanding question is whether machines learn representations that align with those of the human mind. While current models show promise, it remains an open question whether this alignment is superficial or reflects a deeper correspondence in the underlying dimensions of representation. Here we introduce a methodology to probe the internal geometry of vision-language models (VLMs) by having them generate pairwise similarity judgments for a complex set of natural objects. Using multidimensional scaling, we recover low-dimensional psychological spaces and find that their axes show a strong correspondence with the principal axes of human perceptual space. Critically, when this AI-derived representational geometry is used as the input to a classic exemplar model of categorization, it predicts human classification behavior more accurately than a space constructed from human judgments themselves. This suggests that VLMs can capture an idealized or `denoised' form of human perceptual structure. Our work provides a scalable method to overcome a measurement bottleneck in cognitive science and demonstrates that foundation models can learn a representational geometry that is functionally relevant for modeling key aspects of human cognition, such as categorization.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.20859v1"
+  },
+  {
+    "title": "Mint: A Simple Test-Time Adaptation of Vision-Language Models against Common Corruptions",
+    "authors": [
+      "Wenxuan Bao",
+      "Ruxi Deng",
+      "Jingrui He"
+    ],
+    "arxiv_id": "2510.22127",
+    "abstract": "Pretrained vision-language models such as CLIP achieve strong zero-shot generalization but remain vulnerable to distribution shifts caused by input corruptions. In this work, we investigate how corruptions affect CLIP's image embeddings and uncover a consistent phenomenon we term as embedding variance collapse, where both intra-class and inter-class variances shrink as corruption severity increases. We find that this collapse is closely tied to performance degradation, with inter-class variance strongly correlated with classification accuracy. To explain this phenomenon, we analyze how corruptions alter the structure of the embedding space. Our theoretical results suggest that the visual encoder tends to encode corruption-related signals, which dilute class-discriminative features and compress the representation geometry. We further show that maximizing inter-class variance, even when estimated from pseudo-labels, can provably enhance embedding quality. Based on this insight, we propose Mint, a simple test-time adaptation method that maximizes pseudo-label-based inter-class variance on the fly using a mean accumulator and a gradient accumulator. Mint operates effectively with small batch sizes and consistently improves performance across multiple corruption benchmarks and CLIP architectures. Our code is available at https://github.com/baowenxuan/Mint .",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.22127v1"
+  },
+  {
+    "title": "Evaluating Embedding Generalization: How LLMs, LoRA, and SLERP Shape Representational Geometry",
+    "authors": [
+      "Siyaxolisa Kabane"
+    ],
+    "arxiv_id": "2511.21703",
+    "abstract": "We investigate the generalization properties of dense text embeddings when the embedding backbone is a large language model (LLM) versus when it is a non-LLM encoder, and we study the extent to which spherical linear interpolation (SLERP) model-merging mitigates over-specialization introduced by task-specific adaptation (e.g., LoRA). To make the comparison concrete and domain-agnostic, we design a controlled suite of experiments in which models embed short numerical sequences and are evaluated on their ability to cluster and classify those sequences according to well-defined number-theoretic properties. Our experimental protocol compares four families of models: (1) non-LLM encoders trained from scratch or fine-tuned for embeddings, (2) LLM-based encoders adapted with parameter-efficient methods (LoRA), (3) LLM-based encoders with LoRA followed by model souping merging into the base weights, and (4) the same LoRA-adapted LLMs merged using SLERP across checkpoints or stages. We evaluate representational quality with clustering indices (Silhouette and Davies Bouldin). We additionally analyze the use of kmeans labels to see if the embeddings encode any other information besides the one we are testing for. Empirically, we find that LLM-based backbones produce embeddings that better capture higher-order, compositional numeric patterns, but are prone to adapter dominance that degrades balanced generalization; SLERP merging consistently recovers base-model structure while retaining most task gains, yielding superior tradeoffs in clustering separability, and robustness compared to model souping or models that were not merged.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2511.21703v1"
+  },
+  {
+    "title": "Advances in 4D Representation: Geometry, Motion, and Interaction",
+    "authors": [
+      "Mingrui Zhao",
+      "Sauradip Nag",
+      "Kai Wang",
+      "Aditya Vora",
+      "Guangda Ji",
+      "Peter Chun",
+      "Ali Mahdavi-Amiri",
+      "Hao Zhang"
+    ],
+    "arxiv_id": "2510.19255",
+    "abstract": "We present a survey on 4D generation and reconstruction, a fast-evolving subfield of computer graphics whose developments have been propelled by recent advances in neural fields, geometric and motion deep learning, as well 3D generative artificial intelligence (GenAI). While our survey is not the first of its kind, we build our coverage of the domain from a unique and distinctive perspective of 4D representations\\/}, to model 3D geometry evolving over time while exhibiting motion and interaction. Specifically, instead of offering an exhaustive enumeration of many works, we take a more selective approach by focusing on representative works to highlight both the desirable properties and ensuing challenges of each representation under different computation, application, and data scenarios. The main take-away message we aim to convey to the readers is on how to select and then customize the appropriate 4D representations for their tasks. Organizationally, we separate the 4D representations based on three key pillars: geometry, motion, and interaction. Our discourse will not only encompass the most popular representations of today, such as neural radiance fields (NeRFs) and 3D Gaussian Splatting (3DGS), but also bring attention to relatively under-explored representations in the 4D context, such as structured models and long-range motions. Throughout our survey, we will reprise the role of large language models (LLMs) and video foundational models (VFMs) in a variety of 4D applications, while steering our discussion towards their current limitations and how they can be addressed. We also provide a dedicated coverage on what 4D datasets are currently available, as well as what is lacking, in driving the subfield forward. Project page:https://mingrui-zhao.github.io/4DRep-GMI/",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.19255v1"
+  },
+  {
+    "title": "Probing the Difficulty Perception Mechanism of Large Language Models",
+    "authors": [
+      "Sunbowen Lee",
+      "Qingyu Yin",
+      "Chak Tou Leong",
+      "Jialiang Zhang",
+      "Yicheng Gong",
+      "Shiwen Ni",
+      "Min Yang",
+      "Xiaoyu Shen"
+    ],
+    "arxiv_id": "2510.05969",
+    "abstract": "Large language models (LLMs) are increasingly deployed on complex reasoning tasks, yet little is known about their ability to internally evaluate problem difficulty, which is an essential capability for adaptive reasoning and efficient resource allocation. In this work, we investigate whether LLMs implicitly encode problem difficulty in their internal representations. Using a linear probe on the final-token representations of LLMs, we demonstrate that the difficulty level of math problems can be linearly modeled. We further locate the specific attention heads of the final Transformer layer: these attention heads have opposite activation patterns for simple and difficult problems, thus achieving perception of difficulty. Our ablation experiments prove the accuracy of the location. Crucially, our experiments provide practical support for using LLMs as automatic difficulty annotators, potentially substantially reducing reliance on costly human labeling in benchmark construction and curriculum learning. We also uncover that there is a significant difference in entropy and difficulty perception at the token level. Our study reveals that difficulty perception in LLMs is not only present but also structurally organized, offering new theoretical insights and practical directions for future research. Our code is available at https://github.com/Aegis1863/Difficulty-Perception-of-LLMs.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.05969v2"
+  },
+  {
+    "title": "How GPT learns layer by layer",
+    "authors": [
+      "Jason Du",
+      "Kelly Hong",
+      "Alishba Imran",
+      "Erfan Jahanparast",
+      "Mehdi Khfifi",
+      "Kaichun Qiao"
+    ],
+    "arxiv_id": "2501.07108",
+    "abstract": "Large Language Models (LLMs) excel at tasks like language processing, strategy games, and reasoning but struggle to build generalizable internal representations essential for adaptive decision-making in agents. For agents to effectively navigate complex environments, they must construct reliable world models. While LLMs perform well on specific benchmarks, they often fail to generalize, leading to brittle representations that limit their real-world effectiveness. Understanding how LLMs build internal world models is key to developing agents capable of consistent, adaptive behavior across tasks. We analyze OthelloGPT, a GPT-based model trained on Othello gameplay, as a controlled testbed for studying representation learning. Despite being trained solely on next-token prediction with random valid moves, OthelloGPT shows meaningful layer-wise progression in understanding board state and gameplay. Early layers capture static attributes like board edges, while deeper layers reflect dynamic tile changes. To interpret these representations, we compare Sparse Autoencoders (SAEs) with linear probes, finding that SAEs offer more robust, disentangled insights into compositional features, whereas linear probes mainly detect features useful for classification. We use SAEs to decode features related to tile color and tile stability, a previously unexamined feature that reflects complex gameplay concepts like board control and long-term planning. We study the progression of linear probe accuracy and tile color using both SAE's and linear probes to compare their effectiveness at capturing what the model is learning. Although we begin with a smaller language model, OthelloGPT, this study establishes a framework for understanding the internal representations learned by GPT models, transformers, and LLMs more broadly. Our code is publicly available: https://github.com/ALT-JS/OthelloSAE.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2501.07108v1"
+  },
+  {
+    "title": "Self-Refining Language Model Anonymizers via Adversarial Distillation",
+    "authors": [
+      "Kyuyoung Kim",
+      "Hyunjun Jeon",
+      "Jinwoo Shin"
+    ],
+    "arxiv_id": "2506.01420",
+    "abstract": "Large language models (LLMs) are increasingly used in sensitive domains, where their ability to infer personal data from seemingly benign text introduces emerging privacy risks. While recent LLM-based anonymization methods help mitigate such risks, they often rely on proprietary models (e.g., GPT-4), raising concerns about cost and the potential exposure of sensitive data to untrusted external systems. To address this, we introduce SElf-refining Anonymization with Language model (SEAL), a novel distillation framework for training small language models (SLMs) to perform effective anonymization without relying on external models at inference time. SEAL leverages adversarial interactions between an LLM anonymizer and an inference model to collect trajectories of anonymized texts and inferred attributes, which are then used to distill anonymization and critique capabilities into SLMs through supervised fine-tuning and preference learning. The resulting models learn both to anonymize text and to evaluate their outputs, enabling iterative improvement of anonymization quality via self-refinement. Experiments on SynthPAI, a dataset of synthetic personal profiles and text comments, demonstrate that SLMs trained with SEAL achieve substantial improvements in anonymization capabilities. Notably, 8B models attain a privacy-utility trade-off comparable to that of the GPT-4 anonymizer and, with self-refinement, even surpass it in terms of privacy protection. These results highlight the effectiveness of our adversarial distillation framework for training SLMs as efficient anonymizers.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2506.01420v2"
+  },
+  {
+    "title": "Towards Self-Refinement of Vision-Language Models with Triangular Consistency",
+    "authors": [
+      "Yunlong Deng",
+      "Guangyi Chen",
+      "Tianpei Gu",
+      "Lingjing Kong",
+      "Yan Li",
+      "Zeyu Tang",
+      "Kun Zhang"
+    ],
+    "arxiv_id": "2510.10487",
+    "abstract": "Vision-Language Models (VLMs) integrate visual knowledge with the analytical capabilities of Large Language Models (LLMs) through supervised visual instruction tuning, using image-question-answer triplets. However, the potential of VLMs trained without supervised instruction remains largely unexplored. This study validates that VLMs possess inherent self-refinement capabilities, enabling them to generate high-quality supervised data without external inputs and thereby learn autonomously. Specifically, to stimulate the self-refinement ability of VLMs, we propose a self-refinement framework based on a Triangular Consistency principle: within the image-query-answer triangle, any masked elements should be consistently and accurately reconstructed. The framework involves three steps: (1) We enable the instruction generation ability of VLMs by adding multi-task instruction tuning like image$\\rightarrow$question-answer or image-answer$\\rightarrow$question. (2) We generate image-query-answer triplets from unlabeled images and use the Triangular Consistency principle for filtering. (3) The model is further updated using the filtered synthetic data. To investigate the underlying mechanisms behind this self-refinement capability, we conduct a theoretical analysis from a causal perspective. Using the widely recognized LLaVA-1.5 as our baseline, our experiments reveal that the model can autonomously achieve consistent, though deliberately modest, improvements across multiple benchmarks without any external supervision, such as human annotations or environmental feedback. We expect that the insights of this study on the self-refinement ability of VLMs can inspire future research on the learning mechanism of VLMs. Code is available at https://github.com/dengyl20/SRF-LLaVA-1.5.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.10487v1"
+  },
+  {
+    "title": "A Stitch in Time Saves Nine: Proactive Self-Refinement for Language Models",
+    "authors": [
+      "Jinyi Han",
+      "Xinyi Wang",
+      "Haiquan Zhao",
+      "Tingyun li",
+      "Zishang Jiang",
+      "Sihang Jiang",
+      "Jiaqing Liang",
+      "Xin Lin",
+      "Weikang Zhou",
+      "Zeye Sun",
+      "Fei Yu",
+      "Yanghua Xiao"
+    ],
+    "arxiv_id": "2508.12903",
+    "abstract": "Recent advances in self-refinement have demonstrated significant potential for improving the outputs of large language models (LLMs) through iterative refinement. However, most existing self-refinement methods rely on a reactive process with a fixed number of iterations, making it difficult to determine the optimal timing and content of refinement based on the evolving generation context. Inspired by the way humans dynamically refine their thoughts during execution, we propose ProActive Self-Refinement (PASR), a novel method that enables LLMs to refine their outputs during the generation process. Unlike methods that regenerate entire responses, PASR proactively decides whether, when, and how to refine based on the model's internal state and evolving context. We conduct extensive experiments on a diverse set of 10 tasks to evaluate the effectiveness of PASR. Experimental results show that PASR significantly enhances problem-solving performance. In particular, on Qwen3-8B, PASR reduces average token consumption by 41.6% compared to standard generation, while also achieving an 8.2% improvement in accuracy. Our code and baselines used in the paper are available on GitHub.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2508.12903v2"
+  },
+  {
+    "title": "SSR: Socratic Self-Refine for Large Language Model Reasoning",
+    "authors": [
+      "Haizhou Shi",
+      "Ye Liu",
+      "Bo Pang",
+      "Zeyu Leo Liu",
+      "Hao Wang",
+      "Silvio Savarese",
+      "Caiming Xiong",
+      "Yingbo Zhou",
+      "Semih Yavuz"
+    ],
+    "arxiv_id": "2511.10621",
+    "abstract": "Large Language Models (LLMs) have demonstrated remarkable reasoning abilities, yet existing test-time frameworks often rely on coarse self-verification and self-correction, limiting their effectiveness on complex tasks. In this paper, we propose Socratic Self-Refine (SSR), a novel framework for fine-grained evaluation and precise refinement of LLM reasoning. Our proposed SSR decomposes model responses into verifiable (sub-question, sub-answer) pairs, enabling step-level confidence estimation through controlled re-solving and self-consistency checks. By pinpointing unreliable steps and iteratively refining them, SSR produces more accurate and interpretable reasoning chains. Empirical results across five reasoning benchmarks and three LLMs show that SSR consistently outperforms state-of-the-art iterative self-refinement baselines. Beyond performance gains, SSR provides a principled black-box approach for evaluating and understanding the internal reasoning processes of LLMs. Code is available at https://github.com/SalesforceAIResearch/socratic-self-refine-reasoning.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2511.10621v1"
+  },
+  {
+    "title": "Evolving LLMs' Self-Refinement Capability via Synergistic Training-Inference Optimization",
+    "authors": [
+      "Yongcheng Zeng",
+      "Xinyu Cui",
+      "Xuanfa Jin",
+      "Qirui Mi",
+      "Guoqing Liu",
+      "Zexu Sun",
+      "Mengyue Yang",
+      "Dong Li",
+      "Weiyu Ma",
+      "Ning Yang",
+      "Jian Zhao",
+      "Jianye Hao",
+      "Haifeng Zhang",
+      "Jun Wang"
+    ],
+    "arxiv_id": "2502.05605",
+    "abstract": "Self-Refinement refers to a model's ability to revise its own responses to produce improved outputs. This capability can also serve as a fundamental mechanism for Self-Improvement, for example, by reconstructing datasets with refined results to enhance intrinsic model performance. However, our comprehensive experiments reveal that large language models (LLMs) show no clear evidence of inherent Self-Refinement and may even experience response quality degradation after Self-Refinement. To address this issue, we propose EVOLVE, a simple and effective framework for eliciting and tracking the evolution of Self-Refinement through iterative training. We first explore optimization methods during training to activate the model's Self-Refinement capability. Then, at inference, we investigate various generation strategies to further enhance and utilize Self-Refinement while supplying the necessary data for training. Through synergistic optimization of training and inference stages, we continually evolve the model's Self-Refinement ability, enabling it to better refine its own responses. Moreover, we demonstrate the potential of leveraging Self-Refinement to achieve broader Self-Improvement of intrinsic model abilities. Experiments show that the evolved Self-Refinement ability enables the Llama-3.1-8B base model to surpass GPT-4o, achieving 62.3% length-controlled and 63.3% raw win rates on AlpacaEval 2, and 50.3% on Arena-Hard. It also generalizes effectively to out-of-domain reasoning tasks, improving performance on mathematical reasoning benchmarks such as GSM8K and MATH.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2502.05605v6"
+  },
+  {
+    "title": "Self-Refinement Strategies for LLM-based Product Attribute Value Extraction",
+    "authors": [
+      "Alexander Brinkmann",
+      "Christian Bizer"
+    ],
+    "arxiv_id": "2501.01237",
+    "abstract": "Structured product data, in the form of attribute-value pairs, is essential for e-commerce platforms to support features such as faceted product search and attribute-based product comparison. However, vendors often provide unstructured product descriptions, making attribute value extraction necessary to ensure data consistency and usability. Large language models (LLMs) have demonstrated their potential for product attribute value extraction in few-shot scenarios. Recent research has shown that self-refinement techniques can improve the performance of LLMs on tasks such as code generation and text-to-SQL translation. For other tasks, the application of these techniques has resulted in increased costs due to processing additional tokens, without achieving any improvement in performance. This paper investigates applying two self-refinement techniques (error-based prompt rewriting and self-correction) to the product attribute value extraction task. The self-refinement techniques are evaluated across zero-shot, few-shot in-context learning, and fine-tuning scenarios using GPT-4o. The experiments show that both self-refinement techniques fail to significantly improve the extraction performance while substantially increasing processing costs. For scenarios with development data, fine-tuning yields the highest performance, while the ramp-up costs of fine-tuning are balanced out as the amount of product descriptions increases.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2501.01237v2"
+  },
+  {
+    "title": "Repairing Language Model Pipelines by Meta Self-Refining Competing Constraints at Runtime",
+    "authors": [
+      "Mojtaba Eshghie"
+    ],
+    "arxiv_id": "2507.10590",
+    "abstract": "Language Model (LM) pipelines can dynamically refine their outputs against programmatic constraints. However, their effectiveness collapses when faced with competing soft constraints, leading to inefficient backtracking loops where satisfying one constraint violates another. We introduce Meta Self-Refining, a framework that equips LM pipelines with a meta-corrective layer to repair these competitions at runtime/inference-time. Our approach monitors the pipeline's execution history to detect oscillatory failures. Upon detection, it invokes a meta-repairer LM that analyzes the holistic state of the backtracking attempts and synthesizes a strategic instruction to balance the competing requirements. This self-repair instruction guides the original LM out of a failing refining loop towards a successful output. Our results show Meta Self-Refining can successfully repair these loops, leading to more efficient LM programs.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2507.10590v1"
+  },
+  {
+    "title": "Learning to Refine: Self-Refinement of Parallel Reasoning in LLMs",
+    "authors": [
+      "Qibin Wang",
+      "Pu Zhao",
+      "Shaohan Huang",
+      "Fangkai Yang",
+      "Lu Wang",
+      "Furu Wei",
+      "Qingwei Lin",
+      "Saravan Rajmohan",
+      "Dongmei Zhang"
+    ],
+    "arxiv_id": "2509.00084",
+    "abstract": "To further enhance the ability of Large Language Models (LLMs) to solve complex, multi-step reasoning problems, test-time scaling (TTS) methods have gained widespread attention. Existing approaches such as Best-of-N and majority voting are limited as their performance depends on the quality of candidate responses, making them unable to produce a correct solution when all candidates are incorrect. Introducing an additional model to select the best response also incurs significant deployment costs. To this end, we introduce Generative Self-Refinement (GSR), a novel parallel test-time scaling framework where a unified model first generates a set of candidate responses in parallel and then performs self-refinement to synthesize a new superior solution based on a prompt consisting of the problem and these candidates. However, LLMs struggle to perform refinement effectively when prompted directly. Therefore, we design a hybrid training pipeline by jointly optimizing for two complementary objectives, solving problems directly and refining candidate responses. Experimental results demonstrate that our method achieves state-of-the-art performance across five mathematical benchmarks. We further show that this learned self-refinement skill is a model-agnostic enhancement, robust across different model scales and generalizing to out-of-distribution reasoning tasks.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2509.00084v1"
+  },
+  {
+    "title": "LLM-Driven Self-Refinement for Embodied Drone Task Planning",
+    "authors": [
+      "Deyu Zhang",
+      "Xicheng Zhang",
+      "Jiahao Li",
+      "Tingting Long",
+      "Xunhua Dai",
+      "Yongjian Fu",
+      "Jinrui Zhang",
+      "Ju Ren",
+      "Yaoxue Zhang"
+    ],
+    "arxiv_id": "2508.15501",
+    "abstract": "We introduce SRDrone, a novel system designed for self-refinement task planning in industrial-grade embodied drones. SRDrone incorporates two key technical contributions: First, it employs a continuous state evaluation methodology to robustly and accurately determine task outcomes and provide explanatory feedback. This approach supersedes conventional reliance on single-frame final-state assessment for continuous, dynamic drone operations. Second, SRDrone implements a hierarchical Behavior Tree (BT) modification model. This model integrates multi-level BT plan analysis with a constrained strategy space to enable structured reflective learning from experience. Experimental results demonstrate that SRDrone achieves a 44.87% improvement in Success Rate (SR) over baseline methods. Furthermore, real-world deployment utilizing an experience base optimized through iterative self-refinement attains a 96.25% SR. By embedding adaptive task refinement capabilities within an industrial-grade BT planning framework, SRDrone effectively integrates the general reasoning intelligence of Large Language Models (LLMs) with the stringent physical execution constraints inherent to embodied drones. Code is available at https://github.com/ZXiiiC/SRDrone.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2508.15501v1"
+  },
+  {
+    "title": "Database Normalization via Dual-LLM Self-Refinement",
+    "authors": [
+      "Eunjae Jo",
+      "Nakyung Lee",
+      "Gyuyeong Kim"
+    ],
+    "arxiv_id": "2508.17693",
+    "abstract": "Database normalization is crucial to preserving data integrity. However, it is time-consuming and error-prone, as it is typically performed manually by data engineers. To this end, we present Miffie, a database normalization framework that leverages the capability of large language models. Miffie enables automated data normalization without human effort while preserving high accuracy. The core of Miffie is a dual-model self-refinement architecture that combines the best-performing models for normalized schema generation and verification, respectively. The generation module eliminates anomalies based on the feedback of the verification module until the output schema satisfies the requirement for normalization. We also carefully design task-specific zero-shot prompts to guide the models for achieving both high accuracy and cost efficiency. Experimental results show that Miffie can normalize complex database schemas while maintaining high accuracy.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2508.17693v1"
+  },
+  {
+    "title": "Adversarial Manipulation of Reasoning Models using Internal Representations",
+    "authors": [
+      "Kureha Yamaguchi",
+      "Benjamin Etheridge",
+      "Andy Arditi"
+    ],
+    "arxiv_id": "2507.03167",
+    "abstract": "Reasoning models generate chain-of-thought (CoT) tokens before their final output, but how this affects their vulnerability to jailbreak attacks remains unclear. While traditional language models make refusal decisions at the prompt-response boundary, we find evidence that DeepSeek-R1-Distill-Llama-8B makes these decisions within its CoT generation. We identify a linear direction in activation space during CoT token generation that predicts whether the model will refuse or comply -- termed the \"caution\" direction because it corresponds to cautious reasoning patterns in the generated text. Ablating this direction from model activations increases harmful compliance, effectively jailbreaking the model. We additionally show that intervening only on CoT token activations suffices to control final outputs, and that incorporating this direction into prompt-based attacks improves success rates. Our findings suggest that the chain-of-thought itself is a promising new target for adversarial manipulation in reasoning models. Code available at https://github.com/ky295/reasoning-manipulation.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2507.03167v2"
+  },
+  {
+    "title": "The Knowledge-Reasoning Dissociation: Fundamental Limitations of LLMs in Clinical Natural Language Inference",
+    "authors": [
+      "Ma\u00ebl Jullien",
+      "Marco Valentino",
+      "Andr\u00e9 Freitas"
+    ],
+    "arxiv_id": "2508.10777",
+    "abstract": "Large language models are often assumed to acquire increasingly structured, generalizable internal representations simply by scaling data and parameters. We interrogate this assumption by introducing a Clinical Trial Natural Language Inference benchmark comprising four reasoning families, Causal Attribution, Compositional Grounding, Epistemic Verification, and Risk State Abstraction. Each item is paired with a targeted Ground Knowledge and Meta-Level Reasoning Verification (GKMRV) probe, allowing us to dissociate failures of factual access from failures of inference. We evaluate six contemporary LLMs under both direct and chain of thought prompting.\n  Models achieve near-ceiling GKMRV accuracy (mean accuracy 0.918) yet perform poorly on the main reasoning tasks (mean accuracy 0.25). Despite low accuracy, output inferences are highly consistent across samples (mean 0.87), indicating a systematic application of underlying heuristics and shortcuts.\n  These results reveal fundamental structural and representational limitations: current LLMs often possess the relevant clinical knowledge but lack the structured, composable internal representations needed to deploy it reliably (e.g., integrating constraints, weighing evidence, or simulating counterfactuals). Decoupling knowledge from reasoning with GKMRV makes this dissociation explicit and measurable, providing an effective framework for probing the reliability of LLMs in high-stakes domains.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2508.10777v1"
+  },
+  {
+    "title": "Auto-Patching: Enhancing Multi-Hop Reasoning in Language Models",
+    "authors": [
+      "Aviv Jan",
+      "Dean Tahory",
+      "Omer Talmi",
+      "Omar Abo Mokh"
+    ],
+    "arxiv_id": "2506.00483",
+    "abstract": "Multi-hop questions still stump large language models (LLMs), which struggle to link information across multiple reasoning steps. We introduce Auto-Patch, a novel method that dynamically patches hidden states during inference to enhance multi-hop reasoning in LLMs. Building on the PatchScopes framework, Auto-Patch selectively modifies internal representations using a learned classifier. Evaluated on the MuSiQue dataset, Auto-Patch improves the solve rate from 18.45\\% (baseline) to 23.63~$\\pm$~0.7\\% (3 runs), narrowing the gap to Chain-of-Thought prompting (27.44\\%). Our results highlight the potential of dynamic hidden state interventions for advancing complex reasoning in LLMs.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2506.00483v1"
+  },
+  {
+    "title": "Probing for Arithmetic Errors in Language Models",
+    "authors": [
+      "Yucheng Sun",
+      "Alessandro Stolfo",
+      "Mrinmaya Sachan"
+    ],
+    "arxiv_id": "2507.12379",
+    "abstract": "We investigate whether internal activations in language models can be used to detect arithmetic errors. Starting with a controlled setting of 3-digit addition, we show that simple probes can accurately decode both the model's predicted output and the correct answer from hidden states, regardless of whether the model's output is correct. Building on this, we train lightweight error detectors that predict model correctness with over 90% accuracy. We then extend our analysis to structured chain-of-thought traces on addition-only GSM8K problems and find that probes trained on simple arithmetic generalize well to this more complex setting, revealing consistent internal representations. Finally, we demonstrate that these probes can guide selective re-prompting of erroneous reasoning steps, improving task accuracy with minimal disruption to correct outputs. Our findings suggest that arithmetic errors can be anticipated from internal activations alone, and that simple probes offer a viable path toward lightweight model self-correction.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2507.12379v1"
+  },
+  {
+    "title": "Language Mixing in Reasoning Language Models: Patterns, Impact, and Internal Causes",
+    "authors": [
+      "Mingyang Wang",
+      "Lukas Lange",
+      "Heike Adel",
+      "Yunpu Ma",
+      "Jannik Str\u00f6tgen",
+      "Hinrich Sch\u00fctze"
+    ],
+    "arxiv_id": "2505.14815",
+    "abstract": "Reasoning language models (RLMs) excel at complex tasks by leveraging a chain-of-thought process to generate structured intermediate steps. However, language mixing, i.e., reasoning steps containing tokens from languages other than the prompt, has been observed in their outputs and shown to affect performance, though its impact remains debated. We present the first systematic study of language mixing in RLMs, examining its patterns, impact, and internal causes across 15 languages, 7 task difficulty levels, and 18 subject areas, and show how all three factors influence language mixing. Moreover, we demonstrate that the choice of reasoning language significantly affects performance: forcing models to reason in Latin or Han scripts via constrained decoding notably improves accuracy. Finally, we show that the script composition of reasoning traces closely aligns with that of the model's internal representations, indicating that language mixing reflects latent processing preferences in RLMs. Our findings provide actionable insights for optimizing multilingual reasoning and open new directions for controlling reasoning languages to build more interpretable and adaptable RLMs.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2505.14815v3"
+  },
+  {
+    "title": "Towards Reasoning-Preserving Unlearning in Multimodal Large Language Models",
+    "authors": [
+      "Hongji Li",
+      "Junchi yao",
+      "Manjiang Yu",
+      "Priyanka Singh",
+      "Xue Li",
+      "Di Wang",
+      "Lijie Hu"
+    ],
+    "arxiv_id": "2512.17911",
+    "abstract": "Machine unlearning aims to erase requested data from trained models without full retraining. For Reasoning Multimodal Large Language Models (RMLLMs), this is uniquely challenging: intermediate chain-of-thought steps can still leak sensitive information even when final answers are forgotten, and overly aggressive interventions easily damage general reasoning ability. Yet no benchmark jointly evaluates how well unlearning methods suppress reasoning-level leakage while preserving reasoning competence. We address this gap with RMLLMU-Bench, the first benchmark for RMLLM unlearning that extends standard forgetting metrics with dedicated measures of reasoning leakage and reasoning retention. A systematic evaluation on RMLLMU-Bench reveals that existing unlearning methods for MLLMs and Large (Language) Reasoning Models (LRMs) either leave substantial leakage in the reasoning process or severely degrade reasoning performance. To address these gaps, we propose R-MUSE (Reasoning-preserving MLLM Unlearning via Subspace guidance and Adaptive Steering), a training-free and inference-time intervention framework that steers internal representations to forget both answers and reasoning traces while explicitly preserving general reasoning. Experiments on RMLLMU-Bench demonstrate that R-MUSE achieves a substantially better balance between effective forgetting and reasoning retention.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2512.17911v1"
+  },
+  {
+    "title": "Inverse-Free Wilson Loops for Transformers: A Practical Diagnostic for Invariance and Order Sensitivity",
+    "authors": [
+      "Edward Y. Chang",
+      "Ethan Y. Chang"
+    ],
+    "arxiv_id": "2510.08648",
+    "abstract": "Large language models can change answers under harmless edits that matter in practice: RAG outputs flip when passages are reordered, fine-tuning erodes invariances learned at pretraining, debate or chain-of-thought prompts take path-dependent routes, and compiler fusion or reordering perturbs logits near decision boundaries. These failures violate intended invariances, break continuous integration, and force teams to trade safety for speed. The effects are small yet distributed across layers and positions, sensitive to context length and evaluation order, and costly to repair with retraining or formal verification. We present WILSON, a minimal post-hoc diagnostic suite that converts simple loop and reordering checks on internal representations into system signals. WILSON combines an inverse-free curvature map over positions and layers, computed with JVPs and Hutchinson probes, with activation-level commutators that flag reorder risk. Signals are cheap to compute, model-agnostic for standard Transformers, and exported as thresholds and CSV artifacts for orchestrators. This enables concrete actions: guard RAG against order effects, catch fine-tuning regressions, stabilize debate pathways and long multi-turn contexts, and gate fusions or reorders in deployment. In short, WILSON helps anticipate failures and approve safe optimizations so reliability and throughput can improve together without changing model architecture or training.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2510.08648v1"
+  },
+  {
+    "title": "Language Models Can Predict Their Own Behavior",
+    "authors": [
+      "Dhananjay Ashok",
+      "Jonathan May"
+    ],
+    "arxiv_id": "2502.13329",
+    "abstract": "The text produced by language models (LMs) can exhibit specific `behaviors,' such as a failure to follow alignment training, that we hope to detect and react to during deployment. Identifying these behaviors can often only be done post facto, i.e., after the entire text of the output has been generated. We provide evidence that there are times when we can predict how an LM will behave early in computation, before even a single token is generated. We show that probes trained on the internal representation of input tokens alone can predict a wide range of eventual behaviors over the entire output sequence. Using methods from conformal prediction, we provide provable bounds on the estimation error of our probes, creating precise early warning systems for these behaviors. The conformal probes can identify instances that will trigger alignment failures (jailbreaking) and instruction-following failures, without requiring a single token to be generated. An early warning system built on the probes reduces jailbreaking by 91%. Our probes also show promise in pre-emptively estimating how confident the model will be in its response, a behavior that cannot be detected using the output text alone. Conformal probes can preemptively estimate the final prediction of an LM that uses Chain-of-Thought (CoT) prompting, hence accelerating inference. When applied to an LM that uses CoT to perform text classification, the probes drastically reduce inference costs (65% on average across 27 datasets), with negligible accuracy loss. Encouragingly, probes generalize to unseen datasets and perform better on larger models, suggesting applicability to the largest of models in real-world settings.",
+    "year": 2025,
+    "url": "http://arxiv.org/abs/2502.13329v2"
+  },
+  {
+    "title": "Self-Reflection in LLM Agents: Effects on Problem-Solving Performance",
+    "authors": [
+      "Matthew Renze",
+      "Erhan Guven"
+    ],
+    "arxiv_id": "2405.06682",
+    "abstract": "In this study, we investigated the effects of self-reflection in large language models (LLMs) on problem-solving performance. We instructed nine popular LLMs to answer a series of multiple-choice questions to provide a performance baseline. For each incorrectly answered question, we instructed eight types of self-reflecting LLM agents to reflect on their mistakes and provide themselves with guidance to improve problem-solving. Then, using this guidance, each self-reflecting agent attempted to re-answer the same questions. Our results indicate that LLM agents are able to significantly improve their problem-solving performance through self-reflection ($p < 0.001$). In addition, we compared the various types of self-reflection to determine their individual contribution to performance. All code and data are available on GitHub at https://github.com/matthewrenze/self-reflection",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2405.06682v3"
+  },
+  {
+    "title": "Transformers represent belief state geometry in their residual stream",
+    "authors": [
+      "Adam S. Shai",
+      "Sarah E. Marzen",
+      "Lucas Teixeira",
+      "Alexander Gietelink Oldenziel",
+      "Paul M. Riechers"
+    ],
+    "arxiv_id": "2405.15943",
+    "abstract": "What computational structure are we building into large language models when we train them on next-token prediction? Here, we present evidence that this structure is given by the meta-dynamics of belief updating over hidden states of the data-generating process. Leveraging the theory of optimal prediction, we anticipate and then find that belief states are linearly represented in the residual stream of transformers, even in cases where the predicted belief state geometry has highly nontrivial fractal structure. We investigate cases where the belief state geometry is represented in the final residual stream or distributed across the residual streams of multiple layers, providing a framework to explain these observations. Furthermore we demonstrate that the inferred belief states contain information about the entire future, beyond the local next-token prediction that the transformers are explicitly trained on. Our work provides a general framework connecting the structure of training data to the geometric structure of activations inside transformers.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2405.15943v3"
+  },
+  {
+    "title": "Residual Stream Analysis with Multi-Layer SAEs",
+    "authors": [
+      "Tim Lawson",
+      "Lucy Farnik",
+      "Conor Houghton",
+      "Laurence Aitchison"
+    ],
+    "arxiv_id": "2409.04185",
+    "abstract": "Sparse autoencoders (SAEs) are a promising approach to interpreting the internal representations of transformer language models. However, SAEs are usually trained separately on each transformer layer, making it difficult to use them to study how information flows across layers. To solve this problem, we introduce the multi-layer SAE (MLSAE): a single SAE trained on the residual stream activation vectors from every transformer layer. Given that the residual stream is understood to preserve information across layers, we expected MLSAE latents to 'switch on' at a token position and remain active at later layers. Interestingly, we find that individual latents are often active at a single layer for a given token or prompt, but the layer at which an individual latent is active may differ for different tokens or prompts. We quantify these phenomena by defining a distribution over layers and considering its variance. We find that the variance of the distributions of latent activations over layers is about two orders of magnitude greater when aggregating over tokens compared with a single token. For larger underlying models, the degree to which latents are active at multiple layers increases, which is consistent with the fact that the residual stream activation vectors at adjacent layers become more similar. Finally, we relax the assumption that the residual stream basis is the same at every layer by applying pre-trained tuned-lens transformations, but our findings remain qualitatively similar. Our results represent a new approach to understanding how representations change as they flow through transformers. We release our code to train and analyze MLSAEs at https://github.com/tim-lawson/mlsae.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2409.04185v3"
+  },
+  {
+    "title": "Characterizing stable regions in the residual stream of LLMs",
+    "authors": [
+      "Jett Janiak",
+      "Jacek Karwowski",
+      "Chatrik Singh Mangat",
+      "Giorgi Giglemiani",
+      "Nora Petrova",
+      "Stefan Heimersheim"
+    ],
+    "arxiv_id": "2409.17113",
+    "abstract": "We identify stable regions in the residual stream of Transformers, where the model's output remains insensitive to small activation changes, but exhibits high sensitivity at region boundaries. These regions emerge during training and become more defined as training progresses or model size increases. The regions appear to be much larger than previously studied polytopes. Our analysis suggests that these stable regions align with semantic distinctions, where similar prompts cluster within regions, and activations from the same region lead to similar next token predictions. This work provides a promising research direction for understanding the complexity of neural networks, shedding light on training dynamics, and advancing interpretability.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2409.17113v4"
+  },
+  {
+    "title": "Associative memory inspires improvements for in-context learning using a novel attention residual stream architecture",
+    "authors": [
+      "Thomas F Burns",
+      "Tomoki Fukai",
+      "Christopher J Earls"
+    ],
+    "arxiv_id": "2412.15113",
+    "abstract": "Large language models (LLMs) demonstrate an impressive ability to utilise information within the context of their input sequences to appropriately respond to data unseen by the LLM during its training procedure. This ability is known as in-context learning (ICL). Humans and non-human animals demonstrate similar abilities, however their neural architectures differ substantially from LLMs. Despite this, a critical component within LLMs, the attention mechanism, resembles modern associative memory models, widely used in and influenced by the computational neuroscience community to model biological memory systems. Using this connection, we introduce an associative memory model capable of performing ICL. We use this as inspiration for a novel residual stream architecture which allows information to directly flow between attention heads. We test this architecture during training within a two-layer Transformer and show its ICL abilities manifest more quickly than without this modification. We then apply our architecture in small language models with 8 million and 1 billion parameters, focusing on attention head values, with results also indicating improved performance at these larger and more naturalistic scales.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2412.15113v2"
+  },
+  {
+    "title": "Defending Large Language Models Against Attacks With Residual Stream Activation Analysis",
+    "authors": [
+      "Amelia Kawasaki",
+      "Andrew Davis",
+      "Houssam Abbas"
+    ],
+    "arxiv_id": "2406.03230",
+    "abstract": "The widespread adoption of Large Language Models (LLMs), exemplified by OpenAI's ChatGPT, brings to the forefront the imperative to defend against adversarial threats on these models. These attacks, which manipulate an LLM's output by introducing malicious inputs, undermine the model's integrity and the trust users place in its outputs. In response to this challenge, our paper presents an innovative defensive strategy, given white box access to an LLM, that harnesses residual activation analysis between transformer layers of the LLM. We apply a novel methodology for analyzing distinctive activation patterns in the residual streams for attack prompt classification. We curate multiple datasets to demonstrate how this method of classification has high accuracy across multiple types of attack scenarios, including our newly-created attack dataset. Furthermore, we enhance the model's resilience by integrating safety fine-tuning techniques for LLMs in order to measure its effect on our capability to detect attacks. The results underscore the effectiveness of our approach in enhancing the detection and mitigation of adversarial inputs, advancing the security framework within which LLMs operate.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2406.03230v5"
+  },
+  {
+    "title": "Uncovering Uncertainty in Transformer Inference",
+    "authors": [
+      "Greyson Brothers",
+      "Willa Mannering",
+      "Amber Tien",
+      "John Winder"
+    ],
+    "arxiv_id": "2412.05768",
+    "abstract": "We explore the Iterative Inference Hypothesis (IIH) within the context of transformer-based language models, aiming to understand how a model's latent representations are progressively refined and whether observable differences are present between correct and incorrect generations. Our findings provide empirical support for the IIH, showing that the nth token embedding in the residual stream follows a trajectory of decreasing loss. Additionally, we observe that the rate at which residual embeddings converge to a stable output representation reflects uncertainty in the token generation process. Finally, we introduce a method utilizing cross-entropy to detect this uncertainty and demonstrate its potential to distinguish between correct and incorrect token generations on a dataset of idioms.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2412.05768v1"
+  },
+  {
+    "title": "ResiDual Transformer Alignment with Spectral Decomposition",
+    "authors": [
+      "Lorenzo Basile",
+      "Valentino Maiorca",
+      "Luca Bortolussi",
+      "Emanuele Rodol\u00e0",
+      "Francesco Locatello"
+    ],
+    "arxiv_id": "2411.00246",
+    "abstract": "When examined through the lens of their residual streams, a puzzling property emerges in transformer networks: residual contributions (e.g., attention heads) sometimes specialize in specific tasks or input attributes. In this paper, we analyze this phenomenon in vision transformers, focusing on the spectral geometry of residuals, and explore its implications for modality alignment in vision-language models. First, we link it to the intrinsically low-dimensional structure of visual head representations, zooming into their principal components and showing that they encode specialized roles across a wide variety of input data distributions. Then, we analyze the effect of head specialization in multimodal models, focusing on how improved alignment between text and specialized heads impacts zero-shot classification performance. This specialization-performance link consistently holds across diverse pre-training data, network sizes, and objectives, demonstrating a powerful new mechanism for boosting zero-shot classification through targeted alignment. Ultimately, we translate these insights into actionable terms by introducing ResiDual, a technique for spectral alignment of the residual stream. Much like panning for gold, it lets the noise from irrelevant unit principal components (i.e., attributes) wash away to amplify task-relevant ones. Remarkably, this dual perspective on modality alignment yields fine-tuning level performance on different data distributions while modelling an extremely interpretable and parameter-efficient transformation, as we extensively show on 70 pre-trained network-dataset combinations (7 models, 10 datasets).",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2411.00246v2"
+  },
+  {
+    "title": "Interpreting Key Mechanisms of Factual Recall in Transformer-Based Language Models",
+    "authors": [
+      "Ang Lv",
+      "Yuhan Chen",
+      "Kaiyi Zhang",
+      "Yulong Wang",
+      "Lifeng Liu",
+      "Ji-Rong Wen",
+      "Jian Xie",
+      "Rui Yan"
+    ],
+    "arxiv_id": "2403.19521",
+    "abstract": "In this paper, we delve into several mechanisms employed by Transformer-based language models (LLMs) for factual recall tasks. We outline a pipeline consisting of three major steps: (1) Given a prompt ``The capital of France is,'' task-specific attention heads extract the topic token, such as ``France,'' from the context and pass it to subsequent MLPs. (2) As attention heads' outputs are aggregated with equal weight and added to the residual stream, the subsequent MLP acts as an ``activation,'' which either erases or amplifies the information originating from individual heads. As a result, the topic token ``France'' stands out in the residual stream. (3) A deep MLP takes ``France'' and generates a component that redirects the residual stream towards the direction of the correct answer, i.e., ``Paris.'' This procedure is akin to applying an implicit function such as ``get\\_capital($X$),'' and the argument $X$ is the topic token information passed by attention heads. To achieve the above quantitative and qualitative analysis for MLPs, we proposed a novel analytic method aimed at decomposing the outputs of the MLP into components understandable by humans. Additionally, we observed a universal anti-overconfidence mechanism in the final layer of models, which suppresses correct predictions. We mitigate this suppression by leveraging our interpretation to improve factual recall confidence. The above interpretations are evaluated across diverse tasks spanning various domains of factual knowledge, using various language models from the GPT-2 families, 1.3B OPT, up to 7B Llama-2, and in both zero- and few-shot setups.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2403.19521v4"
+  },
+  {
+    "title": "Reasoning Circuits in Language Models: A Mechanistic Interpretation of Syllogistic Inference",
+    "authors": [
+      "Geonhee Kim",
+      "Marco Valentino",
+      "Andr\u00e9 Freitas"
+    ],
+    "arxiv_id": "2408.08590",
+    "abstract": "Recent studies on reasoning in language models (LMs) have sparked a debate on whether they can learn systematic inferential principles or merely exploit superficial patterns in the training data. To understand and uncover the mechanisms adopted for formal reasoning in LMs, this paper presents a mechanistic interpretation of syllogistic inference. Specifically, we present a methodology for circuit discovery aimed at interpreting content-independent and formal reasoning mechanisms. Through two distinct intervention methods, we uncover a sufficient and necessary circuit involving middle-term suppression that elucidates how LMs transfer information to derive valid conclusions from premises. Furthermore, we investigate how belief biases manifest in syllogistic inference, finding evidence of partial contamination from additional attention heads responsible for encoding commonsense and contextualized knowledge. Finally, we explore the generalization of the discovered mechanisms across various syllogistic schemes, model sizes and architectures. The identified circuit is sufficient and necessary for syllogistic schemes on which the models achieve high accuracy (>60%), with compatible activation patterns across models of different families. Overall, our findings suggest that LMs learn transferable content-independent reasoning mechanisms, but that, at the same time, such mechanisms do not involve generalizable and abstract logical primitives, being susceptible to contamination by the same world knowledge acquired during pre-training.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2408.08590v3"
+  },
+  {
+    "title": "A Implies B: Circuit Analysis in LLMs for Propositional Logical Reasoning",
+    "authors": [
+      "Guan Zhe Hong",
+      "Nishanth Dikkala",
+      "Enming Luo",
+      "Cyrus Rashtchian",
+      "Xin Wang",
+      "Rina Panigrahy"
+    ],
+    "arxiv_id": "2411.04105",
+    "abstract": "Due to the size and complexity of modern large language models (LLMs), it has proven challenging to uncover the underlying mechanisms that models use to solve reasoning problems. For instance, is their reasoning for a specific problem localized to certain parts of the network? Do they break down the reasoning problem into modular components that are then executed as sequential steps as we go deeper in the model? To better understand the reasoning capability of LLMs, we study a minimal propositional logic problem that requires combining multiple facts to arrive at a solution. By studying this problem on Mistral and Gemma models, up to 27B parameters, we illuminate the core components the models use to solve such logic problems. From a mechanistic interpretability point of view, we use causal mediation analysis to uncover the pathways and components of the LLMs' reasoning processes. Then, we offer fine-grained insights into the functions of attention heads in different layers. We not only find a sparse circuit that computes the answer, but we decompose it into sub-circuits that have four distinct and modular uses. Finally, we reveal that three distinct models -- Mistral-7B, Gemma-2-9B and Gemma-2-27B -- contain analogous but not identical mechanisms.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2411.04105v4"
+  },
+  {
+    "title": "How much do contextualized representations encode long-range context?",
+    "authors": [
+      "Simeng Sun",
+      "Cheng-Ping Hsieh"
+    ],
+    "arxiv_id": "2410.12292",
+    "abstract": "We analyze contextual representations in neural autoregressive language models, emphasizing long-range contexts that span several thousand tokens. Our methodology employs a perturbation setup and the metric \\emph{Anisotropy-Calibrated Cosine Similarity}, to capture the degree of contextualization of long-range patterns from the perspective of representation geometry. We begin the analysis with a case study on standard decoder-only Transformers, demonstrating that similar perplexity can exhibit markedly different downstream task performance, which can be explained by the difference in contextualization of long-range content. Next, we extend the analysis to other models, covering recent novel architectural designs and various training configurations. The representation-level results illustrate a reduced capacity for high-complexity (i.e., less compressible) sequences across architectures, and that fully recurrent models rely heavily on local context, whereas hybrid models more effectively encode the entire sequence structure. Finally, preliminary analysis of model size and training configurations on the encoding of long-range context suggest potential directions for improving existing language models.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2410.12292v2"
+  },
+  {
+    "title": "Cross-lingual Back-Parsing: Utterance Synthesis from Meaning Representation for Zero-Resource Semantic Parsing",
+    "authors": [
+      "Deokhyung Kang",
+      "Seonjeong Hwang",
+      "Yunsu Kim",
+      "Gary Geunbae Lee"
+    ],
+    "arxiv_id": "2410.00513",
+    "abstract": "Recent efforts have aimed to utilize multilingual pretrained language models (mPLMs) to extend semantic parsing (SP) across multiple languages without requiring extensive annotations. However, achieving zero-shot cross-lingual transfer for SP remains challenging, leading to a performance gap between source and target languages. In this study, we propose Cross-Lingual Back-Parsing (CBP), a novel data augmentation methodology designed to enhance cross-lingual transfer for SP. Leveraging the representation geometry of the mPLMs, CBP synthesizes target language utterances from source meaning representations. Our methodology effectively performs cross-lingual data augmentation in challenging zero-resource settings, by utilizing only labeled data in the source language and monolingual corpora. Extensive experiments on two cross-language SP benchmarks (Mschema2QA and Xspider) demonstrate that CBP brings substantial gains in the target language. Further analysis of the synthesized utterances shows that our method successfully generates target language utterances with high slot value alignment rates while preserving semantic integrity. Our codes and data are publicly available at https://github.com/deokhk/CBP.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2410.00513v1"
+  },
+  {
+    "title": "Understanding Linear Probing then Fine-tuning Language Models from NTK Perspective",
+    "authors": [
+      "Akiyoshi Tomihari",
+      "Issei Sato"
+    ],
+    "arxiv_id": "2405.16747",
+    "abstract": "The two-stage fine-tuning (FT) method, linear probing (LP) then fine-tuning (LP-FT), outperforms linear probing and FT alone. This holds true for both in-distribution (ID) and out-of-distribution (OOD) data. One key reason for its success is the preservation of pre-trained features, achieved by obtaining a near-optimal linear head during LP. However, despite the widespread use of large language models, there has been limited exploration of more complex architectures such as Transformers. In this paper, we analyze the training dynamics of LP-FT for classification tasks on the basis of the neural tangent kernel (NTK) theory. Our analysis decomposes the NTK matrix into two components. This decomposition highlights the importance of the linear head norm alongside the prediction accuracy at the start of the FT stage. We also observe a significant increase in the linear head norm during LP, which stems from training with the cross-entropy (CE) loss. This increase in the linear head norm effectively reduces changes in learned features. Furthermore, we find that this increased norm can adversely affect model calibration, which can be corrected using temperature scaling. Additionally, we extend our analysis with the NTK to the low-rank adaptation (LoRA) method and validate its effectiveness. Our experiments using a Transformer-based model on multiple natural language processing datasets confirm our theoretical analysis. Our study demonstrates the effectiveness of LP-FT for fine-tuning language models. Code is available at https://github.com/tom4649/lp-ft_ntk.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2405.16747v2"
+  },
+  {
+    "title": "Causal Language Modeling Can Elicit Search and Reasoning Capabilities on Logic Puzzles",
+    "authors": [
+      "Kulin Shah",
+      "Nishanth Dikkala",
+      "Xin Wang",
+      "Rina Panigrahy"
+    ],
+    "arxiv_id": "2409.10502",
+    "abstract": "Causal language modeling using the Transformer architecture has yielded remarkable capabilities in Large Language Models (LLMs) over the last few years. However, the extent to which fundamental search and reasoning capabilities emerged within LLMs remains a topic of ongoing debate. In this work, we study if causal language modeling can learn a complex task such as solving Sudoku puzzles. To solve a Sudoku, the model is first required to search over all empty cells of the puzzle to decide on a cell to fill and then apply an appropriate strategy to fill the decided cell. Sometimes, the application of a strategy only results in thinning down the possible values in a cell rather than concluding the exact value of the cell. In such cases, multiple strategies are applied one after the other to fill a single cell. We observe that Transformer models trained on this synthetic task can indeed learn to solve Sudokus (our model solves $94.21\\%$ of the puzzles fully correctly) when trained on a logical sequence of steps taken by a solver. We find that training Transformers with the logical sequence of steps is necessary and without such training, they fail to learn Sudoku. We also extend our analysis to Zebra puzzles (known as Einstein puzzles) and show that the model solves $92.04 \\%$ of the puzzles fully correctly. In addition, we study the internal representations of the trained Transformer and find that through linear probing, we can decode information about the set of possible values in any given cell from them, pointing to the presence of a strong reasoning engine implicit in the Transformer weights.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2409.10502v1"
+  },
+  {
+    "title": "Visualizing the loss landscape of Self-supervised Vision Transformer",
+    "authors": [
+      "Youngwan Lee",
+      "Jeffrey Ryan Willette",
+      "Jonghee Kim",
+      "Sung Ju Hwang"
+    ],
+    "arxiv_id": "2405.18042",
+    "abstract": "The Masked autoencoder (MAE) has drawn attention as a representative self-supervised approach for masked image modeling with vision transformers. However, even though MAE shows better generalization capability than fully supervised training from scratch, the reason why has not been explored. In another line of work, the Reconstruction Consistent Masked Auto Encoder (RC-MAE), has been proposed which adopts a self-distillation scheme in the form of an exponential moving average (EMA) teacher into MAE, and it has been shown that the EMA-teacher performs a conditional gradient correction during optimization. To further investigate the reason for better generalization of the self-supervised ViT when trained by MAE (MAE-ViT) and the effect of the gradient correction of RC-MAE from the perspective of optimization, we visualize the loss landscapes of the self-supervised vision transformer by both MAE and RC-MAE and compare them with the supervised ViT (Sup-ViT). Unlike previous loss landscape visualizations of neural networks based on classification task loss, we visualize the loss landscape of ViT by computing pre-training task loss. Through the lens of loss landscapes, we find two interesting observations: (1) MAE-ViT has a smoother and wider overall loss curvature than Sup-ViT. (2) The EMA-teacher allows MAE to widen the region of convexity in both pretraining and linear probing, leading to quicker convergence. To the best of our knowledge, this work is the first to investigate the self-supervised ViT through the lens of the loss landscape.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2405.18042v1"
+  },
+  {
+    "title": "CXR-Agent: Vision-language models for chest X-ray interpretation with uncertainty aware radiology reporting",
+    "authors": [
+      "Naman Sharma"
+    ],
+    "arxiv_id": "2407.08811",
+    "abstract": "Recently large vision-language models have shown potential when interpreting complex images and generating natural language descriptions using advanced reasoning. Medicine's inherently multimodal nature incorporating scans and text-based medical histories to write reports makes it conducive to benefit from these leaps in AI capabilities. We evaluate the publicly available, state of the art, foundational vision-language models for chest X-ray interpretation across several datasets and benchmarks. We use linear probes to evaluate the performance of various components including CheXagent's vision transformer and Q-former, which outperform the industry-standard Torch X-ray Vision models across many different datasets showing robust generalisation capabilities. Importantly, we find that vision-language models often hallucinate with confident language, which slows down clinical interpretation. Based on these findings, we develop an agent-based vision-language approach for report generation using CheXagent's linear probes and BioViL-T's phrase grounding tools to generate uncertainty-aware radiology reports with pathologies localised and described based on their likelihood. We thoroughly evaluate our vision-language agents using NLP metrics, chest X-ray benchmarks and clinical evaluations by developing an evaluation platform to perform a user study with respiratory specialists. Our results show considerable improvements in accuracy, interpretability and safety of the AI-generated reports. We stress the importance of analysing results for normal and abnormal scans separately. Finally, we emphasise the need for larger paired (scan and report) datasets alongside data augmentation to tackle overfitting seen in these large vision-language models.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2407.08811v1"
+  },
+  {
+    "title": "Unforgettable Generalization in Language Models",
+    "authors": [
+      "Eric Zhang",
+      "Leshem Chosen",
+      "Jacob Andreas"
+    ],
+    "arxiv_id": "2409.02228",
+    "abstract": "When language models (LMs) are trained to forget (or \"unlearn'') a skill, how precisely does their behavior change? We study the behavior of transformer LMs in which tasks have been forgotten via fine-tuning on randomized labels. Such LMs learn to generate near-random predictions for individual examples in the \"training'' set used for forgetting. Across tasks, however, LMs exhibit extreme variability in whether LM predictions change on examples outside the training set. In some tasks (like entailment classification), forgetting generalizes robustly, and causes models to produce uninformative predictions on new task instances; in other tasks (like physical commonsense reasoning and scientific question answering) forgetting affects only the training examples, and models continue to perform the \"forgotten'' task accurately even for examples very similar to those that appeared in the training set. Dataset difficulty is not predictive of whether a behavior can be forgotten; instead, generalization in forgetting is (weakly) predicted by the confidence of LMs' initial task predictions and the variability of LM representations of training data, with low confidence and low variability both associated with greater generalization. Perhaps most surprisingly, random-label forgetting appears to be somewhat insensitive to the contents of the training set: for example, models trained on science questions with random labels continue to answer other science questions accurately, but begin to produce random labels on entailment classification tasks. Finally, we show that even generalizable forgetting is shallow: linear probes trained on LMs' representations can still perform tasks reliably after forgetting. Our results highlight the difficulty and unpredictability of performing targeted skill removal from models via fine-tuning.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2409.02228v1"
+  },
+  {
+    "title": "Self-Refinement of Language Models from External Proxy Metrics Feedback",
+    "authors": [
+      "Keshav Ramji",
+      "Young-Suk Lee",
+      "Ram\u00f3n Fernandez Astudillo",
+      "Md Arafat Sultan",
+      "Tahira Naseem",
+      "Asim Munawar",
+      "Radu Florian",
+      "Salim Roukos"
+    ],
+    "arxiv_id": "2403.00827",
+    "abstract": "It is often desirable for Large Language Models (LLMs) to capture multiple objectives when providing a response. In document-grounded response generation, for example, agent responses are expected to be relevant to a user's query while also being grounded in a given document. In this paper, we introduce Proxy Metric-based Self-Refinement (ProMiSe), which enables an LLM to refine its own initial response along key dimensions of quality guided by external metrics feedback, yielding an overall better final response. ProMiSe leverages feedback on response quality through principle-specific proxy metrics, and iteratively refines its response one principle at a time. We apply ProMiSe to open source language models Flan-T5-XXL and Llama-2-13B-Chat, to evaluate its performance on document-grounded question answering datasets, MultiDoc2Dial and QuAC, demonstrating that self-refinement improves response quality. We further show that fine-tuning Llama-2-13B-Chat on the synthetic dialogue data generated by ProMiSe yields significant performance improvements over the zero-shot baseline as well as a supervised fine-tuned model on human annotated data.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2403.00827v1"
+  },
+  {
+    "title": "Spontaneous Reward Hacking in Iterative Self-Refinement",
+    "authors": [
+      "Jane Pan",
+      "He He",
+      "Samuel R. Bowman",
+      "Shi Feng"
+    ],
+    "arxiv_id": "2407.04549",
+    "abstract": "Language models are capable of iteratively improving their outputs based on natural language feedback, thus enabling in-context optimization of user preference. In place of human users, a second language model can be used as an evaluator, providing feedback along with numerical ratings which the generator attempts to optimize. However, because the evaluator is an imperfect proxy of user preference, this optimization can lead to reward hacking, where the evaluator's ratings improve while the generation quality remains stagnant or even decreases as judged by actual user preference. The concern of reward hacking is heightened in iterative self-refinement where the generator and the evaluator use the same underlying language model, in which case the optimization pressure can drive them to exploit shared vulnerabilities. Using an essay editing task, we show that iterative self-refinement leads to deviation between the language model evaluator and human judgment, demonstrating that reward hacking can occur spontaneously in-context with the use of iterative self-refinement. In addition, we study conditions under which reward hacking occurs and observe two factors that affect reward hacking severity: model size and context sharing between the generator and the evaluator.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2407.04549v1"
+  },
+  {
+    "title": "Self-Refine Instruction-Tuning for Aligning Reasoning in Language Models",
+    "authors": [
+      "Leonardo Ranaldi",
+      "Andr\u00e8 Freitas"
+    ],
+    "arxiv_id": "2405.00402",
+    "abstract": "The alignments of reasoning abilities between smaller and larger Language Models are largely conducted via Supervised Fine-Tuning (SFT) using demonstrations generated from robust Large Language Models (LLMs). Although these approaches deliver more performant models, they do not show sufficiently strong generalization ability as the training only relies on the provided demonstrations.\n  In this paper, we propose the Self-refine Instruction-tuning method that elicits Smaller Language Models to self-refine their abilities. Our approach is based on a two-stage process, where reasoning abilities are first transferred between LLMs and Small Language Models (SLMs) via Instruction-tuning on demonstrations provided by LLMs, and then the instructed models Self-refine their abilities through preference optimization strategies. In particular, the second phase operates refinement heuristics based on the Direct Preference Optimization algorithm, where the SLMs are elicited to deliver a series of reasoning paths by automatically sampling the generated responses and providing rewards using ground truths from the LLMs. Results obtained on commonsense and math reasoning tasks show that this approach significantly outperforms Instruction-tuning in both in-domain and out-domain scenarios, aligning the reasoning abilities of Smaller and Larger Language Models.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2405.00402v1"
+  },
+  {
+    "title": "Direct Alignment of Language Models via Quality-Aware Self-Refinement",
+    "authors": [
+      "Runsheng Yu",
+      "Yong Wang",
+      "Xiaoqi Jiao",
+      "Youzhi Zhang",
+      "James T. Kwok"
+    ],
+    "arxiv_id": "2405.21040",
+    "abstract": "Reinforcement Learning from Human Feedback (RLHF) has been commonly used to align the behaviors of Large Language Models (LLMs) with human preferences. Recently, a popular alternative is Direct Policy Optimization (DPO), which replaces an LLM-based reward model with the policy itself, thus obviating the need for extra memory and training time to learn the reward model. However, DPO does not consider the relative qualities of the positive and negative responses, and can lead to sub-optimal training outcomes. To alleviate this problem, we investigate the use of intrinsic knowledge within the on-the-fly fine-tuning LLM to obtain relative qualities and help to refine the loss function. Specifically, we leverage the knowledge of the LLM to design a refinement function to estimate the quality of both the positive and negative responses. We show that the constructed refinement function can help self-refine the loss function under mild assumptions. The refinement function is integrated into DPO and its variant Identity Policy Optimization (IPO). Experiments across various evaluators indicate that they can improve the performance of the fine-tuned models over DPO and IPO.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2405.21040v1"
+  },
+  {
+    "title": "CYCLE: Learning to Self-Refine the Code Generation",
+    "authors": [
+      "Yangruibo Ding",
+      "Marcus J. Min",
+      "Gail Kaiser",
+      "Baishakhi Ray"
+    ],
+    "arxiv_id": "2403.18746",
+    "abstract": "Pre-trained code language models have achieved promising performance in code generation and improved the programming efficiency of human developers. However, their self-refinement capability is typically overlooked by the existing evaluations of code LMs, which focus only on the accuracy of the one-time prediction. For the cases when code LMs fail to implement the correct program, developers actually find it hard to debug and fix the faulty prediction since it is not written by the developers themselves. Unfortunately, our study reveals that code LMs cannot efficiently self-refine their faulty generations as well.\n  In this paper, we propose CYCLE framework, learning to self-refine the faulty generation according to the available feedback, such as the execution results reported by the test suites. We evaluate CYCLE on three popular code generation benchmarks, HumanEval, MBPP, and APPS. The results reveal that CYCLE successfully maintains, sometimes improves, the quality of one-time code generation, while significantly improving the self-refinement capability of code LMs. We implement four variants of CYCLE with varied numbers of parameters across 350M, 1B, 2B, and 3B, and the experiments show that CYCLE consistently boosts the code generation performance, by up to 63.5%, across benchmarks and varied model sizes. We also notice that CYCLE outperforms code LMs that have 3$\\times$ more parameters in self-refinement.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2403.18746v1"
+  },
+  {
+    "title": "TEaR: Improving LLM-based Machine Translation with Systematic Self-Refinement",
+    "authors": [
+      "Zhaopeng Feng",
+      "Yan Zhang",
+      "Hao Li",
+      "Bei Wu",
+      "Jiayu Liao",
+      "Wenqiang Liu",
+      "Jun Lang",
+      "Yang Feng",
+      "Jian Wu",
+      "Zuozhu Liu"
+    ],
+    "arxiv_id": "2402.16379",
+    "abstract": "Large Language Models (LLMs) have achieved impressive results in Machine Translation (MT). However, careful evaluations by human reveal that the translations produced by LLMs still contain multiple errors. Importantly, feeding back such error information into the LLMs can lead to self-refinement and result in improved translation performance. Motivated by these insights, we introduce a systematic LLM-based self-refinement translation framework, named \\textbf{TEaR}, which stands for \\textbf{T}ranslate, \\textbf{E}stimate, \\textbf{a}nd \\textbf{R}efine, marking a significant step forward in this direction. Our findings demonstrate that 1) our self-refinement framework successfully assists LLMs in improving their translation quality across a wide range of languages, whether it's from high-resource languages to low-resource ones or whether it's English-centric or centered around other languages; 2) TEaR exhibits superior systematicity and interpretability; 3) different estimation strategies yield varied impacts, directly affecting the effectiveness of the final corrections. Additionally, traditional neural translation models and evaluation models operate separately, often focusing on singular tasks due to their limited capabilities, while general-purpose LLMs possess the capability to undertake both tasks simultaneously. We further conduct cross-model correction experiments to investigate the potential relationship between the translation and evaluation capabilities of general-purpose LLMs. Our code and data are available at https://github.com/fzp0424/self_correct_mt",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2402.16379v3"
+  },
+  {
+    "title": "SERPENT-VLM : Self-Refining Radiology Report Generation Using Vision Language Models",
+    "authors": [
+      "Manav Nitin Kapadnis",
+      "Sohan Patnaik",
+      "Abhilash Nandy",
+      "Sourjyadip Ray",
+      "Pawan Goyal",
+      "Debdoot Sheet"
+    ],
+    "arxiv_id": "2404.17912",
+    "abstract": "Radiology Report Generation (R2Gen) demonstrates how Multi-modal Large Language Models (MLLMs) can automate the creation of accurate and coherent radiological reports. Existing methods often hallucinate details in text-based reports that don't accurately reflect the image content. To mitigate this, we introduce a novel strategy, SERPENT-VLM (SElf Refining Radiology RePort GENeraTion using Vision Language Models), which improves the R2Gen task by integrating a self-refining mechanism into the MLLM framework. We employ a unique self-supervised loss that leverages similarity between pooled image representations and the contextual representations of the generated radiological text, alongside the standard Causal Language Modeling objective, to refine image-text representations. This allows the model to scrutinize and align the generated text through dynamic interaction between a given image and the generated text, therefore reducing hallucination and continuously enhancing nuanced report generation. SERPENT-VLM outperforms existing baselines such as LLaVA-Med, BiomedGPT, etc., achieving SoTA performance on the IU X-ray and Radiology Objects in COntext (ROCO) datasets, and also proves to be robust against noisy images. A qualitative case study emphasizes the significant advancements towards more sophisticated MLLM frameworks for R2Gen, opening paths for further research into self-supervised refinement in the medical imaging domain.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2404.17912v2"
+  },
+  {
+    "title": "Calibrating Reasoning in Language Models with Internal Consistency",
+    "authors": [
+      "Zhihui Xie",
+      "Jizhou Guo",
+      "Tong Yu",
+      "Shuai Li"
+    ],
+    "arxiv_id": "2405.18711",
+    "abstract": "Large language models (LLMs) have demonstrated impressive capabilities in various reasoning tasks, aided by techniques like chain-of-thought prompting that elicits verbalized reasoning. However, LLMs often generate text with obvious mistakes and contradictions, raising doubts about their ability to robustly process and utilize generated rationales. In this work, we investigate reasoning in LLMs through the lens of internal representations, focusing on how these representations are influenced by generated rationales. Our preliminary analysis reveals that while generated rationales improve answer accuracy, inconsistencies emerge between the model's internal representations in middle layers and those in final layers, potentially undermining the reliability of their reasoning processes. To address this, we propose internal consistency as a measure of the model's confidence by examining the agreement of latent predictions decoded from intermediate layers. Extensive empirical studies across different models and datasets demonstrate that internal consistency effectively distinguishes between correct and incorrect reasoning paths. Motivated by this, we propose a new approach to calibrate reasoning by up-weighting reasoning paths with high internal consistency, resulting in a significant boost in reasoning performance. Further analysis uncovers distinct patterns in attention and feed-forward modules across layers, providing insights into the emergence of internal inconsistency. In summary, our results demonstrate the potential of using internal representations for self-evaluation of LLMs. Our code is available at github.com/zhxieml/internal-consistency.",
+    "year": 2024,
+    "url": "http://arxiv.org/abs/2405.18711v2"
+  },
+  {
+    "title": "Coinductive guide to inductive transformer heads",
+    "authors": [
+      "Adam Nemecek"
+    ],
+    "arxiv_id": "2302.01834",
+    "abstract": "We argue that all building blocks of transformer models can be expressed with a single concept: combinatorial Hopf algebra. Transformer learning emerges as a result of the subtle interplay between the algebraic and coalgebraic operations of the combinatorial Hopf algebra. Viewed through this lens, the transformer model becomes a linear time-invariant system where the attention mechanism computes a generalized convolution transform and the residual stream serves as a unit impulse. Attention-only transformers then learn by enforcing an invariant between these two paths. We call this invariant Hopf coherence. Due to this, with a degree of poetic license, one could call combinatorial Hopf algebras \"tensors with a built-in loss function gradient\". This loss function gradient occurs within the single layers and no backward pass is needed. This is in contrast to automatic differentiation which happens across the whole graph and needs a explicit backward pass. This property is the result of the fact that combinatorial Hopf algebras have the surprising property of calculating eigenvalues by repeated squaring.",
+    "year": 2023,
+    "url": "http://arxiv.org/abs/2302.01834v1"
+  },
+  {
+    "title": "Multimodal Neurons in Pretrained Text-Only Transformers",
+    "authors": [
+      "Sarah Schwettmann",
+      "Neil Chowdhury",
+      "Samuel Klein",
+      "David Bau",
+      "Antonio Torralba"
+    ],
+    "arxiv_id": "2308.01544",
+    "abstract": "Language models demonstrate remarkable capacity to generalize representations learned in one modality to downstream tasks in other modalities. Can we trace this ability to individual neurons? We study the case where a frozen text transformer is augmented with vision using a self-supervised visual encoder and a single linear projection learned on an image-to-text task. Outputs of the projection layer are not immediately decodable into language describing image content; instead, we find that translation between modalities occurs deeper within the transformer. We introduce a procedure for identifying \"multimodal neurons\" that convert visual representations into corresponding text, and decoding the concepts they inject into the model's residual stream. In a series of experiments, we show that multimodal neurons operate on specific visual concepts across inputs, and have a systematic causal effect on image captioning.",
+    "year": 2023,
+    "url": "http://arxiv.org/abs/2308.01544v2"
+  },
+  {
+    "title": "Structured World Representations in Maze-Solving Transformers",
+    "authors": [
+      "Michael Igorevich Ivanitskiy",
+      "Alex F. Spies",
+      "Tilman R\u00e4uker",
+      "Guillaume Corlouer",
+      "Chris Mathwin",
+      "Lucia Quirke",
+      "Can Rager",
+      "Rusheb Shah",
+      "Dan Valentine",
+      "Cecilia Diniz Behn",
+      "Katsumi Inoue",
+      "Samy Wu Fung"
+    ],
+    "arxiv_id": "2312.02566",
+    "abstract": "Transformer models underpin many recent advances in practical machine learning applications, yet understanding their internal behavior continues to elude researchers. Given the size and complexity of these models, forming a comprehensive picture of their inner workings remains a significant challenge. To this end, we set out to understand small transformer models in a more tractable setting: that of solving mazes. In this work, we focus on the abstractions formed by these models and find evidence for the consistent emergence of structured internal representations of maze topology and valid paths. We demonstrate this by showing that the residual stream of only a single token can be linearly decoded to faithfully reconstruct the entire maze. We also find that the learned embeddings of individual tokens have spatial structure. Furthermore, we take steps towards deciphering the circuity of path-following by identifying attention heads (dubbed $\\textit{adjacency heads}$), which are implicated in finding valid subsequent tokens.",
+    "year": 2023,
+    "url": "http://arxiv.org/abs/2312.02566v1"
+  },
+  {
+    "title": "Towards a Mechanistic Interpretation of Multi-Step Reasoning Capabilities of Language Models",
+    "authors": [
+      "Yifan Hou",
+      "Jiaoda Li",
+      "Yu Fei",
+      "Alessandro Stolfo",
+      "Wangchunshu Zhou",
+      "Guangtao Zeng",
+      "Antoine Bosselut",
+      "Mrinmaya Sachan"
+    ],
+    "arxiv_id": "2310.14491",
+    "abstract": "Recent work has shown that language models (LMs) have strong multi-step (i.e., procedural) reasoning capabilities. However, it is unclear whether LMs perform these tasks by cheating with answers memorized from pretraining corpus, or, via a multi-step reasoning mechanism. In this paper, we try to answer this question by exploring a mechanistic interpretation of LMs for multi-step reasoning tasks. Concretely, we hypothesize that the LM implicitly embeds a reasoning tree resembling the correct reasoning process within it. We test this hypothesis by introducing a new probing approach (called MechanisticProbe) that recovers the reasoning tree from the model's attention patterns. We use our probe to analyze two LMs: GPT-2 on a synthetic task (k-th smallest element), and LLaMA on two simple language-based reasoning tasks (ProofWriter & AI2 Reasoning Challenge). We show that MechanisticProbe is able to detect the information of the reasoning tree from the model's attentions for most examples, suggesting that the LM indeed is going through a process of multi-step reasoning within its architecture in many cases.",
+    "year": 2023,
+    "url": "http://arxiv.org/abs/2310.14491v1"
+  },
+  {
+    "title": "A Mechanistic Interpretation of Arithmetic Reasoning in Language Models using Causal Mediation Analysis",
+    "authors": [
+      "Alessandro Stolfo",
+      "Yonatan Belinkov",
+      "Mrinmaya Sachan"
+    ],
+    "arxiv_id": "2305.15054",
+    "abstract": "Mathematical reasoning in large language models (LMs) has garnered significant attention in recent work, but there is a limited understanding of how these models process and store information related to arithmetic tasks within their architecture. In order to improve our understanding of this aspect of language models, we present a mechanistic interpretation of Transformer-based LMs on arithmetic questions using a causal mediation analysis framework. By intervening on the activations of specific model components and measuring the resulting changes in predicted probabilities, we identify the subset of parameters responsible for specific predictions. This provides insights into how information related to arithmetic is processed by LMs. Our experimental results indicate that LMs process the input by transmitting the information relevant to the query from mid-sequence early layers to the final token using the attention mechanism. Then, this information is processed by a set of MLP modules, which generate result-related information that is incorporated into the residual stream. To assess the specificity of the observed activation dynamics, we compare the effects of different model components on arithmetic queries with other tasks, including number retrieval from prompts and factual knowledge questions.",
+    "year": 2023,
+    "url": "http://arxiv.org/abs/2305.15054v2"
+  },
+  {
+    "title": "DSPy Assertions: Computational Constraints for Self-Refining Language Model Pipelines",
+    "authors": [
+      "Arnav Singhvi",
+      "Manish Shetty",
+      "Shangyin Tan",
+      "Christopher Potts",
+      "Koushik Sen",
+      "Matei Zaharia",
+      "Omar Khattab"
+    ],
+    "arxiv_id": "2312.13382",
+    "abstract": "Chaining language model (LM) calls as composable modules is fueling a new way of programming, but ensuring LMs adhere to important constraints requires heuristic \"prompt engineering\". We introduce LM Assertions, a programming construct for expressing computational constraints that LMs should satisfy. We integrate our constructs into the recent DSPy programming model for LMs, and present new strategies that allow DSPy to compile programs with LM Assertions into more reliable and accurate systems. We also propose strategies to use assertions at inference time for automatic self-refinement with LMs. We report on four diverse case studies for text generation and find that LM Assertions improve not only compliance with imposed rules but also downstream task performance, passing constraints up to 164% more often and generating up to 37% more higher-quality responses. Our reference implementation of LM Assertions is integrated into DSPy at https://github.com/stanfordnlp/dspy",
+    "year": 2023,
+    "url": "http://arxiv.org/abs/2312.13382v2"
+  },
+  {
+    "title": "ISR-LLM: Iterative Self-Refined Large Language Model for Long-Horizon Sequential Task Planning",
+    "authors": [
+      "Zhehua Zhou",
+      "Jiayang Song",
+      "Kunpeng Yao",
+      "Zhan Shu",
+      "Lei Ma"
+    ],
+    "arxiv_id": "2308.13724",
+    "abstract": "Motivated by the substantial achievements observed in Large Language Models (LLMs) in the field of natural language processing, recent research has commenced investigations into the application of LLMs for complex, long-horizon sequential task planning challenges in robotics. LLMs are advantageous in offering the potential to enhance the generalizability as task-agnostic planners and facilitate flexible interaction between human instructors and planning systems. However, task plans generated by LLMs often lack feasibility and correctness. To address this challenge, we introduce ISR-LLM, a novel framework that improves LLM-based planning through an iterative self-refinement process. The framework operates through three sequential steps: preprocessing, planning, and iterative self-refinement. During preprocessing, an LLM translator is employed to convert natural language input into a Planning Domain Definition Language (PDDL) formulation. In the planning phase, an LLM planner formulates an initial plan, which is then assessed and refined in the iterative self-refinement step by using a validator. We examine the performance of ISR-LLM across three distinct planning domains. The results show that ISR-LLM is able to achieve markedly higher success rates in task accomplishments compared to state-of-the-art LLM-based planners. Moreover, it also preserves the broad applicability and generalizability of working with natural language instructions.",
+    "year": 2023,
+    "url": "http://arxiv.org/abs/2308.13724v1"
+  },
+  {
+    "title": "Self-Refined Large Language Model as Automated Reward Function Designer for Deep Reinforcement Learning in Robotics",
+    "authors": [
+      "Jiayang Song",
+      "Zhehua Zhou",
+      "Jiawei Liu",
+      "Chunrong Fang",
+      "Zhan Shu",
+      "Lei Ma"
+    ],
+    "arxiv_id": "2309.06687",
+    "abstract": "Although Deep Reinforcement Learning (DRL) has achieved notable success in numerous robotic applications, designing a high-performing reward function remains a challenging task that often requires substantial manual input. Recently, Large Language Models (LLMs) have been extensively adopted to address tasks demanding in-depth common-sense knowledge, such as reasoning and planning. Recognizing that reward function design is also inherently linked to such knowledge, LLM offers a promising potential in this context. Motivated by this, we propose in this work a novel LLM framework with a self-refinement mechanism for automated reward function design. The framework commences with the LLM formulating an initial reward function based on natural language inputs. Then, the performance of the reward function is assessed, and the results are presented back to the LLM for guiding its self-refinement process. We examine the performance of our proposed framework through a variety of continuous robotic control tasks across three diverse robotic systems. The results indicate that our LLM-designed reward functions are able to rival or even surpass manually designed reward functions, highlighting the efficacy and applicability of our approach.",
+    "year": 2023,
+    "url": "http://arxiv.org/abs/2309.06687v2"
+  },
+  {
+    "title": "Low Anisotropy Sense Retrofitting (LASeR) : Towards Isotropic and Sense Enriched Representations",
+    "authors": [
+      "Geetanjali Bihani",
+      "Julia Taylor Rayz"
+    ],
+    "arxiv_id": "2104.10833",
+    "abstract": "Contextual word representation models have shown massive improvements on a multitude of NLP tasks, yet their word sense disambiguation capabilities remain poorly explained. To address this gap, we assess whether contextual word representations extracted from deep pretrained language models create distinguishable representations for different senses of a given word. We analyze the representation geometry and find that most layers of deep pretrained language models create highly anisotropic representations, pointing towards the existence of representation degeneration problem in contextual word representations. After accounting for anisotropy, our study further reveals that there is variability in sense learning capabilities across different language models. Finally, we propose LASeR, a 'Low Anisotropy Sense Retrofitting' approach that renders off-the-shelf representations isotropic and semantically more meaningful, resolving the representation degeneration problem as a post-processing step, and conducting sense-enrichment of contextualized representations extracted from deep neural language models.",
+    "year": 2021,
+    "url": "http://arxiv.org/abs/2104.10833v1"
+  },
+  {
+    "title": "Masked Measurement Prediction: Learning to Jointly Predict Quantities and Units from Textual Context",
+    "authors": [
+      "Daniel Spokoyny",
+      "Ivan Lee",
+      "Zhao Jin",
+      "Taylor Berg-Kirkpatrick"
+    ],
+    "arxiv_id": "2112.08616",
+    "abstract": "Physical measurements constitute a large portion of numbers in academic papers, engineering reports, and web tables. Current benchmarks fall short of properly evaluating numeracy of pretrained language models on measurements, hindering research on developing new methods and applying them to numerical tasks. To that end, we introduce a novel task, Masked Measurement Prediction (MMP), where a model learns to reconstruct a number together with its associated unit given masked text. MMP is useful for both training new numerically informed models as well as evaluating numeracy of existing systems. In order to address this task, we introduce a new Generative Masked Measurement (GeMM) model that jointly learns to predict numbers along with their units. We perform fine-grained analyses comparing our model with various ablations and baselines. We use linear probing of traditional pretrained transformer models (RoBERTa) to show that they significantly underperform jointly trained number-unit models, highlighting the difficulty of this new task and the benefits of our proposed pretraining approach. We hope this framework accelerates the progress towards building more robust numerical reasoning systems in the future.",
+    "year": 2021,
+    "url": "http://arxiv.org/abs/2112.08616v1"
+  }
+]

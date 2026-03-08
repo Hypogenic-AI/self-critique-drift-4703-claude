@@ -1,0 +1,10 @@
+# Ignore large dataset directories (Arrow format)
+gsm8k/
+math/
+truthfulqa/
+arc_challenge/
+
+# Keep sample JSON files and documentation
+!*_sample.json
+!README.md
+!.gitignore

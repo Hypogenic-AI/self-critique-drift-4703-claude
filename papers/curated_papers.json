@@ -1,0 +1,277 @@
+[
+  {
+    "title": "Causality \u2260 Decodability, and Vice Versa: Lessons from Interpreting Counting ViTs",
+    "arxiv_id": "",
+    "year": 2025,
+    "abstract": "Mechanistic interpretability seeks to uncover how internal components of neural networks give rise to predictions. A persistent challenge, however, is disentangling two often conflated notions: decodability--the recoverability of information from hidden states--and causality--the extent to which those states functionally influence outputs. In this work, we investigate their relationship in vision transformers (ViTs) fine-tuned for object counting. Using activation patching, we test the causal ro",
+    "url": "https://api.semanticscholar.org/CorpusId:282058700",
+    "source": "paper_finder",
+    "score": 18
+  },
+  {
+    "title": "Emergent Manifold Separability during Reasoning in Large Language Models",
+    "arxiv_id": "2602.20338",
+    "year": 2026,
+    "abstract": "Chain-of-Thought (CoT) prompting significantly improves reasoning in Large Language Models, yet the temporal dynamics of the underlying representation geometry remain poorly understood. We investigate these dynamics by applying Manifold Capacity Theory (MCT) to a compositional Boolean logic task, allowing us to quantify the linear separability of latent representations without the confounding factors of probe training. Our analysis reveals that reasoning manifests as a transient geometric pulse,",
+    "url": "http://arxiv.org/abs/2602.20338v1",
+    "source": "arxiv",
+    "score": 17
+  },
+  {
+    "title": "From Emergence to Control: Probing and Modulating Self-Reflection in Language Models",
+    "arxiv_id": "2506.12217",
+    "year": 2025,
+    "abstract": "Self-reflection -- the ability of a large language model (LLM) to revisit, evaluate, and revise its own reasoning -- has recently emerged as a powerful behavior enabled by reinforcement learning with verifiable rewards (RLVR). While self-reflection correlates with improved reasoning accuracy, its origin and underlying mechanisms remain poorly understood. In this work, {\\it we first show that self-reflection is not exclusive to RLVR fine-tuned models: it already emerges, albeit rarely, in pretrai",
+    "url": "https://www.semanticscholar.org/paper/2804f5e90879ed0bb3af30a612138e6381775abf",
+    "source": "semantic_scholar",
+    "score": 15,
+    "citations": 4
+  },
+  {
+    "title": "Beyond Behavioural Trade-Offs: Mechanistic Tracing of Pain-Pleasure Decisions in an LLM",
+    "arxiv_id": "",
+    "year": 2026,
+    "abstract": "Prior behavioural work suggests that some LLMs alter choices when options are framed as causing pain or pleasure, and that such deviations can scale with stated intensity. To bridge behavioural evidence (what the model does) with mechanistic interpretability (what computations support it), we investigate how valence-related information is represented and where it is causally used inside a transformer. Using Gemma-2-9B-it and a minimalist decision task modelled on prior work, we (i) map represent",
+    "url": "https://www.semanticscholar.org/paper/101d0b03b8624965165605767daf0abf87470c2d",
+    "source": "paper_finder",
+    "score": 15
+  },
+  {
+    "title": "MetaOthello: A Controlled Study of Multiple World Models in Transformers",
+    "arxiv_id": "",
+    "year": 2026,
+    "abstract": "Foundation models must handle multiple generative processes, yet mechanistic interpretability largely studies capabilities in isolation; it remains unclear how a single transformer organizes multiple, potentially conflicting\"world models\". Previous experiments on Othello playing neural-networks test world-model learning but focus on a single game with a single set of rules. We introduce MetaOthello, a controlled suite of Othello variants with shared syntax but different rules or tokenizations, a",
+    "url": "https://www.semanticscholar.org/paper/9a9f4c4cd9adcaf400e9d7faf13347c0849cdbe2",
+    "source": "paper_finder",
+    "score": 15
+  },
+  {
+    "title": "Probing for Arithmetic Errors in Language Models",
+    "arxiv_id": "2507.12379",
+    "year": 2025,
+    "abstract": "We investigate whether internal activations in language models can be used to detect arithmetic errors. Starting with a controlled setting of 3-digit addition, we show that simple probes can accurately decode both the model's predicted output and the correct answer from hidden states, regardless of whether the model's output is correct. Building on this, we train lightweight error detectors that predict model correctness with over 90% accuracy. We then extend our analysis to structured chain-of-",
+    "url": "http://arxiv.org/abs/2507.12379v1",
+    "source": "arxiv",
+    "score": 14
+  },
+  {
+    "title": "Truth as a Trajectory: What Internal Representations Reveal About Large Language Model Reasoning",
+    "arxiv_id": "2603.01326",
+    "year": 2026,
+    "abstract": "Existing explainability methods for Large Language Models (LLMs) typically treat hidden states as static points in activation space, assuming that correct and incorrect inferences can be separated using representations from an individual layer. However, these activations are saturated with polysemantic features, leading to linear probes learning surface-level lexical patterns rather than underlying reasoning structures. We introduce Truth as a Trajectory (TaT), which models the transformer infer",
+    "url": "http://arxiv.org/abs/2603.01326v1",
+    "source": "arxiv",
+    "score": 13
+  },
+  {
+    "title": "From Mechanistic Interpretability to Mechanistic Biology: Training, Evaluating, and Interpreting Sparse Autoencoders on Protein Language Models",
+    "arxiv_id": "",
+    "year": 2025,
+    "abstract": "Protein language models (pLMs) are powerful predictors of protein structure and function, learning through unsupervised training on millions of protein sequences. pLMs are thought to capture common motifs in protein sequences, but the specifics of pLM features are not well understood. Identifying these features would not only shed light on how pLMs work, but potentially uncover novel protein biology\u2013\u2013studying the model to study the biology. Motivated by this, we train sparse autoencoders (SAEs) ",
+    "url": "https://www.semanticscholar.org/paper/2ac42be0b5fb0b61f4be220bbd65322bed59ecbf",
+    "source": "semantic_scholar",
+    "score": 13,
+    "citations": 34
+  },
+  {
+    "title": "Emergent Linear Representations in World Models of Self-Supervised Sequence Models",
+    "arxiv_id": "",
+    "year": 2023,
+    "abstract": "How do sequence models represent their decision-making process? Prior work suggests that Othello-playing neural network learned nonlinear models of the board state (Li et al., 2023a). In this work, we provide evidence of a closely related linear representation of the board. In particular, we show that probing for \u201cmy colour\u201d vs. \u201copponent\u2019s colour\u201d may be a simple yet powerful way to interpret the model\u2019s internal state. This precise understanding of the internal representations allows us to con",
+    "url": "https://www.semanticscholar.org/paper/bb26227a94ddb2b0088a23e2ec0a170c40bc4d78",
+    "source": "paper_finder",
+    "score": 12
+  },
+  {
+    "title": "How Language Directions Align with Token Geometry in Multilingual LLMs",
+    "arxiv_id": "",
+    "year": 2025,
+    "abstract": "Multilingual LLMs demonstrate strong performance across diverse languages, yet there has been limited systematic analysis of how language information is structured within their internal representation space and how it emerges across layers. We conduct a comprehensive probing study on six multilingual LLMs, covering all 268 transformer layers, using linear and nonlinear probes together with a new Token--Language Alignment analysis to quantify the layer-wise dynamics and geometric structure of lan",
+    "url": "https://api.semanticscholar.org/CorpusId:283225858",
+    "source": "paper_finder",
+    "score": 12
+  },
+  {
+    "title": "Decoding Vision Transformers: The Diffusion Steering Lens",
+    "arxiv_id": "",
+    "year": 2025,
+    "abstract": "Logit Lens is a widely adopted method for mechanistic interpretability of transformer-based language models, enabling the analysis of how internal representations evolve across layers by projecting them into the output vocabulary space. Although applying Logit Lens to Vision Transformers (ViTs) is technically straightforward, its direct use faces limitations in capturing the richness of visual representations. Building on the work of Toker et al. (2024) [43], who introduced Diffusion Lens to vis",
+    "url": "https://api.semanticscholar.org/CorpusId:277940292",
+    "source": "paper_finder",
+    "score": 12
+  },
+  {
+    "title": "Activation Patching for Interpretable Steering in Music Generation",
+    "arxiv_id": "",
+    "year": 2025,
+    "abstract": "Understanding how large audio models represent music, and using that understanding to steer generation, is both challenging and underexplored. Inspired by mechanistic interpretability in language models, where direction vectors in transformer residual streams are key to model analysis and control, we investigate similar techniques in the audio domain. This paper presents the first study of latent direction vectors in large audio models and their use for continuous control of musical attributes i",
+    "url": "https://api.semanticscholar.org/CorpusId:277621500",
+    "source": "paper_finder",
+    "score": 12
+  },
+  {
+    "title": "Dictionary Learning Improves Patch-Free Circuit Discovery in Mechanistic Interpretability: A Case Study on Othello-GPT",
+    "arxiv_id": "",
+    "year": 2024,
+    "abstract": "Sparse dictionary learning has been a rapidly growing technique in mechanistic interpretability to attack superposition and extract more human-understandable features from model activations. We ask a further question based on the extracted more monosemantic features: How do we recognize circuits connecting the enormous amount of dictionary features? We propose a circuit discovery framework alternative to activation patching. Our framework suffers less from out-of-distribution and proves to be mo",
+    "url": "https://api.semanticscholar.org/CorpusId:267751496",
+    "source": "paper_finder",
+    "score": 12
+  },
+  {
+    "title": "Towards Best Practices of Activation Patching in Language Models: Metrics and Methods",
+    "arxiv_id": "",
+    "year": 2023,
+    "abstract": "Mechanistic interpretability seeks to understand the internal mechanisms of machine learning models, where localization -- identifying the important model components -- is a key step. Activation patching, also known as causal tracing or interchange intervention, is a standard technique for this task (Vig et al., 2020), but the literature contains many variants with little consensus on the choice of hyperparameters or methodology. In this work, we systematically examine the impact of methodologic",
+    "url": "https://www.semanticscholar.org/paper/c16c05ca0a3d24519405849fd24604fc1ce47751",
+    "source": "paper_finder",
+    "score": 12
+  },
+  {
+    "title": "Stream: Scaling up Mechanistic Interpretability to Long Context in LLMs via Sparse Attention",
+    "arxiv_id": "2510.19875",
+    "year": 2025,
+    "abstract": "As Large Language Models (LLMs) scale to million-token contexts, traditional Mechanistic Interpretability techniques for analyzing attention scale quadratically with context length, demanding terabytes of memory beyond 100,000 tokens. We introduce Sparse Tracing, a novel technique that leverages dynamic sparse attention to efficiently analyze long context attention patterns. We present Stream, a compilable hierarchical pruning algorithm that estimates per-head sparse attention masks in near-line",
+    "url": "http://arxiv.org/abs/2510.19875v2",
+    "source": "arxiv",
+    "score": 11
+  },
+  {
+    "title": "Superscopes: Amplifying Internal Feature Representations for Language Model Interpretation",
+    "arxiv_id": "2503.02078",
+    "year": 2025,
+    "abstract": "Understanding and interpreting the internal representations of large language models (LLMs) remains an open challenge. Patchscopes introduced a method for probing internal activations by patching them into new prompts, prompting models to self-explain their hidden representations. We introduce Superscopes, a technique that systematically amplifies superposed features in MLP outputs (multilayer perceptron) and hidden states before patching them into new contexts. Inspired by the\"features as direc",
+    "url": "https://www.semanticscholar.org/paper/6f263b30be70b7ac4dbecc2001f565c58591ef9a",
+    "source": "semantic_scholar",
+    "score": 11,
+    "citations": 3
+  },
+  {
+    "title": "Can LLMs Predict Their Own Failures? Self-Awareness via Internal Circuits",
+    "arxiv_id": "2512.20578",
+    "year": 2025,
+    "abstract": "Large language models (LLMs) generate fluent and complex outputs but often fail to recognize their own mistakes and hallucinations. Existing approaches typically rely on external judges, multi-sample consistency, or text-based self-critique, which incur additional compute or correlate weakly with true correctness. We ask: can LLMs predict their own failures by inspecting internal states during inference? We introduce Gnosis, a lightweight self-awareness mechanism that enables frozen LLMs to perf",
+    "url": "https://www.semanticscholar.org/paper/4eed8b3ebd30e24af52a654d4b6cdafa7ce32d59",
+    "source": "semantic_scholar",
+    "score": 11,
+    "citations": 0
+  },
+  {
+    "title": "Why Linear Interpretability Works: Invariant Subspaces as a Result of Architectural Constraints",
+    "arxiv_id": "",
+    "year": 2026,
+    "abstract": "Linear probes and sparse autoencoders consistently recover meaningful structure from transformer representations -- yet why should such simple methods succeed in deep, nonlinear systems? We show this is not merely an empirical regularity but a consequence of architectural necessity: transformers communicate information through linear interfaces (attention OV circuits, unembedding matrices), and any semantic feature decoded through such an interface must occupy a context-invariant linear subspace",
+    "url": "https://api.semanticscholar.org/CorpusId:285462679",
+    "source": "paper_finder",
+    "score": 11
+  },
+  {
+    "title": "Analyzing Vision Transformers for Image Classification in Class Embedding Space",
+    "arxiv_id": "",
+    "year": 2023,
+    "abstract": "Despite the growing use of transformer models in computer vision, a mechanistic understanding of these networks is still needed. This work introduces a method to reverse-engineer Vision Transformers trained to solve image classification tasks. Inspired by previous research in NLP, we demonstrate how the inner representations at any level of the hierarchy can be projected onto the learned class embedding space to uncover how these networks build categorical representations for their predictions. ",
+    "url": "https://api.semanticscholar.org/CorpusId:264590344",
+    "source": "paper_finder",
+    "score": 11
+  },
+  {
+    "title": "Words in Motion: Extracting Interpretable Control Vectors for Motion Transformers",
+    "arxiv_id": "",
+    "year": 2024,
+    "abstract": "Transformer-based models generate hidden states that are difficult to interpret. In this work, we analyze hidden states and modify them at inference, with a focus on motion forecasting. We use linear probing to analyze whether interpretable features are embedded in hidden states. Our experiments reveal high probing accuracy, indicating latent space regularities with functionally important directions. Building on this, we use the directions between hidden states with opposing features to fit cont",
+    "url": "https://api.semanticscholar.org/CorpusId:273351419",
+    "source": "paper_finder",
+    "score": 11
+  },
+  {
+    "title": "Linear Representations of Political Perspective Emerge in Large Language Models",
+    "arxiv_id": "",
+    "year": 2025,
+    "abstract": "Large language models (LLMs) have demonstrated the ability to generate text that realistically reflects a range of different subjective human perspectives. This paper studies how LLMs are seemingly able to reflect more liberal versus more conservative viewpoints among other political perspectives in American politics. We show that LLMs possess linear representations of political perspectives within activation space, wherein more similar perspectives are represented closer together. To do so, we ",
+    "url": "https://www.semanticscholar.org/paper/7aac9e9c109f4684a169aea8883f54cecbb55a9a",
+    "source": "paper_finder",
+    "score": 11
+  },
+  {
+    "title": "Disentangling Recall and Reasoning in Transformer Models through Layer-wise Attention and Activation Analysis",
+    "arxiv_id": "",
+    "year": 2025,
+    "abstract": "Transformer-based language models excel at both recall (retrieving memorized facts) and reasoning (performing multi-step inference), but whether these abilities rely on distinct internal mechanisms remains unclear. Distinguishing recall from reasoning is crucial for predicting model generalization, designing targeted evaluations, and building safer interventions that affect one ability without disrupting the other.We approach this question through mechanistic interpretability, using controlled d",
+    "url": "https://api.semanticscholar.org/CorpusId:281843350",
+    "source": "paper_finder",
+    "score": 11
+  },
+  {
+    "title": "Emergence of Minimal Circuits for Indirect Object Identification in Attention-Only Transformers",
+    "arxiv_id": "",
+    "year": 2025,
+    "abstract": "Mechanistic interpretability aims to reverse-engineer large language models (LLMs) into human-understandable computational circuits. However, the complexity of pretrained models often obscures the minimal mechanisms required for specific reasoning tasks. In this work, we train small, attention-only transformers from scratch on a symbolic version of the Indirect Object Identification (IOI) task -- a benchmark for studying coreference -- like reasoning in transformers. Surprisingly, a single-layer",
+    "url": "https://api.semanticscholar.org/CorpusId:282573839",
+    "source": "paper_finder",
+    "score": 11
+  },
+  {
+    "title": "Causal Intervention Framework for Variational Auto Encoder Mechanistic Interpretability",
+    "arxiv_id": "",
+    "year": 2025,
+    "abstract": "Mechanistic interpretability of deep learning models has emerged as a crucial research direction for understanding the functioning of neural networks. While significant progress has been made in interpreting discriminative models like transformers, understanding generative models such as Variational Autoencoders (VAEs) remains challenging. This paper introduces a comprehensive causal intervention framework for mechanistic interpretability of VAEs. We develop techniques to identify and analyze\"ci",
+    "url": "https://api.semanticscholar.org/CorpusId:278339502",
+    "source": "paper_finder",
+    "score": 11
+  },
+  {
+    "title": "Recursive Concept Evolution for Compositional Reasoning in Large Language Models",
+    "arxiv_id": "2602.15725",
+    "year": 2026,
+    "abstract": "Large language models achieve strong performance on many complex reasoning tasks, yet their accuracy degrades sharply on benchmarks that require compositional reasoning, including ARC-AGI-2, GPQA, MATH, BBH, and HLE. Existing methods improve reasoning by expanding token-level search through chain-of-thought prompting, self-consistency, or reinforcement learning, but they leave the model's latent representation space fixed. When the required abstraction is not already encoded in this space, perfo",
+    "url": "http://arxiv.org/abs/2602.15725v1",
+    "source": "arxiv",
+    "score": 10
+  },
+  {
+    "title": "Sparsification and Reconstruction from the Perspective of Representation Geometry",
+    "arxiv_id": "2505.22506",
+    "year": 2025,
+    "abstract": "Sparse Autoencoders (SAEs) have emerged as a predominant tool in mechanistic interpretability, aiming to identify interpretable monosemantic features. However, how does sparse encoding organize the representations of activation vector from language models? What is the relationship between this organizational paradigm and feature disentanglement as well as reconstruction performance? To address these questions, we propose the SAEMA, which validates the stratified structure of the representation b",
+    "url": "http://arxiv.org/abs/2505.22506v1",
+    "source": "arxiv",
+    "score": 10
+  },
+  {
+    "title": "Language Mixing in Reasoning Language Models: Patterns, Impact, and Internal Causes",
+    "arxiv_id": "2505.14815",
+    "year": 2025,
+    "abstract": "Reasoning language models (RLMs) excel at complex tasks by leveraging a chain-of-thought process to generate structured intermediate steps. However, language mixing, i.e., reasoning steps containing tokens from languages other than the prompt, has been observed in their outputs and shown to affect performance, though its impact remains debated. We present the first systematic study of language mixing in RLMs, examining its patterns, impact, and internal causes across 15 languages, 7 task difficu",
+    "url": "http://arxiv.org/abs/2505.14815v3",
+    "source": "arxiv",
+    "score": 10
+  },
+  {
+    "title": "Towards Reasoning-Preserving Unlearning in Multimodal Large Language Models",
+    "arxiv_id": "2512.17911",
+    "year": 2025,
+    "abstract": "Machine unlearning aims to erase requested data from trained models without full retraining. For Reasoning Multimodal Large Language Models (RMLLMs), this is uniquely challenging: intermediate chain-of-thought steps can still leak sensitive information even when final answers are forgotten, and overly aggressive interventions easily damage general reasoning ability. Yet no benchmark jointly evaluates how well unlearning methods suppress reasoning-level leakage while preserving reasoning competen",
+    "url": "http://arxiv.org/abs/2512.17911v1",
+    "source": "arxiv",
+    "score": 10
+  },
+  {
+    "title": "HyperDAS: Towards Automating Mechanistic Interpretability with Hypernetworks",
+    "arxiv_id": "2503.10894",
+    "year": 2025,
+    "abstract": "Mechanistic interpretability has made great strides in identifying neural network features (e.g., directions in hidden activation space) that mediate concepts(e.g., the birth year of a person) and enable predictable manipulation. Distributed alignment search (DAS) leverages supervision from counterfactual data to learn concept features within hidden states, but DAS assumes we can afford to conduct a brute force search over potential feature locations. To address this, we present HyperDAS, a tran",
+    "url": "https://www.semanticscholar.org/paper/be79d0ef6dec980140bf3dc940a80a23183acf91",
+    "source": "semantic_scholar",
+    "score": 10,
+    "citations": 8
+  },
+  {
+    "title": "Residual Stream Analysis with Multi-Layer SAEs",
+    "arxiv_id": "",
+    "year": 2024,
+    "abstract": "Sparse autoencoders (SAEs) are a promising approach to interpreting the internal representations of transformer language models. However, SAEs are usually trained separately on each transformer layer, making it difficult to use them to study how information flows across layers. To solve this problem, we introduce the multi-layer SAE (MLSAE): a single SAE trained on the residual stream activation vectors from every transformer layer. Given that the residual stream is understood to preserve inform",
+    "url": "https://api.semanticscholar.org/CorpusId:272463903",
+    "source": "paper_finder",
+    "score": 10
+  }
+]
